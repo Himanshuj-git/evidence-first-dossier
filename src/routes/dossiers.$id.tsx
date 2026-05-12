@@ -69,7 +69,7 @@ function DossierLayout() {
           <div className="flex items-center gap-3">
             <ScoreRing score={summary.score} size={72} />
             <div className="text-sm">
-              <div className="text-xs uppercase tracking-wider text-muted-foreground">Evidence readiness</div>
+              <div className="text-xs uppercase tracking-wider text-muted-foreground">Evidence Completeness</div>
               <div className="text-2xl font-medium tabular-nums">{summary.score}/100</div>
             </div>
           </div>

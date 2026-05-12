@@ -200,7 +200,7 @@ function ScanPage() {
               <div className="flex items-center gap-4">
                 <ScoreRing score={result.score} size={88} />
                 <div>
-                  <div className="text-xs uppercase tracking-wider text-muted-foreground">Evidence readiness score</div>
+                  <div className="text-xs uppercase tracking-wider text-muted-foreground">Evidence Completeness Score</div>
                   <div className="text-2xl font-medium tabular-nums">{result.score} / 100</div>
                   <p className="text-xs text-muted-foreground mt-1 max-w-md">
                     This score reflects evidence completeness, not legal eligibility. Professional review is required.
