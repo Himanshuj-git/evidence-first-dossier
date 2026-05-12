@@ -13,6 +13,10 @@ import { Route as ScanRouteImport } from './routes/scan'
 import { Route as DossiersRouteImport } from './routes/dossiers'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as DossiersNewRouteImport } from './routes/dossiers.new'
+import { Route as DossiersIdRouteImport } from './routes/dossiers.$id'
+import { Route as DossiersIdRequestLetterRouteImport } from './routes/dossiers.$id.request-letter'
+import { Route as DossiersIdReportRouteImport } from './routes/dossiers.$id.report'
+import { Route as DossiersIdEvidenceRouteImport } from './routes/dossiers.$id.evidence'
 
 const ScanRoute = ScanRouteImport.update({
   id: '/scan',
@@ -34,32 +38,89 @@ const DossiersNewRoute = DossiersNewRouteImport.update({
   path: '/new',
   getParentRoute: () => DossiersRoute,
 } as any)
+const DossiersIdRoute = DossiersIdRouteImport.update({
+  id: '/$id',
+  path: '/$id',
+  getParentRoute: () => DossiersRoute,
+} as any)
+const DossiersIdRequestLetterRoute = DossiersIdRequestLetterRouteImport.update({
+  id: '/request-letter',
+  path: '/request-letter',
+  getParentRoute: () => DossiersIdRoute,
+} as any)
+const DossiersIdReportRoute = DossiersIdReportRouteImport.update({
+  id: '/report',
+  path: '/report',
+  getParentRoute: () => DossiersIdRoute,
+} as any)
+const DossiersIdEvidenceRoute = DossiersIdEvidenceRouteImport.update({
+  id: '/evidence',
+  path: '/evidence',
+  getParentRoute: () => DossiersIdRoute,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/dossiers': typeof DossiersRouteWithChildren
   '/scan': typeof ScanRoute
+  '/dossiers/$id': typeof DossiersIdRouteWithChildren
   '/dossiers/new': typeof DossiersNewRoute
+  '/dossiers/$id/evidence': typeof DossiersIdEvidenceRoute
+  '/dossiers/$id/report': typeof DossiersIdReportRoute
+  '/dossiers/$id/request-letter': typeof DossiersIdRequestLetterRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/dossiers': typeof DossiersRouteWithChildren
   '/scan': typeof ScanRoute
+  '/dossiers/$id': typeof DossiersIdRouteWithChildren
   '/dossiers/new': typeof DossiersNewRoute
+  '/dossiers/$id/evidence': typeof DossiersIdEvidenceRoute
+  '/dossiers/$id/report': typeof DossiersIdReportRoute
+  '/dossiers/$id/request-letter': typeof DossiersIdRequestLetterRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/dossiers': typeof DossiersRouteWithChildren
   '/scan': typeof ScanRoute
+  '/dossiers/$id': typeof DossiersIdRouteWithChildren
   '/dossiers/new': typeof DossiersNewRoute
+  '/dossiers/$id/evidence': typeof DossiersIdEvidenceRoute
+  '/dossiers/$id/report': typeof DossiersIdReportRoute
+  '/dossiers/$id/request-letter': typeof DossiersIdRequestLetterRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/dossiers' | '/scan' | '/dossiers/new'
+  fullPaths:
+    | '/'
+    | '/dossiers'
+    | '/scan'
+    | '/dossiers/$id'
+    | '/dossiers/new'
+    | '/dossiers/$id/evidence'
+    | '/dossiers/$id/report'
+    | '/dossiers/$id/request-letter'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/dossiers' | '/scan' | '/dossiers/new'
-  id: '__root__' | '/' | '/dossiers' | '/scan' | '/dossiers/new'
+  to:
+    | '/'
+    | '/dossiers'
+    | '/scan'
+    | '/dossiers/$id'
+    | '/dossiers/new'
+    | '/dossiers/$id/evidence'
+    | '/dossiers/$id/report'
+    | '/dossiers/$id/request-letter'
+  id:
+    | '__root__'
+    | '/'
+    | '/dossiers'
+    | '/scan'
+    | '/dossiers/$id'
+    | '/dossiers/new'
+    | '/dossiers/$id/evidence'
+    | '/dossiers/$id/report'
+    | '/dossiers/$id/request-letter'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -98,14 +159,60 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof DossiersNewRouteImport
       parentRoute: typeof DossiersRoute
     }
+    '/dossiers/$id': {
+      id: '/dossiers/$id'
+      path: '/$id'
+      fullPath: '/dossiers/$id'
+      preLoaderRoute: typeof DossiersIdRouteImport
+      parentRoute: typeof DossiersRoute
+    }
+    '/dossiers/$id/request-letter': {
+      id: '/dossiers/$id/request-letter'
+      path: '/request-letter'
+      fullPath: '/dossiers/$id/request-letter'
+      preLoaderRoute: typeof DossiersIdRequestLetterRouteImport
+      parentRoute: typeof DossiersIdRoute
+    }
+    '/dossiers/$id/report': {
+      id: '/dossiers/$id/report'
+      path: '/report'
+      fullPath: '/dossiers/$id/report'
+      preLoaderRoute: typeof DossiersIdReportRouteImport
+      parentRoute: typeof DossiersIdRoute
+    }
+    '/dossiers/$id/evidence': {
+      id: '/dossiers/$id/evidence'
+      path: '/evidence'
+      fullPath: '/dossiers/$id/evidence'
+      preLoaderRoute: typeof DossiersIdEvidenceRouteImport
+      parentRoute: typeof DossiersIdRoute
+    }
   }
 }
 
+interface DossiersIdRouteChildren {
+  DossiersIdEvidenceRoute: typeof DossiersIdEvidenceRoute
+  DossiersIdReportRoute: typeof DossiersIdReportRoute
+  DossiersIdRequestLetterRoute: typeof DossiersIdRequestLetterRoute
+}
+
+const DossiersIdRouteChildren: DossiersIdRouteChildren = {
+  DossiersIdEvidenceRoute: DossiersIdEvidenceRoute,
+  DossiersIdReportRoute: DossiersIdReportRoute,
+  DossiersIdRequestLetterRoute: DossiersIdRequestLetterRoute,
+}
+
+const DossiersIdRouteWithChildren = DossiersIdRoute._addFileChildren(
+  DossiersIdRouteChildren,
+)
+
 interface DossiersRouteChildren {
+  DossiersIdRoute: typeof DossiersIdRouteWithChildren
   DossiersNewRoute: typeof DossiersNewRoute
 }
 
 const DossiersRouteChildren: DossiersRouteChildren = {
+  DossiersIdRoute: DossiersIdRouteWithChildren,
   DossiersNewRoute: DossiersNewRoute,
 }
 
