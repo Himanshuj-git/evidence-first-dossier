@@ -9,38 +9,81 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as ScanRouteImport } from './routes/scan'
+import { Route as DossiersRouteImport } from './routes/dossiers'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as DossiersNewRouteImport } from './routes/dossiers.new'
 
+const ScanRoute = ScanRouteImport.update({
+  id: '/scan',
+  path: '/scan',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const DossiersRoute = DossiersRouteImport.update({
+  id: '/dossiers',
+  path: '/dossiers',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const DossiersNewRoute = DossiersNewRouteImport.update({
+  id: '/new',
+  path: '/new',
+  getParentRoute: () => DossiersRoute,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/dossiers': typeof DossiersRouteWithChildren
+  '/scan': typeof ScanRoute
+  '/dossiers/new': typeof DossiersNewRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/dossiers': typeof DossiersRouteWithChildren
+  '/scan': typeof ScanRoute
+  '/dossiers/new': typeof DossiersNewRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/dossiers': typeof DossiersRouteWithChildren
+  '/scan': typeof ScanRoute
+  '/dossiers/new': typeof DossiersNewRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths: '/' | '/dossiers' | '/scan' | '/dossiers/new'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to: '/' | '/dossiers' | '/scan' | '/dossiers/new'
+  id: '__root__' | '/' | '/dossiers' | '/scan' | '/dossiers/new'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  DossiersRoute: typeof DossiersRouteWithChildren
+  ScanRoute: typeof ScanRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/scan': {
+      id: '/scan'
+      path: '/scan'
+      fullPath: '/scan'
+      preLoaderRoute: typeof ScanRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/dossiers': {
+      id: '/dossiers'
+      path: '/dossiers'
+      fullPath: '/dossiers'
+      preLoaderRoute: typeof DossiersRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/': {
       id: '/'
       path: '/'
@@ -48,12 +91,43 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/dossiers/new': {
+      id: '/dossiers/new'
+      path: '/new'
+      fullPath: '/dossiers/new'
+      preLoaderRoute: typeof DossiersNewRouteImport
+      parentRoute: typeof DossiersRoute
+    }
   }
 }
 
+interface DossiersRouteChildren {
+  DossiersNewRoute: typeof DossiersNewRoute
+}
+
+const DossiersRouteChildren: DossiersRouteChildren = {
+  DossiersNewRoute: DossiersNewRoute,
+}
+
+const DossiersRouteWithChildren = DossiersRoute._addFileChildren(
+  DossiersRouteChildren,
+)
+
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  DossiersRoute: DossiersRouteWithChildren,
+  ScanRoute: ScanRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
+
+import type { getRouter } from './router.tsx'
+import type { startInstance } from './start.ts'
+declare module '@tanstack/react-start' {
+  interface Register {
+    ssr: true
+    router: Awaited<ReturnType<typeof getRouter>>
+    config: Awaited<ReturnType<typeof startInstance.getOptions>>
+  }
+}
