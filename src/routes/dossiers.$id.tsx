@@ -92,7 +92,8 @@ function DossierLayout() {
           ))}
           <div className="ml-auto flex gap-2 pb-2">
             <Link to="/dossiers/$id/evidence" params={{ id }} className="qsbs-chip">Evidence vault →</Link>
-            <Link to="/dossiers/$id/request-letter" params={{ id }} className="qsbs-chip">Letters →</Link>
+            <Link to="/dossiers/$id/request-letter" params={{ id }} className="qsbs-chip">Issuer letters →</Link>
+            <Link to="/dossiers/$id/cpa-email" params={{ id }} className="qsbs-chip">CPA email →</Link>
             <Link to="/dossiers/$id/report" params={{ id }} className="qsbs-chip">Report →</Link>
           </div>
         </div>
