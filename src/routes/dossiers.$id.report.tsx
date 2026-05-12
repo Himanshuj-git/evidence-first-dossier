@@ -49,8 +49,11 @@ function ReportPage() {
         </div>
 
         {!unlocked && (
-          <div className="no-print qsbs-card p-4 mt-6 bg-muted text-sm">
-            Report export is part of the One Holding Packet. The preview below is partially redacted until unlocked.
+          <div className="no-print qsbs-card p-4 mt-6 bg-muted text-sm leading-relaxed">
+            <strong>Before you unlock.</strong> This packet is not a legal opinion, tax opinion, valuation opinion,
+            investment recommendation, or certification of QSBS eligibility. It is a structured summary of information
+            you provided, intended for review by a qualified tax professional. Report export is part of the One Holding
+            Packet — preview below is partially redacted until unlocked.
           </div>
         )}
 
