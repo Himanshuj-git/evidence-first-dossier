@@ -14,11 +14,12 @@ export const Route = createFileRoute("/pricing")({
   component: PricingPage,
 });
 
-const PLANS = [
+type Plan = { key: "single" | "vault" | "portal"; name: string; price: string; per: string; features: string[]; cta: string; highlight?: boolean };
+const PLANS: Plan[] = [
   { key: "single", name: "One Holding Packet", price: "$49", per: "one-time", features: ["1 dossier", "Full report export", "All request letter templates", "Unlimited evidence items"], cta: "Buy packet" },
   { key: "vault", name: "Multi-Holding Vault", price: "$149", per: "/ year", features: ["Unlimited dossiers", "Evidence reminders", "Share links", "Re-generate reports anytime"], cta: "Start vault", highlight: true },
   { key: "portal", name: "Founder / Company Portal", price: "$299", per: "/ team / year", features: ["Company-side document templates", "Shareholder request workflows", "Bulk evidence packets"], cta: "Get portal" },
-] as const;
+];
 
 function PricingPage() {
   const { recordCheckout, paidPlans } = useQsbs();

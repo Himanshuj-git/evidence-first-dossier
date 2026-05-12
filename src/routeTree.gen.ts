@@ -9,8 +9,13 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as SourcesRouteImport } from './routes/sources'
+import { Route as SettingsRouteImport } from './routes/settings'
 import { Route as ScanRouteImport } from './routes/scan'
+import { Route as PricingRouteImport } from './routes/pricing'
 import { Route as DossiersRouteImport } from './routes/dossiers'
+import { Route as CompareRouteImport } from './routes/compare'
+import { Route as AdminDemoRouteImport } from './routes/admin-demo'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as DossiersNewRouteImport } from './routes/dossiers.new'
 import { Route as DossiersIdRouteImport } from './routes/dossiers.$id'
@@ -18,14 +23,39 @@ import { Route as DossiersIdRequestLetterRouteImport } from './routes/dossiers.$
 import { Route as DossiersIdReportRouteImport } from './routes/dossiers.$id.report'
 import { Route as DossiersIdEvidenceRouteImport } from './routes/dossiers.$id.evidence'
 
+const SourcesRoute = SourcesRouteImport.update({
+  id: '/sources',
+  path: '/sources',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SettingsRoute = SettingsRouteImport.update({
+  id: '/settings',
+  path: '/settings',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ScanRoute = ScanRouteImport.update({
   id: '/scan',
   path: '/scan',
   getParentRoute: () => rootRouteImport,
 } as any)
+const PricingRoute = PricingRouteImport.update({
+  id: '/pricing',
+  path: '/pricing',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const DossiersRoute = DossiersRouteImport.update({
   id: '/dossiers',
   path: '/dossiers',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CompareRoute = CompareRouteImport.update({
+  id: '/compare',
+  path: '/compare',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AdminDemoRoute = AdminDemoRouteImport.update({
+  id: '/admin-demo',
+  path: '/admin-demo',
   getParentRoute: () => rootRouteImport,
 } as any)
 const IndexRoute = IndexRouteImport.update({
@@ -61,8 +91,13 @@ const DossiersIdEvidenceRoute = DossiersIdEvidenceRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/admin-demo': typeof AdminDemoRoute
+  '/compare': typeof CompareRoute
   '/dossiers': typeof DossiersRouteWithChildren
+  '/pricing': typeof PricingRoute
   '/scan': typeof ScanRoute
+  '/settings': typeof SettingsRoute
+  '/sources': typeof SourcesRoute
   '/dossiers/$id': typeof DossiersIdRouteWithChildren
   '/dossiers/new': typeof DossiersNewRoute
   '/dossiers/$id/evidence': typeof DossiersIdEvidenceRoute
@@ -71,8 +106,13 @@ export interface FileRoutesByFullPath {
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/admin-demo': typeof AdminDemoRoute
+  '/compare': typeof CompareRoute
   '/dossiers': typeof DossiersRouteWithChildren
+  '/pricing': typeof PricingRoute
   '/scan': typeof ScanRoute
+  '/settings': typeof SettingsRoute
+  '/sources': typeof SourcesRoute
   '/dossiers/$id': typeof DossiersIdRouteWithChildren
   '/dossiers/new': typeof DossiersNewRoute
   '/dossiers/$id/evidence': typeof DossiersIdEvidenceRoute
@@ -82,8 +122,13 @@ export interface FileRoutesByTo {
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/admin-demo': typeof AdminDemoRoute
+  '/compare': typeof CompareRoute
   '/dossiers': typeof DossiersRouteWithChildren
+  '/pricing': typeof PricingRoute
   '/scan': typeof ScanRoute
+  '/settings': typeof SettingsRoute
+  '/sources': typeof SourcesRoute
   '/dossiers/$id': typeof DossiersIdRouteWithChildren
   '/dossiers/new': typeof DossiersNewRoute
   '/dossiers/$id/evidence': typeof DossiersIdEvidenceRoute
@@ -94,8 +139,13 @@ export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
+    | '/admin-demo'
+    | '/compare'
     | '/dossiers'
+    | '/pricing'
     | '/scan'
+    | '/settings'
+    | '/sources'
     | '/dossiers/$id'
     | '/dossiers/new'
     | '/dossiers/$id/evidence'
@@ -104,8 +154,13 @@ export interface FileRouteTypes {
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
+    | '/admin-demo'
+    | '/compare'
     | '/dossiers'
+    | '/pricing'
     | '/scan'
+    | '/settings'
+    | '/sources'
     | '/dossiers/$id'
     | '/dossiers/new'
     | '/dossiers/$id/evidence'
@@ -114,8 +169,13 @@ export interface FileRouteTypes {
   id:
     | '__root__'
     | '/'
+    | '/admin-demo'
+    | '/compare'
     | '/dossiers'
+    | '/pricing'
     | '/scan'
+    | '/settings'
+    | '/sources'
     | '/dossiers/$id'
     | '/dossiers/new'
     | '/dossiers/$id/evidence'
@@ -125,12 +185,31 @@ export interface FileRouteTypes {
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AdminDemoRoute: typeof AdminDemoRoute
+  CompareRoute: typeof CompareRoute
   DossiersRoute: typeof DossiersRouteWithChildren
+  PricingRoute: typeof PricingRoute
   ScanRoute: typeof ScanRoute
+  SettingsRoute: typeof SettingsRoute
+  SourcesRoute: typeof SourcesRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/sources': {
+      id: '/sources'
+      path: '/sources'
+      fullPath: '/sources'
+      preLoaderRoute: typeof SourcesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/settings': {
+      id: '/settings'
+      path: '/settings'
+      fullPath: '/settings'
+      preLoaderRoute: typeof SettingsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/scan': {
       id: '/scan'
       path: '/scan'
@@ -138,11 +217,32 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ScanRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/pricing': {
+      id: '/pricing'
+      path: '/pricing'
+      fullPath: '/pricing'
+      preLoaderRoute: typeof PricingRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/dossiers': {
       id: '/dossiers'
       path: '/dossiers'
       fullPath: '/dossiers'
       preLoaderRoute: typeof DossiersRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/compare': {
+      id: '/compare'
+      path: '/compare'
+      fullPath: '/compare'
+      preLoaderRoute: typeof CompareRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/admin-demo': {
+      id: '/admin-demo'
+      path: '/admin-demo'
+      fullPath: '/admin-demo'
+      preLoaderRoute: typeof AdminDemoRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/': {
@@ -222,8 +322,13 @@ const DossiersRouteWithChildren = DossiersRoute._addFileChildren(
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AdminDemoRoute: AdminDemoRoute,
+  CompareRoute: CompareRoute,
   DossiersRoute: DossiersRouteWithChildren,
+  PricingRoute: PricingRoute,
   ScanRoute: ScanRoute,
+  SettingsRoute: SettingsRoute,
+  SourcesRoute: SourcesRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
