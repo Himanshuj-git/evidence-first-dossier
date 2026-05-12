@@ -57,15 +57,17 @@ export function Footer() {
           <div className="font-medium mb-2">Resources</div>
           <ul className="space-y-1.5 text-muted-foreground">
             <li><Link to="/sources" className="hover:text-foreground">Sources & methodology</Link></li>
+            <li><Link to="/privacy" className="hover:text-foreground">Privacy & security</Link></li>
             <li><Link to="/settings" className="hover:text-foreground">Settings</Link></li>
-            <li><Link to="/admin-demo" className="hover:text-foreground">Demo data</Link></li>
+            <li><Link to="/demo" className="hover:text-foreground">Sample packet</Link></li>
           </ul>
         </div>
         <div>
           <div className="font-medium mb-2">Disclosure</div>
           <p className="text-muted-foreground text-xs leading-relaxed">
-            Educational information only. Not tax, legal, accounting, or investment advice. QSBS Packet does not determine
-            or certify QSBS eligibility. Review your facts with a qualified tax professional.
+            QSBS Packet is an educational document-organization tool. It does not provide tax, legal, accounting,
+            investment, or securities advice. QSBS treatment depends on facts and law that should be reviewed by a
+            qualified tax professional.
           </p>
         </div>
       </div>

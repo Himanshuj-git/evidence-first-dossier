@@ -69,8 +69,11 @@ function DossierLayout() {
           <div className="flex items-center gap-3">
             <ScoreRing score={summary.score} size={72} />
             <div className="text-sm">
-              <div className="text-xs uppercase tracking-wider text-muted-foreground">Evidence readiness</div>
+              <div className="text-xs uppercase tracking-wider text-muted-foreground">Evidence Completeness Score</div>
               <div className="text-2xl font-medium tabular-nums">{summary.score}/100</div>
+              <div className="text-[11px] text-muted-foreground max-w-[220px] leading-snug">
+                Documentation completeness only — not QSBS eligibility.
+              </div>
             </div>
           </div>
         </div>
@@ -89,7 +92,8 @@ function DossierLayout() {
           ))}
           <div className="ml-auto flex gap-2 pb-2">
             <Link to="/dossiers/$id/evidence" params={{ id }} className="qsbs-chip">Evidence vault →</Link>
-            <Link to="/dossiers/$id/request-letter" params={{ id }} className="qsbs-chip">Letters →</Link>
+            <Link to="/dossiers/$id/request-letter" params={{ id }} className="qsbs-chip">Issuer letters →</Link>
+            <Link to="/dossiers/$id/cpa-email" params={{ id }} className="qsbs-chip">CPA email →</Link>
             <Link to="/dossiers/$id/report" params={{ id }} className="qsbs-chip">Report →</Link>
           </div>
         </div>

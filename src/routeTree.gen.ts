@@ -12,16 +12,20 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as SourcesRouteImport } from './routes/sources'
 import { Route as SettingsRouteImport } from './routes/settings'
 import { Route as ScanRouteImport } from './routes/scan'
+import { Route as PrivacyRouteImport } from './routes/privacy'
 import { Route as PricingRouteImport } from './routes/pricing'
 import { Route as DossiersRouteImport } from './routes/dossiers'
+import { Route as DemoRouteImport } from './routes/demo'
 import { Route as CompareRouteImport } from './routes/compare'
 import { Route as AdminDemoRouteImport } from './routes/admin-demo'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as PacketIdRouteImport } from './routes/packet.$id'
 import { Route as DossiersNewRouteImport } from './routes/dossiers.new'
 import { Route as DossiersIdRouteImport } from './routes/dossiers.$id'
 import { Route as DossiersIdRequestLetterRouteImport } from './routes/dossiers.$id.request-letter'
 import { Route as DossiersIdReportRouteImport } from './routes/dossiers.$id.report'
 import { Route as DossiersIdEvidenceRouteImport } from './routes/dossiers.$id.evidence'
+import { Route as DossiersIdCpaEmailRouteImport } from './routes/dossiers.$id.cpa-email'
 
 const SourcesRoute = SourcesRouteImport.update({
   id: '/sources',
@@ -38,6 +42,11 @@ const ScanRoute = ScanRouteImport.update({
   path: '/scan',
   getParentRoute: () => rootRouteImport,
 } as any)
+const PrivacyRoute = PrivacyRouteImport.update({
+  id: '/privacy',
+  path: '/privacy',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const PricingRoute = PricingRouteImport.update({
   id: '/pricing',
   path: '/pricing',
@@ -46,6 +55,11 @@ const PricingRoute = PricingRouteImport.update({
 const DossiersRoute = DossiersRouteImport.update({
   id: '/dossiers',
   path: '/dossiers',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const DemoRoute = DemoRouteImport.update({
+  id: '/demo',
+  path: '/demo',
   getParentRoute: () => rootRouteImport,
 } as any)
 const CompareRoute = CompareRouteImport.update({
@@ -61,6 +75,11 @@ const AdminDemoRoute = AdminDemoRouteImport.update({
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PacketIdRoute = PacketIdRouteImport.update({
+  id: '/packet/$id',
+  path: '/packet/$id',
   getParentRoute: () => rootRouteImport,
 } as any)
 const DossiersNewRoute = DossiersNewRouteImport.update({
@@ -88,18 +107,27 @@ const DossiersIdEvidenceRoute = DossiersIdEvidenceRouteImport.update({
   path: '/evidence',
   getParentRoute: () => DossiersIdRoute,
 } as any)
+const DossiersIdCpaEmailRoute = DossiersIdCpaEmailRouteImport.update({
+  id: '/cpa-email',
+  path: '/cpa-email',
+  getParentRoute: () => DossiersIdRoute,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/admin-demo': typeof AdminDemoRoute
   '/compare': typeof CompareRoute
+  '/demo': typeof DemoRoute
   '/dossiers': typeof DossiersRouteWithChildren
   '/pricing': typeof PricingRoute
+  '/privacy': typeof PrivacyRoute
   '/scan': typeof ScanRoute
   '/settings': typeof SettingsRoute
   '/sources': typeof SourcesRoute
   '/dossiers/$id': typeof DossiersIdRouteWithChildren
   '/dossiers/new': typeof DossiersNewRoute
+  '/packet/$id': typeof PacketIdRoute
+  '/dossiers/$id/cpa-email': typeof DossiersIdCpaEmailRoute
   '/dossiers/$id/evidence': typeof DossiersIdEvidenceRoute
   '/dossiers/$id/report': typeof DossiersIdReportRoute
   '/dossiers/$id/request-letter': typeof DossiersIdRequestLetterRoute
@@ -108,13 +136,17 @@ export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/admin-demo': typeof AdminDemoRoute
   '/compare': typeof CompareRoute
+  '/demo': typeof DemoRoute
   '/dossiers': typeof DossiersRouteWithChildren
   '/pricing': typeof PricingRoute
+  '/privacy': typeof PrivacyRoute
   '/scan': typeof ScanRoute
   '/settings': typeof SettingsRoute
   '/sources': typeof SourcesRoute
   '/dossiers/$id': typeof DossiersIdRouteWithChildren
   '/dossiers/new': typeof DossiersNewRoute
+  '/packet/$id': typeof PacketIdRoute
+  '/dossiers/$id/cpa-email': typeof DossiersIdCpaEmailRoute
   '/dossiers/$id/evidence': typeof DossiersIdEvidenceRoute
   '/dossiers/$id/report': typeof DossiersIdReportRoute
   '/dossiers/$id/request-letter': typeof DossiersIdRequestLetterRoute
@@ -124,13 +156,17 @@ export interface FileRoutesById {
   '/': typeof IndexRoute
   '/admin-demo': typeof AdminDemoRoute
   '/compare': typeof CompareRoute
+  '/demo': typeof DemoRoute
   '/dossiers': typeof DossiersRouteWithChildren
   '/pricing': typeof PricingRoute
+  '/privacy': typeof PrivacyRoute
   '/scan': typeof ScanRoute
   '/settings': typeof SettingsRoute
   '/sources': typeof SourcesRoute
   '/dossiers/$id': typeof DossiersIdRouteWithChildren
   '/dossiers/new': typeof DossiersNewRoute
+  '/packet/$id': typeof PacketIdRoute
+  '/dossiers/$id/cpa-email': typeof DossiersIdCpaEmailRoute
   '/dossiers/$id/evidence': typeof DossiersIdEvidenceRoute
   '/dossiers/$id/report': typeof DossiersIdReportRoute
   '/dossiers/$id/request-letter': typeof DossiersIdRequestLetterRoute
@@ -141,13 +177,17 @@ export interface FileRouteTypes {
     | '/'
     | '/admin-demo'
     | '/compare'
+    | '/demo'
     | '/dossiers'
     | '/pricing'
+    | '/privacy'
     | '/scan'
     | '/settings'
     | '/sources'
     | '/dossiers/$id'
     | '/dossiers/new'
+    | '/packet/$id'
+    | '/dossiers/$id/cpa-email'
     | '/dossiers/$id/evidence'
     | '/dossiers/$id/report'
     | '/dossiers/$id/request-letter'
@@ -156,13 +196,17 @@ export interface FileRouteTypes {
     | '/'
     | '/admin-demo'
     | '/compare'
+    | '/demo'
     | '/dossiers'
     | '/pricing'
+    | '/privacy'
     | '/scan'
     | '/settings'
     | '/sources'
     | '/dossiers/$id'
     | '/dossiers/new'
+    | '/packet/$id'
+    | '/dossiers/$id/cpa-email'
     | '/dossiers/$id/evidence'
     | '/dossiers/$id/report'
     | '/dossiers/$id/request-letter'
@@ -171,13 +215,17 @@ export interface FileRouteTypes {
     | '/'
     | '/admin-demo'
     | '/compare'
+    | '/demo'
     | '/dossiers'
     | '/pricing'
+    | '/privacy'
     | '/scan'
     | '/settings'
     | '/sources'
     | '/dossiers/$id'
     | '/dossiers/new'
+    | '/packet/$id'
+    | '/dossiers/$id/cpa-email'
     | '/dossiers/$id/evidence'
     | '/dossiers/$id/report'
     | '/dossiers/$id/request-letter'
@@ -187,11 +235,14 @@ export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AdminDemoRoute: typeof AdminDemoRoute
   CompareRoute: typeof CompareRoute
+  DemoRoute: typeof DemoRoute
   DossiersRoute: typeof DossiersRouteWithChildren
   PricingRoute: typeof PricingRoute
+  PrivacyRoute: typeof PrivacyRoute
   ScanRoute: typeof ScanRoute
   SettingsRoute: typeof SettingsRoute
   SourcesRoute: typeof SourcesRoute
+  PacketIdRoute: typeof PacketIdRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -217,6 +268,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ScanRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/privacy': {
+      id: '/privacy'
+      path: '/privacy'
+      fullPath: '/privacy'
+      preLoaderRoute: typeof PrivacyRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/pricing': {
       id: '/pricing'
       path: '/pricing'
@@ -229,6 +287,13 @@ declare module '@tanstack/react-router' {
       path: '/dossiers'
       fullPath: '/dossiers'
       preLoaderRoute: typeof DossiersRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/demo': {
+      id: '/demo'
+      path: '/demo'
+      fullPath: '/demo'
+      preLoaderRoute: typeof DemoRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/compare': {
@@ -250,6 +315,13 @@ declare module '@tanstack/react-router' {
       path: '/'
       fullPath: '/'
       preLoaderRoute: typeof IndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/packet/$id': {
+      id: '/packet/$id'
+      path: '/packet/$id'
+      fullPath: '/packet/$id'
+      preLoaderRoute: typeof PacketIdRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/dossiers/new': {
@@ -287,16 +359,25 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof DossiersIdEvidenceRouteImport
       parentRoute: typeof DossiersIdRoute
     }
+    '/dossiers/$id/cpa-email': {
+      id: '/dossiers/$id/cpa-email'
+      path: '/cpa-email'
+      fullPath: '/dossiers/$id/cpa-email'
+      preLoaderRoute: typeof DossiersIdCpaEmailRouteImport
+      parentRoute: typeof DossiersIdRoute
+    }
   }
 }
 
 interface DossiersIdRouteChildren {
+  DossiersIdCpaEmailRoute: typeof DossiersIdCpaEmailRoute
   DossiersIdEvidenceRoute: typeof DossiersIdEvidenceRoute
   DossiersIdReportRoute: typeof DossiersIdReportRoute
   DossiersIdRequestLetterRoute: typeof DossiersIdRequestLetterRoute
 }
 
 const DossiersIdRouteChildren: DossiersIdRouteChildren = {
+  DossiersIdCpaEmailRoute: DossiersIdCpaEmailRoute,
   DossiersIdEvidenceRoute: DossiersIdEvidenceRoute,
   DossiersIdReportRoute: DossiersIdReportRoute,
   DossiersIdRequestLetterRoute: DossiersIdRequestLetterRoute,
@@ -324,11 +405,14 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AdminDemoRoute: AdminDemoRoute,
   CompareRoute: CompareRoute,
+  DemoRoute: DemoRoute,
   DossiersRoute: DossiersRouteWithChildren,
   PricingRoute: PricingRoute,
+  PrivacyRoute: PrivacyRoute,
   ScanRoute: ScanRoute,
   SettingsRoute: SettingsRoute,
   SourcesRoute: SourcesRoute,
+  PacketIdRoute: PacketIdRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

@@ -200,11 +200,18 @@ function ScanPage() {
               <div className="flex items-center gap-4">
                 <ScoreRing score={result.score} size={88} />
                 <div>
-                  <div className="text-xs uppercase tracking-wider text-muted-foreground">Evidence readiness score</div>
+                  <div className="text-xs uppercase tracking-wider text-muted-foreground">Evidence Completeness Score</div>
                   <div className="text-2xl font-medium tabular-nums">{result.score} / 100</div>
                   <p className="text-xs text-muted-foreground mt-1 max-w-md">
-                    This score reflects evidence completeness, not legal eligibility. Professional review is required.
+                    This score measures documentation completeness only, not QSBS eligibility. Professional review is
+                    required.
                   </p>
+                  <div className="text-[11px] text-muted-foreground mt-1">
+                    {result.score >= 90 ? "Strong documentation package."
+                      : result.score >= 70 ? "Mostly complete — professional review recommended."
+                      : result.score >= 40 ? "Missing important evidence."
+                      : "Early-stage packet — high documentation gaps."}
+                  </div>
                 </div>
               </div>
 

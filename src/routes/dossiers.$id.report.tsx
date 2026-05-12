@@ -49,8 +49,11 @@ function ReportPage() {
         </div>
 
         {!unlocked && (
-          <div className="no-print qsbs-card p-4 mt-6 bg-muted text-sm">
-            Report export is part of the One Holding Packet. The preview below is partially redacted until unlocked.
+          <div className="no-print qsbs-card p-4 mt-6 bg-muted text-sm leading-relaxed">
+            <strong>Before you unlock.</strong> This packet is not a legal opinion, tax opinion, valuation opinion,
+            investment recommendation, or certification of QSBS eligibility. It is a structured summary of information
+            you provided, intended for review by a qualified tax professional. Report export is part of the One Holding
+            Packet — preview below is partially redacted until unlocked.
           </div>
         )}
 
@@ -64,7 +67,7 @@ function ReportPage() {
               {d.inputs.security_type.replace(/_/g, " ")} · {d.inputs.user_role} · acquired {d.inputs.acquisition_date || "—"}
             </div>
             <div className="mt-6 grid sm:grid-cols-3 gap-4">
-              <Stat label="Evidence readiness" value={`${score}/100`} />
+              <Stat label="Evidence Completeness" value={`${score}/100`} />
               <Stat label="Dossier status" value={status.replace(/_/g, " ")} />
               <Stat label="Generated" value={new Date().toLocaleDateString("en-US", { dateStyle: "long" })} />
             </div>

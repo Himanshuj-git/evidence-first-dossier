@@ -18,20 +18,22 @@ function Landing() {
       <section className="mx-auto max-w-5xl px-5 pt-20 md:pt-28 pb-16 text-center">
         <div className="inline-flex qsbs-chip">For founders, early employees, angel investors & CPAs</div>
         <h1 className="mt-6 text-4xl md:text-6xl font-medium tracking-tight leading-[1.05]">
-          Your QSBS claim is only as<br className="hidden md:block" /> strong as your packet.
+          Build a CPA-ready QSBS<br className="hidden md:block" /> evidence packet before the exit.
         </h1>
         <p className="mt-6 text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto leading-relaxed">
-          Organize the evidence a tax professional needs to review Section 1202 qualified small business stock positions.
+          Organize Section 1202 facts, documents, risk flags, issuer questions, and CPA review notes in one clean
+          packet — built for review by a qualified tax professional.
         </p>
         <div className="mt-10 flex flex-col sm:flex-row gap-3 justify-center">
-          <Link to="/scan" className="qsbs-btn qsbs-btn-primary">Run a free readiness scan</Link>
-          <Link to="/dossiers/$id" params={{ id: "demo-northstar" }} className="qsbs-btn qsbs-btn-ghost">
-            View sample CPA packet
-          </Link>
+          <Link to="/scan" className="qsbs-btn qsbs-btn-primary">Start readiness scan</Link>
+          <Link to="/demo" className="qsbs-btn qsbs-btn-ghost">View sample packet</Link>
         </div>
-        <p className="mt-6 text-xs text-muted-foreground">
-          Not tax advice. Not a certification. A cleaner way to prepare the facts.
-        </p>
+        <div className="mt-6 flex flex-wrap gap-x-5 gap-y-1 justify-center text-xs text-muted-foreground">
+          <span>No tax advice</span><span>·</span>
+          <span>No eligibility certification</span><span>·</span>
+          <span>Built for documentation readiness</span><span>·</span>
+          <span>Designed for CPA / tax-attorney review</span>
+        </div>
       </section>
 
       {/* Sample dossier card */}
