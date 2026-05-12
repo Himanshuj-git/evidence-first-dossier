@@ -45,9 +45,12 @@ export function PaywallModal({
           Simulate successful checkout
         </button>
         <button className="mt-2 qsbs-btn qsbs-btn-ghost w-full" onClick={onClose}>Cancel</button>
-        <p className="mt-4 text-[11px] text-muted-foreground">
-          No real charge is made. This is local-state simulation only.
-        </p>
+        <div className="mt-4 border-t border-border pt-3 text-[11px] text-muted-foreground leading-relaxed">
+          <strong className="text-foreground">Before you unlock.</strong> This packet is not a legal opinion, tax opinion,
+          valuation opinion, investment recommendation, or certification of QSBS eligibility. It is a structured summary of
+          information you provided, intended for review by a qualified tax professional. No real charge is made in this
+          simulation.
+        </div>
       </div>
     </div>
   );
