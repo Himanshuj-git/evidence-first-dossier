@@ -57,8 +57,9 @@ export function Footer() {
           <div className="font-medium mb-2">Resources</div>
           <ul className="space-y-1.5 text-muted-foreground">
             <li><Link to="/sources" className="hover:text-foreground">Sources & methodology</Link></li>
+            <li><Link to="/privacy" className="hover:text-foreground">Privacy & security</Link></li>
             <li><Link to="/settings" className="hover:text-foreground">Settings</Link></li>
-            <li><Link to="/admin-demo" className="hover:text-foreground">Demo data</Link></li>
+            <li><Link to="/demo" className="hover:text-foreground">Sample packet</Link></li>
           </ul>
         </div>
         <div>
