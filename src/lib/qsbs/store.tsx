@@ -144,7 +144,7 @@ export function QsbsProvider({ children }: { children: ReactNode }) {
           localStorage.removeItem(STORAGE_KEY);
           localStorage.removeItem(PAY_KEY);
         } catch {}
-        setState({ dossiers: seedDossiers, intents: [], paidPlans: [], settings: state.settings });
+        setState({ dossiers: seedDossiers, intents: [], paidPlans: [], audit: [], settings: state.settings });
       },
       saveSettings: (s) => setState((prev) => ({ ...prev, settings: { ...prev.settings, ...s } })),
     };
