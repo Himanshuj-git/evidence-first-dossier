@@ -7,18 +7,80 @@ import { useQsbs } from "@/lib/qsbs/store";
 export const Route = createFileRoute("/pricing")({
   head: () => ({
     meta: [
-      { title: "Pricing — QSBS Packet" },
-      { name: "description", content: "Simple pricing for the QSBS evidence packet builder." },
+      { title: "Pricing — 1202 Request" },
+      { name: "description", content: "Per-holding or annual plans for shareholder-side Section 1202 evidence requests." },
     ],
   }),
   component: PricingPage,
 });
 
-type Plan = { key: "single" | "vault" | "portal"; name: string; price: string; per: string; features: string[]; cta: string; highlight?: boolean };
+type Plan = {
+  key: "single" | "vault" | "portal";
+  name: string;
+  price: string;
+  per: string;
+  features: string[];
+  cta: string;
+  best: string;
+  highlight?: boolean;
+};
+
 const PLANS: Plan[] = [
-  { key: "single", name: "One Holding Packet", price: "$49", per: "one-time", features: ["1 dossier", "Full report export", "All request letter templates", "Unlimited evidence items"], cta: "Buy packet" },
-  { key: "vault", name: "Multi-Holding Vault", price: "$149", per: "/ year", features: ["Unlimited dossiers", "Evidence reminders", "Share links", "Re-generate reports anytime"], cta: "Start vault", highlight: true },
-  { key: "portal", name: "Founder / Company Portal", price: "$299", per: "/ team / year", features: ["Company-side document templates", "Shareholder request workflows", "Bulk evidence packets"], cta: "Get portal" },
+  {
+    key: "single",
+    name: "One Holding Packet",
+    price: "$49",
+    per: "one-time",
+    features: [
+      "1 dossier",
+      "Full report export",
+      "All request letter templates",
+      "Unlimited evidence items",
+      "CPA-ready review summary",
+      "Issuer request tracker",
+      "Document index",
+      "Missing evidence checklist",
+    ],
+    cta: "Buy packet",
+    best: "Best for one startup stock holding before a sale, tender offer, acquisition, or CPA review.",
+  },
+  {
+    key: "vault",
+    name: "Multi-Holding Vault",
+    price: "$149",
+    per: "/ year",
+    features: [
+      "Unlimited dossiers",
+      "Evidence reminders",
+      "Share links",
+      "Re-generate reports anytime",
+      "Multi-company evidence vault",
+      "Annual review reminders",
+      "Reusable CPA profile",
+      "Export history",
+    ],
+    cta: "Start vault",
+    best: "Best for founders, angels, and early employees with multiple startup equity positions.",
+    highlight: true,
+  },
+  {
+    key: "portal",
+    name: "Founder / Company Portal",
+    price: "$299",
+    per: "/ team / year",
+    features: [
+      "Company-side document templates",
+      "Shareholder request workflows",
+      "Bulk evidence packets",
+      "Reusable issuer response library",
+      "Shareholder intake queue",
+      "Company evidence checklist",
+      "Team access",
+      "Request status dashboard",
+    ],
+    cta: "Start company portal",
+    best: "Best for startups that want to respond consistently to shareholder Section 1202 documentation requests.",
+  },
 ];
 
 function PricingPage() {
@@ -30,8 +92,9 @@ function PricingPage() {
       <div className="mx-auto max-w-5xl px-5 py-16">
         <div className="text-center">
           <h1 className="text-4xl md:text-5xl font-medium tracking-tight">Pricing</h1>
-          <p className="mt-3 text-muted-foreground max-w-xl mx-auto">
-            Free to scan. Pay once for a single holding or annually for ongoing vault access.
+          <p className="mt-3 text-muted-foreground max-w-2xl mx-auto">
+            Free to start a request. Pay once for a single holding, annually for ongoing vault access, or by team
+            for the company-side portal.
           </p>
         </div>
 
@@ -43,12 +106,15 @@ function PricingPage() {
                 <span className="text-4xl font-medium">{p.price}</span>
                 <span className="text-muted-foreground">{p.per}</span>
               </div>
+              <p className="mt-3 text-xs text-muted-foreground italic leading-relaxed">{p.best}</p>
               <ul className="mt-5 space-y-2 text-sm">
-                {p.features.map((f) => <li key={f} className="flex gap-2"><span className="text-foreground">•</span>{f}</li>)}
+                {p.features.map((f) => (
+                  <li key={f} className="flex gap-2"><span className="text-foreground">•</span>{f}</li>
+                ))}
               </ul>
               <button
                 className={`mt-6 qsbs-btn ${p.highlight ? "qsbs-btn-primary" : "qsbs-btn-ghost"}`}
-                onClick={() => setOpen(p.key as "single" | "vault" | "portal")}
+                onClick={() => setOpen(p.key)}
               >
                 {paidPlans.includes(p.key) ? "Purchased" : p.cta}
               </button>
@@ -56,14 +122,43 @@ function PricingPage() {
           ))}
         </div>
 
+        <div className="mt-10 grid md:grid-cols-2 gap-4">
+          <div className="qsbs-card p-6">
+            <div className="text-sm font-medium">Free tier</div>
+            <ul className="mt-2 text-sm text-muted-foreground space-y-1">
+              <li>• Start one evidence request</li>
+              <li>• Basic missing-evidence checklist</li>
+              <li>• Limited request preview</li>
+              <li>• View sample dossier</li>
+              <li>• Up to 6 evidence items per draft</li>
+            </ul>
+            <div className="mt-3 text-xs text-muted-foreground">
+              Free dossiers cannot export the full CPA-ready report or generate share links.
+            </div>
+          </div>
+          <div className="qsbs-card p-6">
+            <div className="text-sm font-medium">Satisfaction policy</div>
+            <p className="mt-2 text-sm text-muted-foreground leading-relaxed">
+              If the paid dossier does not help you identify missing evidence or produce a usable request packet, you
+              can request a refund within 14 days. We do not guarantee any tax outcome — only that the product is
+              useful for organizing your evidence request.
+            </p>
+          </div>
+        </div>
+
         <div className="mt-10 qsbs-card p-6">
-          <div className="text-sm font-medium">Free tier</div>
-          <ul className="mt-2 text-sm text-muted-foreground space-y-1">
-            <li>• Free readiness scan</li>
-            <li>• One draft dossier</li>
-            <li>• Missing evidence checklist</li>
-            <li>• Up to 6 evidence items per draft</li>
+          <div className="text-sm font-medium">What you are paying for</div>
+          <ul className="mt-2 grid sm:grid-cols-2 gap-x-6 text-sm text-muted-foreground space-y-1">
+            <li>• Better organization of your stock facts</li>
+            <li>• Faster CPA prep and fewer back-and-forth emails</li>
+            <li>• Clearer, more professional issuer requests</li>
+            <li>• Fewer missing documents at review time</li>
+            <li>• An auditable trail of who asked for what, when</li>
+            <li>• A premium, print-ready dossier format</li>
           </ul>
+          <p className="mt-3 text-xs text-muted-foreground">
+            You are not paying for tax advice, legal advice, or any guarantee about Section 1202 treatment.
+          </p>
         </div>
 
         <div className="mt-8"><Disclaimer /></div>
