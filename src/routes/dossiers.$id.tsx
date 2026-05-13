@@ -5,7 +5,7 @@ import { useQsbs, useDossier } from "@/lib/qsbs/store";
 import { buildRules, readinessScore, deriveStatus } from "@/lib/qsbs/rules";
 
 export const Route = createFileRoute("/dossiers/$id")({
-  head: () => ({ meta: [{ title: "Dossier — QSBS Packet" }] }),
+  head: () => ({ meta: [{ title: "Dossier — 1202 Request" }] }),
   component: DossierLayout,
 });
 
@@ -90,11 +90,14 @@ function DossierLayout() {
               {t.label}
             </button>
           ))}
-          <div className="ml-auto flex gap-2 pb-2">
+          <div className="ml-auto flex flex-wrap gap-2 pb-2">
             <Link to="/dossiers/$id/evidence" params={{ id }} className="qsbs-chip">Evidence vault →</Link>
+            <Link to="/dossiers/$id/tracker" params={{ id }} className="qsbs-chip">Request tracker →</Link>
             <Link to="/dossiers/$id/request-letter" params={{ id }} className="qsbs-chip">Issuer letters →</Link>
+            <Link to="/dossiers/$id/cpa" params={{ id }} className="qsbs-chip">CPA view →</Link>
+            <Link to="/dossiers/$id/issuer" params={{ id }} className="qsbs-chip">Issuer view →</Link>
             <Link to="/dossiers/$id/cpa-email" params={{ id }} className="qsbs-chip">CPA email →</Link>
-            <Link to="/dossiers/$id/report" params={{ id }} className="qsbs-chip">Report →</Link>
+            <Link to="/dossiers/$id/report" params={{ id }} className="qsbs-chip">Export →</Link>
           </div>
         </div>
 

@@ -5,7 +5,7 @@ import { useDossier } from "@/lib/qsbs/store";
 import { buildRules, readinessScore } from "@/lib/qsbs/rules";
 
 export const Route = createFileRoute("/dossiers/$id/cpa-email")({
-  head: () => ({ meta: [{ title: "CPA review email — QSBS Packet" }] }),
+  head: () => ({ meta: [{ title: "CPA review email — 1202 Request" }] }),
   component: CpaEmailPage,
 });
 

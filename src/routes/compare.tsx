@@ -5,7 +5,7 @@ import { useQsbs } from "@/lib/qsbs/store";
 import { summarize } from "@/lib/qsbs/rules";
 
 export const Route = createFileRoute("/compare")({
-  head: () => ({ meta: [{ title: "Compare holdings — QSBS Packet" }] }),
+  head: () => ({ meta: [{ title: "Compare holdings — 1202 Request" }] }),
   component: ComparePage,
 });
 

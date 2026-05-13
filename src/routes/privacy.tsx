@@ -4,8 +4,8 @@ import { PageShell, Disclaimer } from "@/components/qsbs/Layout";
 export const Route = createFileRoute("/privacy")({
   head: () => ({
     meta: [
-      { title: "Privacy & security — QSBS Packet" },
-      { name: "description", content: "How QSBS Packet handles your sensitive financial and tax-adjacent information." },
+      { title: "Privacy & security — 1202 Request" },
+      { name: "description", content: "How 1202 Request handles your sensitive financial and tax-adjacent information." },
     ],
   }),
   component: PrivacyPage,
@@ -18,16 +18,18 @@ function PrivacyPage() {
         <div className="text-xs uppercase tracking-wider text-muted-foreground">Privacy & security</div>
         <h1 className="mt-2 text-3xl md:text-4xl font-medium tracking-tight">Your packet is sensitive. We treat it that way.</h1>
         <p className="mt-4 text-muted-foreground leading-relaxed">
-          A QSBS evidence packet contains personal, financial, and tax-adjacent information. Read this before you upload
-          anything you would not put in an email to a stranger.
+          A Section 1202 evidence dossier contains personal, financial, and tax-adjacent information. Read this before
+          you upload anything you would not put in an email to a stranger.
         </p>
 
         <div className="mt-10 space-y-8 text-sm leading-relaxed">
           <Section title="What we store">
             <p>
-              QSBS Packet stores the facts and evidence statuses you enter so you can return to them. Unless you have
-              connected a backend, your packet is held locally in your browser. Document files themselves are referenced
-              by metadata and are not transmitted unless you explicitly upload them to a connected vault.
+              1202 Request stores the facts and evidence statuses you enter so you can return to them. Unless you have
+              connected a backend, your dossier is held locally in your browser. Document files themselves are
+              referenced by metadata and are not transmitted unless you explicitly upload them to a connected vault. We
+              also keep an opt-in audit log of significant actions you took inside the app, so you can show your CPA
+              when each piece of evidence was requested or received.
             </p>
           </Section>
           <Section title="Visibility">
@@ -59,9 +61,9 @@ function PrivacyPage() {
           </Section>
           <Section title="Contact">
             <p>
-              For privacy questions, write to <span className="text-foreground">privacy@qsbspacket.example</span>. For
+              For privacy questions, write to <span className="text-foreground">privacy@1202request.com</span>. For
               questions about how Section 1202 applies to your facts, contact a qualified tax professional —{" "}
-              <Link to="/dossiers" className="qsbs-link">your packet</Link> is built for that conversation.
+              <Link to="/dossiers" className="qsbs-link">your dossier</Link> is built for that conversation.
             </p>
           </Section>
         </div>

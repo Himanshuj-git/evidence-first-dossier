@@ -6,7 +6,7 @@ import type { EvidenceCategory, EvidenceItem, EvidenceStatus, SourceParty } from
 import { PaywallModal } from "@/components/qsbs/PaywallModal";
 
 export const Route = createFileRoute("/dossiers/$id/evidence")({
-  head: () => ({ meta: [{ title: "Evidence vault — QSBS Packet" }] }),
+  head: () => ({ meta: [{ title: "Evidence vault — 1202 Request" }] }),
   component: EvidencePage,
 });
 

@@ -7,7 +7,7 @@ import { PaywallModal } from "@/components/qsbs/PaywallModal";
 import { useQsbs } from "@/lib/qsbs/store";
 
 export const Route = createFileRoute("/dossiers/$id/report")({
-  head: () => ({ meta: [{ title: "CPA-ready report — QSBS Packet" }] }),
+  head: () => ({ meta: [{ title: "CPA-ready report — 1202 Request" }] }),
   component: ReportPage,
 });
 
@@ -61,7 +61,10 @@ function ReportPage() {
         <article className="qsbs-card p-8 md:p-12 mt-8 space-y-10">
           {/* Cover */}
           <header>
-            <div className="text-xs uppercase tracking-widest text-muted-foreground">QSBS Packet — Section 1202 evidence file</div>
+            <div className="flex items-center gap-2 text-xs uppercase tracking-widest text-muted-foreground">
+              <span className="inline-flex items-center justify-center w-5 h-5 rounded-md bg-foreground text-background text-[9px] font-semibold tabular-nums">1202</span>
+              1202 Request — Section 1202 evidence dossier
+            </div>
             <h2 className="mt-4 text-3xl font-medium">{d.inputs.issuer_name}</h2>
             <div className="mt-1 text-muted-foreground capitalize">
               {d.inputs.security_type.replace(/_/g, " ")} · {d.inputs.user_role} · acquired {d.inputs.acquisition_date || "—"}
@@ -157,7 +160,15 @@ function ReportPage() {
           </section>
 
           <Disclaimer variant="report" />
+          <footer className="text-[11px] text-muted-foreground border-t border-border pt-4">
+            Prepared with 1202 Request — evidence-request workflow for Section 1202 review. 1202Request.com
+          </footer>
         </article>
+      </div>
+
+      <div className="no-print mt-6 mx-auto max-w-4xl px-5 qsbs-card p-4 text-sm text-muted-foreground">
+        Know another founder, employee, or angel who needs issuer evidence?{" "}
+        <Link to="/" className="qsbs-link">Share 1202 Request →</Link>
       </div>
 
       <PaywallModal

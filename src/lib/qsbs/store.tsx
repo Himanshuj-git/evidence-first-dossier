@@ -5,12 +5,23 @@ import { seedDossiers } from "./seed";
 const STORAGE_KEY = "qsbs.packet.v1";
 const PAY_KEY = "qsbs.paid.v1";
 const SETTINGS_KEY = "qsbs.settings.v1";
+const AUDIT_KEY = "qsbs.audit.v1";
+
+export interface AuditEvent {
+  id: string;
+  ts: string;
+  dossier_id?: string;
+  actor: "user" | "system";
+  action: string;
+  detail?: string;
+}
 
 interface State {
   dossiers: Dossier[];
   intents: CheckoutIntent[];
   paidPlans: string[];
-  settings: { stripe_single?: string; stripe_vault?: string; stripe_portal?: string; email?: string };
+  audit: AuditEvent[];
+  settings: { stripe_single?: string; stripe_vault?: string; stripe_portal?: string; email?: string; share_anonymous_metadata?: boolean };
 }
 
 interface StoreCtx extends State {
@@ -27,6 +38,7 @@ interface StoreCtx extends State {
   unlockDossier: (id: string) => void;
   resetDemo: () => void;
   saveSettings: (s: Partial<State["settings"]>) => void;
+  logAudit: (e: Omit<AuditEvent, "id" | "ts">) => void;
 }
 
 const Ctx = createContext<StoreCtx | null>(null);
@@ -35,21 +47,21 @@ const uid = () => Math.random().toString(36).slice(2, 10);
 
 function loadInitial(): State {
   if (typeof window === "undefined") {
-    return { dossiers: seedDossiers, intents: [], paidPlans: [], settings: {} };
+    return { dossiers: seedDossiers, intents: [], paidPlans: [], audit: [], settings: {} };
   }
   try {
     const raw = localStorage.getItem(STORAGE_KEY);
     const paid = JSON.parse(localStorage.getItem(PAY_KEY) || "[]");
     const settings = JSON.parse(localStorage.getItem(SETTINGS_KEY) || "{}");
+    const audit = JSON.parse(localStorage.getItem(AUDIT_KEY) || "[]");
     if (raw) {
       const parsed = JSON.parse(raw) as { dossiers: Dossier[]; intents: CheckoutIntent[] };
-      // Ensure demo dossiers always present
       const ids = new Set(parsed.dossiers.map((d) => d.id));
       const merged = [...parsed.dossiers, ...seedDossiers.filter((d) => !ids.has(d.id))];
-      return { dossiers: merged, intents: parsed.intents || [], paidPlans: paid, settings };
+      return { dossiers: merged, intents: parsed.intents || [], paidPlans: paid, audit, settings };
     }
   } catch {}
-  return { dossiers: seedDossiers, intents: [], paidPlans: [], settings: {} };
+  return { dossiers: seedDossiers, intents: [], paidPlans: [], audit: [], settings: {} };
 }
 
 export function QsbsProvider({ children }: { children: ReactNode }) {
@@ -57,12 +69,10 @@ export function QsbsProvider({ children }: { children: ReactNode }) {
 
   useEffect(() => {
     try {
-      localStorage.setItem(
-        STORAGE_KEY,
-        JSON.stringify({ dossiers: state.dossiers, intents: state.intents }),
-      );
+      localStorage.setItem(STORAGE_KEY, JSON.stringify({ dossiers: state.dossiers, intents: state.intents }));
       localStorage.setItem(PAY_KEY, JSON.stringify(state.paidPlans));
       localStorage.setItem(SETTINGS_KEY, JSON.stringify(state.settings));
+      localStorage.setItem(AUDIT_KEY, JSON.stringify(state.audit.slice(0, 500)));
     } catch {}
   }, [state]);
 
@@ -135,9 +145,13 @@ export function QsbsProvider({ children }: { children: ReactNode }) {
           localStorage.removeItem(STORAGE_KEY);
           localStorage.removeItem(PAY_KEY);
         } catch {}
-        setState({ dossiers: seedDossiers, intents: [], paidPlans: [], settings: state.settings });
+        setState({ dossiers: seedDossiers, intents: [], paidPlans: [], audit: [], settings: state.settings });
       },
       saveSettings: (s) => setState((prev) => ({ ...prev, settings: { ...prev.settings, ...s } })),
+      logAudit: (e) => setState((prev) => ({
+        ...prev,
+        audit: [{ id: uid(), ts: new Date().toISOString(), ...e }, ...prev.audit].slice(0, 500),
+      })),
     };
   }, [state]);
 
