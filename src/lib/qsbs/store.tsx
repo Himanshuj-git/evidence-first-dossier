@@ -38,7 +38,7 @@ interface StoreCtx extends State {
   unlockDossier: (id: string) => void;
   resetDemo: () => void;
   saveSettings: (s: Partial<State["settings"]>) => void;
-}
+  logAudit: (e: Omit<AuditEvent, "id" | "ts">) => void;
 
 const Ctx = createContext<StoreCtx | null>(null);
 
@@ -147,6 +147,10 @@ export function QsbsProvider({ children }: { children: ReactNode }) {
         setState({ dossiers: seedDossiers, intents: [], paidPlans: [], audit: [], settings: state.settings });
       },
       saveSettings: (s) => setState((prev) => ({ ...prev, settings: { ...prev.settings, ...s } })),
+      logAudit: (e) => setState((prev) => ({
+        ...prev,
+        audit: [{ id: uid(), ts: new Date().toISOString(), ...e }, ...prev.audit].slice(0, 500),
+      })),
     };
   }, [state]);
 
