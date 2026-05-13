@@ -39,6 +39,7 @@ interface StoreCtx extends State {
   resetDemo: () => void;
   saveSettings: (s: Partial<State["settings"]>) => void;
   logAudit: (e: Omit<AuditEvent, "id" | "ts">) => void;
+}
 
 const Ctx = createContext<StoreCtx | null>(null);
 
