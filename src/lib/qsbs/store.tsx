@@ -5,12 +5,23 @@ import { seedDossiers } from "./seed";
 const STORAGE_KEY = "qsbs.packet.v1";
 const PAY_KEY = "qsbs.paid.v1";
 const SETTINGS_KEY = "qsbs.settings.v1";
+const AUDIT_KEY = "qsbs.audit.v1";
+
+export interface AuditEvent {
+  id: string;
+  ts: string;
+  dossier_id?: string;
+  actor: "user" | "system";
+  action: string;
+  detail?: string;
+}
 
 interface State {
   dossiers: Dossier[];
   intents: CheckoutIntent[];
   paidPlans: string[];
-  settings: { stripe_single?: string; stripe_vault?: string; stripe_portal?: string; email?: string };
+  audit: AuditEvent[];
+  settings: { stripe_single?: string; stripe_vault?: string; stripe_portal?: string; email?: string; share_anonymous_metadata?: boolean };
 }
 
 interface StoreCtx extends State {
