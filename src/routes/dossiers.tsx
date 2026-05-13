@@ -7,7 +7,7 @@ import { summarize } from "@/lib/qsbs/rules";
 export const Route = createFileRoute("/dossiers")({
   head: () => ({
     meta: [
-      { title: "Dossiers — QSBS Packet" },
+      { title: "Holdings — 1202 Request" },
       { name: "description", content: "All your Section 1202 evidence dossiers in one place." },
     ],
   }),
@@ -33,10 +33,10 @@ function DossiersList() {
       <div className="mx-auto max-w-6xl px-5 py-12">
         <div className="flex flex-wrap items-end justify-between gap-4">
           <div>
-            <h1 className="text-3xl font-medium">Dossiers</h1>
-            <p className="mt-1 text-muted-foreground">Each dossier is one holding, organized for professional review.</p>
+            <h1 className="text-3xl font-medium">Holdings</h1>
+            <p className="mt-1 text-muted-foreground">Each holding is one stock position with its own evidence dossier and issuer requests.</p>
           </div>
-          <Link to="/dossiers/new" className="qsbs-btn qsbs-btn-primary">+ New dossier</Link>
+          <Link to="/dossiers/new" className="qsbs-btn qsbs-btn-primary">+ New holding</Link>
         </div>
 
         <div className="mt-6 flex flex-wrap gap-2 text-sm">

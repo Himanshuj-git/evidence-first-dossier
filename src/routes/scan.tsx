@@ -8,8 +8,8 @@ import type { DossierInputs } from "@/lib/qsbs/types";
 export const Route = createFileRoute("/scan")({
   head: () => ({
     meta: [
-      { title: "Free QSBS readiness scan — QSBS Packet" },
-      { name: "description", content: "A free wizard that surfaces missing Section 1202 evidence and red flags before professional review." },
+      { title: "Build my evidence request — 1202 Request" },
+      { name: "description", content: "Free wizard. Identify your holding, then surface the issuer evidence your CPA will need for Section 1202 review." },
     ],
   }),
   component: ScanPage,
@@ -61,9 +61,9 @@ function ScanPage() {
   return (
     <PageShell>
       <div className="mx-auto max-w-2xl px-5 py-12">
-        <div className="text-xs uppercase tracking-wider text-muted-foreground">Free readiness scan</div>
-        <h1 className="mt-2 text-3xl font-medium">Section 1202 evidence check</h1>
-        <p className="mt-2 text-muted-foreground">No sign-in required. We never decide whether you qualify — we surface what's documented and what's missing.</p>
+        <div className="text-xs uppercase tracking-wider text-muted-foreground">Build my evidence request</div>
+        <h1 className="mt-2 text-3xl font-medium">Identify your holding and the issuer evidence you'll need</h1>
+        <p className="mt-2 text-muted-foreground">No sign-in required. 1202 Request never decides whether you qualify — we surface what's documented and what's missing so your CPA can review.</p>
 
         {/* Progress */}
         <div className="mt-8 flex items-center gap-2">
@@ -242,7 +242,7 @@ function ScanPage() {
                     nav({ to: "/dossiers/$id", params: { id } });
                   }}
                 >
-                  Create my QSBS packet
+                  Create my 1202 Request dossier
                 </button>
                 <button className="qsbs-btn qsbs-btn-ghost" onClick={() => { setData(initial); setStep(0); }}>Restart</button>
               </div>

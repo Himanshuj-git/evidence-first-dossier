@@ -11,7 +11,7 @@ const greet = (d: Dossier) =>
   `Dear ${d.inputs.issuer_name || "[Issuer]"} team,`;
 
 const sign = () =>
-  `Thank you for your help.\n\nBest regards,\n[Your name]`;
+  `Thank you for your help.\n\nBest regards,\n[Your name]\n\n— Prepared with 1202 Request — evidence-request workflow for Section 1202 review.`;
 
 export const LETTER_TEMPLATES: LetterTemplate[] = [
   {
