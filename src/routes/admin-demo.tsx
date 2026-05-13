@@ -4,7 +4,7 @@ import { useQsbs } from "@/lib/qsbs/store";
 import { summarize } from "@/lib/qsbs/rules";
 
 export const Route = createFileRoute("/admin-demo")({
-  head: () => ({ meta: [{ title: "Demo data & QA — QSBS Packet" }] }),
+  head: () => ({ meta: [{ title: "Demo data & QA — 1202 Request" }] }),
   component: AdminDemoPage,
 });
 

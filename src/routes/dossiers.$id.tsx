@@ -5,7 +5,7 @@ import { useQsbs, useDossier } from "@/lib/qsbs/store";
 import { buildRules, readinessScore, deriveStatus } from "@/lib/qsbs/rules";
 
 export const Route = createFileRoute("/dossiers/$id")({
-  head: () => ({ meta: [{ title: "Dossier — QSBS Packet" }] }),
+  head: () => ({ meta: [{ title: "Dossier — 1202 Request" }] }),
   component: DossierLayout,
 });
 

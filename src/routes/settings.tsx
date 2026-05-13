@@ -4,7 +4,7 @@ import { PageShell, Disclaimer } from "@/components/qsbs/Layout";
 import { useQsbs } from "@/lib/qsbs/store";
 
 export const Route = createFileRoute("/settings")({
-  head: () => ({ meta: [{ title: "Settings — QSBS Packet" }] }),
+  head: () => ({ meta: [{ title: "Settings — 1202 Request" }] }),
   component: SettingsPage,
 });
 

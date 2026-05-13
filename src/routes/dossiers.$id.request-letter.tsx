@@ -5,7 +5,7 @@ import { useDossier, useQsbs } from "@/lib/qsbs/store";
 import { LETTER_TEMPLATES } from "@/lib/qsbs/letters";
 
 export const Route = createFileRoute("/dossiers/$id/request-letter")({
-  head: () => ({ meta: [{ title: "Issuer request letter — QSBS Packet" }] }),
+  head: () => ({ meta: [{ title: "Issuer request letter — 1202 Request" }] }),
   component: LetterPage,
 });
 

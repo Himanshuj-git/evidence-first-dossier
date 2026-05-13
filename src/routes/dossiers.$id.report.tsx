@@ -7,7 +7,7 @@ import { PaywallModal } from "@/components/qsbs/PaywallModal";
 import { useQsbs } from "@/lib/qsbs/store";
 
 export const Route = createFileRoute("/dossiers/$id/report")({
-  head: () => ({ meta: [{ title: "CPA-ready report — QSBS Packet" }] }),
+  head: () => ({ meta: [{ title: "CPA-ready report — 1202 Request" }] }),
   component: ReportPage,
 });
 

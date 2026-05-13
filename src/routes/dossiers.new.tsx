@@ -6,7 +6,7 @@ import type { DossierInputs } from "@/lib/qsbs/types";
 
 export const Route = createFileRoute("/dossiers/new")({
   head: () => ({
-    meta: [{ title: "New dossier — QSBS Packet" }, { name: "description", content: "Create a new Section 1202 evidence dossier." }],
+    meta: [{ title: "New dossier — 1202 Request" }, { name: "description", content: "Create a new Section 1202 evidence dossier." }],
   }),
   component: NewDossier,
 });

@@ -4,8 +4,8 @@ import { PageShell, Disclaimer } from "@/components/qsbs/Layout";
 export const Route = createFileRoute("/sources")({
   head: () => ({
     meta: [
-      { title: "Sources & methodology — QSBS Packet" },
-      { name: "description", content: "Public educational sources used by QSBS Packet's rule scaffolding." },
+      { title: "Sources & methodology — 1202 Request" },
+      { name: "description", content: "Public educational sources used by 1202 Request's rule scaffolding." },
     ],
   }),
   component: SourcesPage,
@@ -26,7 +26,7 @@ function SourcesPage() {
       <div className="mx-auto max-w-3xl px-5 py-12">
         <h1 className="text-3xl font-medium">Sources & methodology</h1>
         <p className="mt-2 text-muted-foreground">
-          QSBS Packet's rule scaffolding is built from public educational sources and the Internal Revenue Code.
+          1202 Request's rule scaffolding is built from public educational sources and the Internal Revenue Code.
           It is not legal, tax, accounting, or investment advice.
         </p>
 
