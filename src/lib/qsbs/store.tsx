@@ -46,21 +46,21 @@ const uid = () => Math.random().toString(36).slice(2, 10);
 
 function loadInitial(): State {
   if (typeof window === "undefined") {
-    return { dossiers: seedDossiers, intents: [], paidPlans: [], settings: {} };
+    return { dossiers: seedDossiers, intents: [], paidPlans: [], audit: [], settings: {} };
   }
   try {
     const raw = localStorage.getItem(STORAGE_KEY);
     const paid = JSON.parse(localStorage.getItem(PAY_KEY) || "[]");
     const settings = JSON.parse(localStorage.getItem(SETTINGS_KEY) || "{}");
+    const audit = JSON.parse(localStorage.getItem(AUDIT_KEY) || "[]");
     if (raw) {
       const parsed = JSON.parse(raw) as { dossiers: Dossier[]; intents: CheckoutIntent[] };
-      // Ensure demo dossiers always present
       const ids = new Set(parsed.dossiers.map((d) => d.id));
       const merged = [...parsed.dossiers, ...seedDossiers.filter((d) => !ids.has(d.id))];
-      return { dossiers: merged, intents: parsed.intents || [], paidPlans: paid, settings };
+      return { dossiers: merged, intents: parsed.intents || [], paidPlans: paid, audit, settings };
     }
   } catch {}
-  return { dossiers: seedDossiers, intents: [], paidPlans: [], settings: {} };
+  return { dossiers: seedDossiers, intents: [], paidPlans: [], audit: [], settings: {} };
 }
 
 export function QsbsProvider({ children }: { children: ReactNode }) {
@@ -68,12 +68,10 @@ export function QsbsProvider({ children }: { children: ReactNode }) {
 
   useEffect(() => {
     try {
-      localStorage.setItem(
-        STORAGE_KEY,
-        JSON.stringify({ dossiers: state.dossiers, intents: state.intents }),
-      );
+      localStorage.setItem(STORAGE_KEY, JSON.stringify({ dossiers: state.dossiers, intents: state.intents }));
       localStorage.setItem(PAY_KEY, JSON.stringify(state.paidPlans));
       localStorage.setItem(SETTINGS_KEY, JSON.stringify(state.settings));
+      localStorage.setItem(AUDIT_KEY, JSON.stringify(state.audit.slice(0, 500)));
     } catch {}
   }, [state]);
 
