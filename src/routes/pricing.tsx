@@ -1,8 +1,10 @@
-import { createFileRoute } from "@tanstack/react-router";
-import { useState } from "react";
+import { createFileRoute, Link } from "@tanstack/react-router";
+import { useEffect, useState } from "react";
 import { PageShell, Disclaimer } from "@/components/qsbs/Layout";
 import { PaywallModal } from "@/components/qsbs/PaywallModal";
 import { useQsbs } from "@/lib/qsbs/store";
+import { FAQ, SHARED_FAQ } from "@/components/qsbs/FAQ";
+import { trackEvent } from "@/lib/qsbs/analytics";
 
 export const Route = createFileRoute("/pricing")({
   head: () => ({
