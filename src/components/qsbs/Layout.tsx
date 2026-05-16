@@ -4,9 +4,9 @@ import type { ReactNode } from "react";
 const navLinks = [
   { to: "/start", label: "Start" },
   { to: "/dossiers", label: "Holdings" },
-  { to: "/company", label: "For companies" },
+  { to: "/demo", label: "Sample" },
+  { to: "/checklist", label: "Free checklist" },
   { to: "/pricing", label: "Pricing" },
-  { to: "/sources", label: "Sources" },
 ] as const;
 
 export function Header() {
@@ -50,7 +50,8 @@ export function Footer() {
             <li><Link to="/start" className="hover:text-foreground">Build a request</Link></li>
             <li><Link to="/dossiers" className="hover:text-foreground">Holdings</Link></li>
             <li><Link to="/pricing" className="hover:text-foreground">Pricing</Link></li>
-            <li><Link to="/demo" className="hover:text-foreground">Sample request</Link></li>
+            <li><Link to="/demo" className="hover:text-foreground">Sample dossier</Link></li>
+            <li><Link to="/checklist" className="hover:text-foreground">Free checklist</Link></li>
           </ul>
         </div>
         <div>
