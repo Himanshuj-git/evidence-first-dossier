@@ -89,6 +89,8 @@ function PricingPage() {
   const { recordCheckout, paidPlans } = useQsbs();
   const [open, setOpen] = useState<"single" | "vault" | "portal" | null>(null);
 
+  useEffect(() => { trackEvent("pricing_viewed"); }, []);
+
   return (
     <PageShell>
       <div className="mx-auto max-w-5xl px-5 py-16">
@@ -116,12 +118,19 @@ function PricingPage() {
               </ul>
               <button
                 className={`mt-6 qsbs-btn ${p.highlight ? "qsbs-btn-primary" : "qsbs-btn-ghost"}`}
-                onClick={() => setOpen(p.key)}
+                onClick={() => { trackEvent("checkout_started", { plan: p.key }); setOpen(p.key); }}
               >
                 {paidPlans.includes(p.key) ? "Purchased" : p.cta}
               </button>
             </div>
           ))}
+        </div>
+
+        <div className="mt-6 text-center text-sm text-muted-foreground">
+          Prefer to see the deliverable first?{" "}
+          <Link to="/demo" className="qsbs-link">View the sample dossier</Link>
+          {" "}or{" "}
+          <Link to="/checklist" className="qsbs-link">grab the free checklist</Link>.
         </div>
 
         <div className="mt-10 grid md:grid-cols-2 gap-4">
@@ -142,8 +151,8 @@ function PricingPage() {
             <div className="text-sm font-medium">Satisfaction policy</div>
             <p className="mt-2 text-sm text-muted-foreground leading-relaxed">
               If the paid dossier does not help you identify missing evidence or produce a usable request packet, you
-              can request a refund within 14 days. We do not guarantee any tax outcome — only that the product is
-              useful for organizing your evidence request.
+              can request a refund within 14 days. We do not guarantee any tax outcome, QSBS eligibility, or CPA
+              acceptance — only that the product is useful for organizing your evidence request.
             </p>
           </div>
         </div>
@@ -163,6 +172,17 @@ function PricingPage() {
           </p>
         </div>
 
+        {/* Trust microcopy */}
+        <div className="mt-8 qsbs-card p-5 text-xs text-muted-foreground leading-relaxed">
+          <strong className="text-foreground">Privacy &amp; security.</strong> Do not upload sensitive documents unless you
+          trust the app environment. Private packet data should not be shared through unlisted links unless you
+          understand the risk. 1202 Request does not provide tax, legal, accounting, investment, or securities advice.
+          Your dossier is a structured summary of user-provided facts and requested issuer evidence for professional
+          review.
+        </div>
+
+        <div className="mt-12"><FAQ items={SHARED_FAQ} /></div>
+
         <div className="mt-8"><Disclaimer /></div>
       </div>
 
@@ -170,7 +190,7 @@ function PricingPage() {
         open={!!open}
         plan={open || "single"}
         onClose={() => setOpen(null)}
-        onConfirm={() => { if (open) recordCheckout(open); setOpen(null); }}
+        onConfirm={() => { if (open) { recordCheckout(open); trackEvent("checkout_success", { plan: open, mode: "simulated" }); } setOpen(null); }}
       />
     </PageShell>
   );
