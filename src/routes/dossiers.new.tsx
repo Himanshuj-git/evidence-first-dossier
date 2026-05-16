@@ -93,6 +93,7 @@ function NewDossier() {
               onClick={() => {
                 if (!d.issuer_name) return;
                 const id = createDossier(d);
+                import("@/lib/qsbs/analytics").then(({ trackEvent }) => trackEvent("packet_started", { dossier_id: id }));
                 nav({ to: "/dossiers/$id", params: { id } });
               }}>Create dossier</button>
           </div>

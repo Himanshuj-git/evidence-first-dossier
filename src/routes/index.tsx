@@ -1,32 +1,47 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
+import { useEffect } from "react";
 import { PageShell, Disclaimer, ScoreRing, StatusChip } from "@/components/qsbs/Layout";
+import { FAQ, SHARED_FAQ } from "@/components/qsbs/FAQ";
+import { trackEvent } from "@/lib/qsbs/analytics";
 
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "1202 Request — Issuer evidence requests for Section 1202 review" },
-      { name: "description", content: "Request the issuer evidence your CPA needs for Section 1202 review. Built for shareholders without issuer-side access." },
+      { title: "1202 Request — Section 1202 Evidence Requests" },
+      { name: "description", content: "Organize startup stock facts, request issuer evidence, and export a CPA-ready dossier for Section 1202 review. No tax advice or eligibility certification." },
+      { property: "og:title", content: "1202 Request — Section 1202 Evidence Requests" },
+      { property: "og:description", content: "Ask your company for the right Section 1202 evidence before your CPA review." },
+      { property: "og:url", content: "https://1202request.com/" },
     ],
+    links: [{ rel: "canonical", href: "https://1202request.com/" }],
   }),
   component: Landing,
 });
 
 function Landing() {
+  useEffect(() => { trackEvent("landing_cta_clicked", { stage: "page_view" }); }, []);
+  const click = (cta: string) => () => trackEvent("landing_cta_clicked", { cta });
+
   return (
     <PageShell>
       {/* Hero */}
       <section className="mx-auto max-w-5xl px-5 pt-20 md:pt-28 pb-16 text-center">
-        <div className="inline-flex qsbs-chip">For shareholders, founders, employees, angels & their CPAs</div>
+        <div className="inline-flex qsbs-chip">For shareholders, founders, employees, angels &amp; their CPAs</div>
         <h1 className="mt-6 text-4xl md:text-6xl font-medium tracking-tight leading-[1.05]">
-          Request the issuer evidence<br className="hidden md:block" /> your CPA needs for Section 1202 review.
+          Ask your company for the right Section 1202 evidence<br className="hidden md:block" /> before your CPA review.
         </h1>
         <p className="mt-6 text-lg md:text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
-          1202 Request helps startup shareholders organize their stock facts, identify missing issuer records, generate
-          professional company request letters, and export a CPA-ready review dossier.
+          1202 Request helps startup shareholders organize stock facts, generate issuer evidence requests, track
+          missing documents, and export a CPA-ready review dossier.
         </p>
         <div className="mt-10 flex flex-col sm:flex-row gap-3 justify-center">
-          <Link to="/start" className="qsbs-btn qsbs-btn-primary">Build my evidence request</Link>
-          <Link to="/demo" className="qsbs-btn qsbs-btn-ghost">View sample request</Link>
+          <Link to="/start" onClick={click("hero_build")} className="qsbs-btn qsbs-btn-primary">Build my evidence request</Link>
+          <Link to="/demo" onClick={click("hero_demo")} className="qsbs-btn qsbs-btn-ghost">View sample dossier</Link>
+        </div>
+        <div className="mt-4">
+          <Link to="/checklist" onClick={click("hero_checklist")} className="qsbs-link text-sm">
+            Download free evidence checklist →
+          </Link>
         </div>
         <div className="mt-6 flex flex-wrap gap-x-5 gap-y-1 justify-center text-xs text-muted-foreground">
           <span>No tax advice</span><span>·</span>
@@ -83,10 +98,56 @@ function Landing() {
             <span className="qsbs-chip qsbs-chip-green">83(b) on file</span>
             <span className="qsbs-chip qsbs-chip-green">Active business memo</span>
           </div>
+          <div className="mt-5 text-right">
+            <Link to="/demo" onClick={click("sample_card")} className="qsbs-link text-sm">Open full sample →</Link>
+          </div>
         </div>
         <p className="mt-3 text-xs text-muted-foreground text-center">
           Sample only. Generated from synthetic facts. Always confirm with a qualified tax professional.
         </p>
+      </section>
+
+      {/* Why shareholders get stuck */}
+      <section className="mx-auto max-w-4xl px-5 mt-24">
+        <h2 className="text-3xl md:text-4xl font-medium tracking-tight">Why shareholders get stuck</h2>
+        <div className="mt-6 qsbs-card divide-y divide-border">
+          {[
+            "You may not have access to company-side cap table or legal records.",
+            "Your CPA needs facts, not vague QSBS claims.",
+            "The company may not know what evidence to send.",
+            "Missing issuer evidence can slow down review before a sale, tender offer, acquisition, or tax filing.",
+            "A clean, structured request saves rounds of back-and-forth.",
+          ].map((t) => <div key={t} className="p-5 text-sm md:text-base">{t}</div>)}
+        </div>
+      </section>
+
+      {/* What you get */}
+      <section className="mx-auto max-w-5xl px-5 mt-24">
+        <div className="text-center">
+          <h2 className="text-3xl md:text-4xl font-medium tracking-tight">What you get in a paid packet</h2>
+          <p className="mt-3 text-muted-foreground">A finished deliverable, not just AI text. Built for your CPA.</p>
+        </div>
+        <div className="mt-10 grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
+          {[
+            { t: "Professional issuer request letter", b: "A precise, polite letter naming the exact records your CPA needs." },
+            { t: "Follow-up request template", b: "For when the company is slow or only sends partial evidence." },
+            { t: "Evidence checklist", b: "Structured by Section 1202 category — never miss a document type." },
+            { t: "Missing document tracker", b: "Status per item: missing, requested, received, reviewed." },
+            { t: "CPA-ready review summary", b: "Factual summary + open questions, written for professional review." },
+            { t: "Document index", b: "Every supporting file labeled and ordered for hand-off." },
+            { t: "Risk flags & open questions", b: "Surfaces issues like secondary purchases or excluded industries." },
+            { t: "Print/export-ready dossier", b: "A clean, branded PDF you'd be comfortable sending to your CPA." },
+            { t: "Audit trail of request steps", b: "Who asked for what, and when — a defensible record." },
+          ].map((c) => (
+            <div key={c.t} className="qsbs-card p-5">
+              <div className="font-medium">{c.t}</div>
+              <p className="mt-1 text-sm text-muted-foreground leading-relaxed">{c.b}</p>
+            </div>
+          ))}
+        </div>
+        <div className="mt-8 text-center">
+          <Link to="/pricing" onClick={click("what_you_get_pricing")} className="qsbs-btn qsbs-btn-primary">See $49 packet</Link>
+        </div>
       </section>
 
       {/* Built for shareholders */}
@@ -111,26 +172,6 @@ function Landing() {
         </div>
       </section>
 
-      {/* Pain section */}
-      <section className="mx-auto max-w-4xl px-5 mt-24">
-        <div className="qsbs-card p-8 md:p-10">
-          <h2 className="text-3xl md:text-4xl font-medium tracking-tight">
-            Most QSBS problems are evidence problems.
-          </h2>
-          <ul className="mt-6 space-y-3 text-base text-muted-foreground leading-relaxed">
-            <li>· Shareholders rarely control issuer records — cap tables, balance sheets, board minutes.</li>
-            <li>· Old stock records are hard to reconstruct years after issuance.</li>
-            <li>· Companies often don't know what factual confirmations a tax advisor needs.</li>
-            <li>· CPAs need factual support, not vague claims that "we think it qualifies."</li>
-            <li>· A one-line "we think it qualifies" email from the company is not enough.</li>
-          </ul>
-          <p className="mt-6 text-foreground">
-            1202 Request gives you a structured way to ask for what's missing — and a clean place to put it when it
-            arrives.
-          </p>
-        </div>
-      </section>
-
       {/* Three steps */}
       <section className="mx-auto max-w-5xl px-5 mt-24 grid md:grid-cols-3 gap-6">
         {[
@@ -144,6 +185,23 @@ function Landing() {
             <p className="mt-2 text-sm text-muted-foreground leading-relaxed">{s.b}</p>
           </div>
         ))}
+      </section>
+
+      {/* Trust */}
+      <section className="mx-auto max-w-5xl px-5 mt-24">
+        <div className="qsbs-card p-6 md:p-8">
+          <div className="text-xs uppercase tracking-widest text-muted-foreground">Trust &amp; scope</div>
+          <div className="mt-3 grid sm:grid-cols-2 lg:grid-cols-3 gap-4 text-sm">
+            {[
+              "Built for professional review",
+              "No eligibility certification",
+              "No tax advice",
+              "No investment advice",
+              "User-controlled packet exports",
+              "Educational document-organization tool",
+            ].map((t) => <div key={t} className="flex gap-2"><span className="text-muted-foreground">•</span>{t}</div>)}
+          </div>
+        </div>
       </section>
 
       {/* Pricing teaser */}
@@ -169,11 +227,16 @@ function Landing() {
           ))}
         </div>
         <div className="mt-6 text-center">
-          <Link to="/pricing" className="qsbs-link text-sm">See full pricing →</Link>
+          <Link to="/pricing" onClick={click("pricing_teaser")} className="qsbs-link text-sm">See full pricing →</Link>
         </div>
       </section>
 
-      <section className="mx-auto max-w-3xl px-5 mt-24">
+      {/* FAQ */}
+      <section className="mx-auto max-w-4xl px-5 mt-24">
+        <FAQ items={SHARED_FAQ} />
+      </section>
+
+      <section className="mx-auto max-w-3xl px-5 mt-16">
         <Disclaimer />
       </section>
     </PageShell>
