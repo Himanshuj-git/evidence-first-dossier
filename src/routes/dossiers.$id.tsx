@@ -97,7 +97,8 @@ function DossierLayout() {
             <Link to="/dossiers/$id/cpa" params={{ id }} className="qsbs-chip">CPA view →</Link>
             <Link to="/dossiers/$id/issuer" params={{ id }} className="qsbs-chip">Issuer view →</Link>
             <Link to="/dossiers/$id/cpa-email" params={{ id }} className="qsbs-chip">CPA email →</Link>
-            <Link to="/dossiers/$id/report" params={{ id }} className="qsbs-chip">Export →</Link>
+            <Link to="/dossiers/$id/report" params={{ id }} className="qsbs-chip">Report →</Link>
+            <Link to="/dossiers/$id/export" params={{ id }} className="qsbs-chip">Export packet →</Link>
           </div>
         </div>
 
