@@ -239,6 +239,7 @@ function ScanPage() {
                   className="qsbs-btn qsbs-btn-primary flex-1"
                   onClick={() => {
                     const id = createDossier(data);
+                    import("@/lib/qsbs/analytics").then(({ trackEvent }) => trackEvent("packet_started", { dossier_id: id, role: data.user_role }));
                     nav({ to: "/dossiers/$id", params: { id } });
                   }}
                 >

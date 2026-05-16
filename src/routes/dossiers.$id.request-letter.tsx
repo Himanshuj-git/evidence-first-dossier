@@ -74,7 +74,10 @@ function LetterPage() {
             <div className="flex flex-wrap gap-2 justify-end">
               <button className="qsbs-btn qsbs-btn-ghost" onClick={() => setBody(initial)}>Reset</button>
               <button className="qsbs-btn qsbs-btn-ghost"
-                onClick={() => { addLetter(id, { letter_type: tpl.type, subject, recipient, body }); }}>
+                onClick={() => {
+                  addLetter(id, { letter_type: tpl.type, subject, recipient, body });
+                  import("@/lib/qsbs/analytics").then(({ trackEvent }) => trackEvent("issuer_request_generated", { dossier_id: id, letter_type: tpl.type }));
+                }}>
                 Save to dossier
               </button>
               <button className="qsbs-btn qsbs-btn-primary" onClick={copy}>{copied ? "Copied" : "Copy to clipboard"}</button>
