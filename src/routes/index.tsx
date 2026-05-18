@@ -70,7 +70,7 @@ function Landing() {
 
       <section className="mx-auto max-w-3xl px-5">
         <div className="qsbs-card p-6 md:p-8 text-center">
-          <div className="text-xs uppercase tracking-widest text-muted-foreground">Core message</div>
+          <div className="text-xs uppercase tracking-widest text-muted-foreground"></div>
           <p className="mt-3 text-xl md:text-2xl font-medium leading-snug">
             Stop asking your company vague QSBS questions. Send a precise evidence request your CPA can actually use.
           </p>
