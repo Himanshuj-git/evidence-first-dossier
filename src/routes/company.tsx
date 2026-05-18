@@ -5,8 +5,12 @@ export const Route = createFileRoute("/company")({
   head: () => ({
     meta: [
       { title: "Company portal — 1202 Request" },
-      { name: "description", content: "Respond to shareholder Section 1202 documentation requests consistently and quickly." },
+      { name: "description", content: "Respond to shareholder Section 1202 documentation requests consistently with reusable issuer response templates and an intake queue." },
+      { property: "og:title", content: "Company portal for Section 1202 requests" },
+      { property: "og:description", content: "Respond to shareholder Section 1202 documentation requests consistently and quickly." },
+      { property: "og:url", content: "https://1202request.com/company" },
     ],
+    links: [{ rel: "canonical", href: "https://1202request.com/company" }],
   }),
   component: CompanyLanding,
 });

@@ -8,11 +8,13 @@ import { trackEvent } from "@/lib/qsbs/analytics";
 export const Route = createFileRoute("/demo")({
   head: () => ({
     meta: [
-      { title: "Sample CPA-Ready Section 1202 Dossier — 1202 Request" },
+      { title: "Sample CPA-Ready Section 1202 Dossier" },
       { name: "description", content: "A fictional sample dossier showing how 1202 Request organizes issuer evidence and outputs a CPA-ready Section 1202 review packet." },
       { property: "og:title", content: "Sample CPA-ready Section 1202 dossier" },
       { property: "og:description", content: "Fictional Northstar Robotics example — issuer request, evidence tracker, risk flags, CPA-ready summary." },
+      { property: "og:url", content: "https://1202request.com/demo" },
     ],
+    links: [{ rel: "canonical", href: "https://1202request.com/demo" }],
   }),
   component: DemoPage,
 });

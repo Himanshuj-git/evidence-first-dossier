@@ -11,6 +11,7 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as StartRouteImport } from './routes/start'
 import { Route as SourcesRouteImport } from './routes/sources'
+import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
 import { Route as SettingsRouteImport } from './routes/settings'
 import { Route as ScanRouteImport } from './routes/scan'
 import { Route as PrivacyRouteImport } from './routes/privacy'
@@ -48,6 +49,11 @@ const StartRoute = StartRouteImport.update({
 const SourcesRoute = SourcesRouteImport.update({
   id: '/sources',
   path: '/sources',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SitemapDotxmlRoute = SitemapDotxmlRouteImport.update({
+  id: '/sitemap.xml',
+  path: '/sitemap.xml',
   getParentRoute: () => rootRouteImport,
 } as any)
 const SettingsRoute = SettingsRouteImport.update({
@@ -204,6 +210,7 @@ export interface FileRoutesByFullPath {
   '/privacy': typeof PrivacyRoute
   '/scan': typeof ScanRoute
   '/settings': typeof SettingsRoute
+  '/sitemap.xml': typeof SitemapDotxmlRoute
   '/sources': typeof SourcesRoute
   '/start': typeof StartRoute
   '/admin/events': typeof AdminEventsRoute
@@ -236,6 +243,7 @@ export interface FileRoutesByTo {
   '/privacy': typeof PrivacyRoute
   '/scan': typeof ScanRoute
   '/settings': typeof SettingsRoute
+  '/sitemap.xml': typeof SitemapDotxmlRoute
   '/sources': typeof SourcesRoute
   '/start': typeof StartRoute
   '/admin/events': typeof AdminEventsRoute
@@ -269,6 +277,7 @@ export interface FileRoutesById {
   '/privacy': typeof PrivacyRoute
   '/scan': typeof ScanRoute
   '/settings': typeof SettingsRoute
+  '/sitemap.xml': typeof SitemapDotxmlRoute
   '/sources': typeof SourcesRoute
   '/start': typeof StartRoute
   '/admin/events': typeof AdminEventsRoute
@@ -303,6 +312,7 @@ export interface FileRouteTypes {
     | '/privacy'
     | '/scan'
     | '/settings'
+    | '/sitemap.xml'
     | '/sources'
     | '/start'
     | '/admin/events'
@@ -335,6 +345,7 @@ export interface FileRouteTypes {
     | '/privacy'
     | '/scan'
     | '/settings'
+    | '/sitemap.xml'
     | '/sources'
     | '/start'
     | '/admin/events'
@@ -367,6 +378,7 @@ export interface FileRouteTypes {
     | '/privacy'
     | '/scan'
     | '/settings'
+    | '/sitemap.xml'
     | '/sources'
     | '/start'
     | '/admin/events'
@@ -400,6 +412,7 @@ export interface RootRouteChildren {
   PrivacyRoute: typeof PrivacyRoute
   ScanRoute: typeof ScanRoute
   SettingsRoute: typeof SettingsRoute
+  SitemapDotxmlRoute: typeof SitemapDotxmlRoute
   SourcesRoute: typeof SourcesRoute
   StartRoute: typeof StartRoute
   AdminEventsRoute: typeof AdminEventsRoute
@@ -421,6 +434,13 @@ declare module '@tanstack/react-router' {
       path: '/sources'
       fullPath: '/sources'
       preLoaderRoute: typeof SourcesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/sitemap.xml': {
+      id: '/sitemap.xml'
+      path: '/sitemap.xml'
+      fullPath: '/sitemap.xml'
+      preLoaderRoute: typeof SitemapDotxmlRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/settings': {
@@ -700,6 +720,7 @@ const rootRouteChildren: RootRouteChildren = {
   PrivacyRoute: PrivacyRoute,
   ScanRoute: ScanRoute,
   SettingsRoute: SettingsRoute,
+  SitemapDotxmlRoute: SitemapDotxmlRoute,
   SourcesRoute: SourcesRoute,
   StartRoute: StartRoute,
   AdminEventsRoute: AdminEventsRoute,
