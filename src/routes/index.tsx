@@ -7,9 +7,9 @@ import { trackEvent } from "@/lib/qsbs/analytics";
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "1202 Request — Section 1202 Evidence Requests" },
-      { name: "description", content: "Organize startup stock facts, request issuer evidence, and export a CPA-ready dossier for Section 1202 review. No tax advice or eligibility certification." },
-      { property: "og:title", content: "1202 Request — Section 1202 Evidence Requests" },
+      { title: "Section 1202 Evidence Requests for Shareholders" },
+      { name: "description", content: "Ask your company for the right Section 1202 evidence before your CPA review. Generate issuer request letters and a CPA-ready dossier." },
+      { property: "og:title", content: "Section 1202 Evidence Requests for Shareholders" },
       { property: "og:description", content: "Ask your company for the right Section 1202 evidence before your CPA review." },
       { property: "og:url", content: "https://1202request.com/" },
     ],

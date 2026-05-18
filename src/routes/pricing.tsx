@@ -10,8 +10,12 @@ export const Route = createFileRoute("/pricing")({
   head: () => ({
     meta: [
       { title: "Pricing — 1202 Request" },
-      { name: "description", content: "Per-holding or annual plans for shareholder-side Section 1202 evidence requests." },
+      { name: "description", content: "Per-holding or annual plans for shareholder-side Section 1202 evidence requests. One Holding Packet $49, Vault $149/yr, Company Portal $299/yr." },
+      { property: "og:title", content: "Pricing — 1202 Request" },
+      { property: "og:description", content: "One Holding Packet $49, Vault $149/yr, Company Portal $299/yr." },
+      { property: "og:url", content: "https://1202request.com/pricing" },
     ],
+    links: [{ rel: "canonical", href: "https://1202request.com/pricing" }],
   }),
   component: PricingPage,
 });

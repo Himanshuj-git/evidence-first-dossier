@@ -6,11 +6,13 @@ import { captureLead, trackEvent } from "@/lib/qsbs/analytics";
 export const Route = createFileRoute("/checklist")({
   head: () => ({
     meta: [
-      { title: "Free Section 1202 Issuer Evidence Checklist — 1202 Request" },
+      { title: "Free Section 1202 Issuer Evidence Checklist" },
       { name: "description", content: "Free checklist of the issuer evidence a CPA typically needs for Section 1202 review. No tax advice or eligibility certification." },
       { property: "og:title", content: "Free Section 1202 Issuer Evidence Checklist" },
       { property: "og:description", content: "The documents shareholders typically need from the company before a Section 1202 review." },
+      { property: "og:url", content: "https://1202request.com/checklist" },
     ],
+    links: [{ rel: "canonical", href: "https://1202request.com/checklist" }],
   }),
   component: ChecklistPage,
 });

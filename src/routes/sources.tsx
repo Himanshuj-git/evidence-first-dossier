@@ -5,8 +5,12 @@ export const Route = createFileRoute("/sources")({
   head: () => ({
     meta: [
       { title: "Sources & methodology — 1202 Request" },
-      { name: "description", content: "Public educational sources used by 1202 Request's rule scaffolding." },
+      { name: "description", content: "Public educational sources used by 1202 Request's Section 1202 rule scaffolding and evidence taxonomy." },
+      { property: "og:title", content: "Sources & methodology — 1202 Request" },
+      { property: "og:description", content: "Public educational sources used by 1202 Request's rule scaffolding." },
+      { property: "og:url", content: "https://1202request.com/sources" },
     ],
+    links: [{ rel: "canonical", href: "https://1202request.com/sources" }],
   }),
   component: SourcesPage,
 });

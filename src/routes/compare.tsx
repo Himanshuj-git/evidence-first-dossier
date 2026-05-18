@@ -5,7 +5,16 @@ import { useQsbs } from "@/lib/qsbs/store";
 import { summarize } from "@/lib/qsbs/rules";
 
 export const Route = createFileRoute("/compare")({
-  head: () => ({ meta: [{ title: "Compare holdings — 1202 Request" }] }),
+  head: () => ({
+    meta: [
+      { title: "Compare holdings — 1202 Request" },
+      { name: "description", content: "Side-by-side view of two Section 1202 evidence dossiers — facts, evidence readiness, and rule status." },
+      { property: "og:title", content: "Compare two Section 1202 holdings" },
+      { property: "og:description", content: "Side-by-side facts, evidence readiness, and rule status across two dossiers." },
+      { property: "og:url", content: "https://1202request.com/compare" },
+    ],
+    links: [{ rel: "canonical", href: "https://1202request.com/compare" }],
+  }),
   component: ComparePage,
 });
 

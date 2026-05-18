@@ -10,7 +10,11 @@ export const Route = createFileRoute("/scan")({
     meta: [
       { title: "Build my evidence request — 1202 Request" },
       { name: "description", content: "Free wizard. Identify your holding, then surface the issuer evidence your CPA will need for Section 1202 review." },
+      { property: "og:title", content: "Build my Section 1202 evidence request" },
+      { property: "og:description", content: "Free wizard. Surface the issuer evidence your CPA will need for Section 1202 review." },
+      { property: "og:url", content: "https://1202request.com/scan" },
     ],
+    links: [{ rel: "canonical", href: "https://1202request.com/scan" }],
   }),
   component: ScanPage,
 });

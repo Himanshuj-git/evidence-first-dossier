@@ -5,8 +5,12 @@ export const Route = createFileRoute("/privacy")({
   head: () => ({
     meta: [
       { title: "Privacy & security — 1202 Request" },
-      { name: "description", content: "How 1202 Request handles your sensitive financial and tax-adjacent information." },
+      { name: "description", content: "How 1202 Request handles your sensitive financial and tax-adjacent information when preparing Section 1202 dossiers." },
+      { property: "og:title", content: "Privacy & security — 1202 Request" },
+      { property: "og:description", content: "How 1202 Request handles your sensitive financial and tax-adjacent information." },
+      { property: "og:url", content: "https://1202request.com/privacy" },
     ],
+    links: [{ rel: "canonical", href: "https://1202request.com/privacy" }],
   }),
   component: PrivacyPage,
 });
