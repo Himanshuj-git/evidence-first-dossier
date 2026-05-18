@@ -8,9 +8,16 @@ export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
       { title: "Section 1202 Evidence Requests for Shareholders" },
-      { name: "description", content: "Ask your company for the right Section 1202 evidence before your CPA review. Generate issuer request letters and a CPA-ready dossier." },
+      {
+        name: "description",
+        content:
+          "Ask your company for the right Section 1202 evidence before your CPA review. Generate issuer request letters and a CPA-ready dossier.",
+      },
       { property: "og:title", content: "Section 1202 Evidence Requests for Shareholders" },
-      { property: "og:description", content: "Ask your company for the right Section 1202 evidence before your CPA review." },
+      {
+        property: "og:description",
+        content: "Ask your company for the right Section 1202 evidence before your CPA review.",
+      },
       { property: "og:url", content: "https://1202request.com/" },
     ],
     links: [{ rel: "canonical", href: "https://1202request.com/" }],
@@ -19,7 +26,9 @@ export const Route = createFileRoute("/")({
 });
 
 function Landing() {
-  useEffect(() => { trackEvent("landing_cta_clicked", { stage: "page_view" }); }, []);
+  useEffect(() => {
+    trackEvent("landing_cta_clicked", { stage: "page_view" });
+  }, []);
   const click = (cta: string) => () => trackEvent("landing_cta_clicked", { cta });
 
   return (
@@ -28,15 +37,20 @@ function Landing() {
       <section className="mx-auto max-w-5xl px-5 pt-20 md:pt-28 pb-16 text-center">
         <div className="inline-flex qsbs-chip">For shareholders, founders, employees, angels &amp; their CPAs</div>
         <h1 className="mt-6 text-4xl md:text-6xl font-medium tracking-tight leading-[1.05]">
-          Ask your company for the right Section 1202 evidence<br className="hidden md:block" /> before your CPA review.
+          Ask your company for the right Section 1202 evidence
+          <br className="hidden md:block" /> before your CPA review.
         </h1>
         <p className="mt-6 text-lg md:text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
-          1202 Request helps startup shareholders organize stock facts, generate issuer evidence requests, track
-          missing documents, and export a CPA-ready review dossier.
+          1202 Request helps startup shareholders organize stock facts, generate issuer evidence requests, track missing
+          documents, and export a CPA-ready review dossier.
         </p>
         <div className="mt-10 flex flex-col sm:flex-row gap-3 justify-center">
-          <Link to="/start" onClick={click("hero_build")} className="qsbs-btn qsbs-btn-primary">Build my evidence request</Link>
-          <Link to="/demo" onClick={click("hero_demo")} className="qsbs-btn qsbs-btn-ghost">View sample dossier</Link>
+          <Link to="/start" onClick={click("hero_build")} className="qsbs-btn qsbs-btn-primary">
+            Build my evidence request
+          </Link>
+          <Link to="/demo" onClick={click("hero_demo")} className="qsbs-btn qsbs-btn-ghost">
+            View sample dossier
+          </Link>
         </div>
         <div className="mt-4">
           <Link to="/checklist" onClick={click("hero_checklist")} className="qsbs-link text-sm">
@@ -44,14 +58,16 @@ function Landing() {
           </Link>
         </div>
         <div className="mt-6 flex flex-wrap gap-x-5 gap-y-1 justify-center text-xs text-muted-foreground">
-          <span>No tax advice</span><span>·</span>
-          <span>No eligibility certification</span><span>·</span>
-          <span>Built for CPA / tax-attorney review</span><span>·</span>
+          <span>No tax advice</span>
+          <span>·</span>
+          <span>No eligibility certification</span>
+          <span>·</span>
+          <span>Built for CPA / tax-attorney review</span>
+          <span>·</span>
           <span>Designed for shareholders without issuer-side access</span>
         </div>
       </section>
 
-      {/* Core message */}
       <section className="mx-auto max-w-3xl px-5">
         <div className="qsbs-card p-6 md:p-8 text-center">
           <div className="text-xs uppercase tracking-widest text-muted-foreground">Core message</div>
@@ -68,7 +84,9 @@ function Landing() {
             <div>
               <div className="text-xs uppercase tracking-wider text-muted-foreground">Sample request</div>
               <div className="mt-1 text-xl font-medium">Northstar Robotics — Founder shares</div>
-              <div className="text-sm text-muted-foreground">Issued March 2019 · Direct issuance · Individual holder</div>
+              <div className="text-sm text-muted-foreground">
+                Issued March 2019 · Direct issuance · Individual holder
+              </div>
             </div>
             <div className="flex items-center gap-3">
               <ScoreRing score={92} size={64} />
@@ -99,7 +117,9 @@ function Landing() {
             <span className="qsbs-chip qsbs-chip-green">Active business memo</span>
           </div>
           <div className="mt-5 text-right">
-            <Link to="/demo" onClick={click("sample_card")} className="qsbs-link text-sm">Open full sample →</Link>
+            <Link to="/demo" onClick={click("sample_card")} className="qsbs-link text-sm">
+              Open full sample →
+            </Link>
           </div>
         </div>
         <p className="mt-3 text-xs text-muted-foreground text-center">
@@ -117,7 +137,11 @@ function Landing() {
             "The company may not know what evidence to send.",
             "Missing issuer evidence can slow down review before a sale, tender offer, acquisition, or tax filing.",
             "A clean, structured request saves rounds of back-and-forth.",
-          ].map((t) => <div key={t} className="p-5 text-sm md:text-base">{t}</div>)}
+          ].map((t) => (
+            <div key={t} className="p-5 text-sm md:text-base">
+              {t}
+            </div>
+          ))}
         </div>
       </section>
 
@@ -129,7 +153,10 @@ function Landing() {
         </div>
         <div className="mt-10 grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
           {[
-            { t: "Professional issuer request letter", b: "A precise, polite letter naming the exact records your CPA needs." },
+            {
+              t: "Professional issuer request letter",
+              b: "A precise, polite letter naming the exact records your CPA needs.",
+            },
             { t: "Follow-up request template", b: "For when the company is slow or only sends partial evidence." },
             { t: "Evidence checklist", b: "Structured by Section 1202 category — never miss a document type." },
             { t: "Missing document tracker", b: "Status per item: missing, requested, received, reviewed." },
@@ -146,7 +173,9 @@ function Landing() {
           ))}
         </div>
         <div className="mt-8 text-center">
-          <Link to="/pricing" onClick={click("what_you_get_pricing")} className="qsbs-btn qsbs-btn-primary">See $49 packet</Link>
+          <Link to="/pricing" onClick={click("what_you_get_pricing")} className="qsbs-btn qsbs-btn-primary">
+            See $49 packet
+          </Link>
         </div>
       </section>
 
@@ -157,12 +186,30 @@ function Landing() {
         </h2>
         <div className="mt-10 grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
           {[
-            { t: "Former employees preparing for an exit", b: "Exercised options years ago. Tender offer or acquisition is on the table. The company has the records — you don't." },
-            { t: "Angels organizing startup investments", b: "Multiple positions across multiple C-corps. Each holding needs its own factual support before a sale." },
-            { t: "Founders documenting early common stock", b: "Issued shares at incorporation. Time to pull together the issuance records, charter, and gross-asset support." },
-            { t: "Advisors and consultants paid in equity", b: "Received stock for services. Want a clean factual file before any liquidity event." },
-            { t: "CPAs collecting client facts before review", b: "Skip the back-and-forth. Send the client a structured evidence request and receive a review-ready dossier." },
-            { t: "Trusts, estates, and SPVs", b: "Holdings inherited or held through entities. Document the chain before the next transaction." },
+            {
+              t: "Former employees preparing for an exit",
+              b: "Exercised options years ago. Tender offer or acquisition is on the table. The company has the records — you don't.",
+            },
+            {
+              t: "Angels organizing startup investments",
+              b: "Multiple positions across multiple C-corps. Each holding needs its own factual support before a sale.",
+            },
+            {
+              t: "Founders documenting early common stock",
+              b: "Issued shares at incorporation. Time to pull together the issuance records, charter, and gross-asset support.",
+            },
+            {
+              t: "Advisors and consultants paid in equity",
+              b: "Received stock for services. Want a clean factual file before any liquidity event.",
+            },
+            {
+              t: "CPAs collecting client facts before review",
+              b: "Skip the back-and-forth. Send the client a structured evidence request and receive a review-ready dossier.",
+            },
+            {
+              t: "Trusts, estates, and SPVs",
+              b: "Holdings inherited or held through entities. Document the chain before the next transaction.",
+            },
           ].map((c) => (
             <div key={c.t} className="qsbs-card p-5">
               <div className="text-base font-medium">{c.t}</div>
@@ -175,9 +222,21 @@ function Landing() {
       {/* Three steps */}
       <section className="mx-auto max-w-5xl px-5 mt-24 grid md:grid-cols-3 gap-6">
         {[
-          { n: "01", t: "Identify the holding", b: "Enter your stock facts: issuer, security type, acquisition date and method, expected exit." },
-          { n: "02", t: "Request issuer evidence", b: "Generate a professional letter to the company requesting the specific records your CPA will need." },
-          { n: "03", t: "Export a CPA dossier", b: "Hand off a structured packet — facts, evidence matrix, missing items, request log, audit trail." },
+          {
+            n: "01",
+            t: "Identify the holding",
+            b: "Enter your stock facts: issuer, security type, acquisition date and method, expected exit.",
+          },
+          {
+            n: "02",
+            t: "Request issuer evidence",
+            b: "Generate a professional letter to the company requesting the specific records your CPA will need.",
+          },
+          {
+            n: "03",
+            t: "Export a CPA dossier",
+            b: "Hand off a structured packet — facts, evidence matrix, missing items, request log, audit trail.",
+          },
         ].map((s) => (
           <div key={s.n} className="qsbs-card p-6">
             <div className="text-xs text-muted-foreground tabular-nums">{s.n}</div>
@@ -199,7 +258,12 @@ function Landing() {
               "No investment advice",
               "User-controlled packet exports",
               "Educational document-organization tool",
-            ].map((t) => <div key={t} className="flex gap-2"><span className="text-muted-foreground">•</span>{t}</div>)}
+            ].map((t) => (
+              <div key={t} className="flex gap-2">
+                <span className="text-muted-foreground">•</span>
+                {t}
+              </div>
+            ))}
           </div>
         </div>
       </section>
@@ -207,14 +271,34 @@ function Landing() {
       {/* Pricing teaser */}
       <section className="mx-auto max-w-5xl px-5 mt-24">
         <div className="text-center">
-          <h2 className="text-3xl md:text-4xl font-medium tracking-tight">A single missing confirmation can stall a review.</h2>
-          <p className="mt-3 text-muted-foreground max-w-2xl mx-auto">Pay once for a single holding or annually for ongoing vault access. No per-document fees.</p>
+          <h2 className="text-3xl md:text-4xl font-medium tracking-tight">
+            A single missing confirmation can stall a review.
+          </h2>
+          <p className="mt-3 text-muted-foreground max-w-2xl mx-auto">
+            Pay once for a single holding or annually for ongoing vault access. No per-document fees.
+          </p>
         </div>
         <div className="mt-10 grid md:grid-cols-3 gap-4">
           {[
-            { name: "One Holding Packet", price: "$49", per: "one-time", desc: "Single holding, full export, all request letter templates." },
-            { name: "Multi-Holding Vault", price: "$149", per: "/ year", desc: "Unlimited holdings, reminders, share links, regenerate reports.", highlight: true },
-            { name: "Founder / Company Portal", price: "$299", per: "/ team / year", desc: "Company-side templates and shareholder request workflows." },
+            {
+              name: "One Holding Packet",
+              price: "$49",
+              per: "one-time",
+              desc: "Single holding, full export, all request letter templates.",
+            },
+            {
+              name: "Multi-Holding Vault",
+              price: "$149",
+              per: "/ year",
+              desc: "Unlimited holdings, reminders, share links, regenerate reports.",
+              highlight: true,
+            },
+            {
+              name: "Founder / Company Portal",
+              price: "$299",
+              per: "/ team / year",
+              desc: "Company-side templates and shareholder request workflows.",
+            },
           ].map((p) => (
             <div key={p.name} className={`qsbs-card p-6 ${p.highlight ? "ring-1 ring-foreground" : ""}`}>
               <div className="text-sm text-muted-foreground">{p.name}</div>
@@ -227,7 +311,9 @@ function Landing() {
           ))}
         </div>
         <div className="mt-6 text-center">
-          <Link to="/pricing" onClick={click("pricing_teaser")} className="qsbs-link text-sm">See full pricing →</Link>
+          <Link to="/pricing" onClick={click("pricing_teaser")} className="qsbs-link text-sm">
+            See full pricing →
+          </Link>
         </div>
       </section>
 
