@@ -1,0 +1,16 @@
+# 1202 Request
+
+> Shareholder-side tool to organize startup stock facts, request the right issuer evidence, and export a CPA-ready dossier for Section 1202 review. Not tax, legal, or investment advice.
+
+1202 Request helps founders, early employees, angel investors, and their CPAs assemble the issuer evidence a tax professional typically needs before a Section 1202 review — without making any eligibility determination.
+
+## Pages
+
+- [Home](/): What 1202 Request is and who it's for.
+- [Build my evidence request](/scan): Free wizard to identify a holding and surface missing issuer evidence.
+- [Sample dossier](/demo): Fictional Northstar Robotics dossier showing the finished deliverable.
+- [Free evidence checklist](/checklist): Downloadable Section 1202 issuer evidence checklist.
+- [Pricing](/pricing): One Holding Packet, Multi-Holding Vault, and Company Portal plans.
+- [Company portal](/company): Issuer-side workflow for responding to shareholder evidence requests.
+- [Sources & methodology](/sources): Public educational sources used by the rule scaffolding.
+- [Privacy & security](/privacy): How sensitive financial information is handled.
