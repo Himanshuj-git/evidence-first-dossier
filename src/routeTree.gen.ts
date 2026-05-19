@@ -34,6 +34,7 @@ import { Route as CheckoutCancelRouteImport } from './routes/checkout.cancel'
 import { Route as AdminEventsRouteImport } from './routes/admin.events'
 import { Route as HoldingIdTrackerRouteImport } from './routes/holding.$id.tracker'
 import { Route as HoldingIdRequestRouteImport } from './routes/holding.$id.request'
+import { Route as HoldingIdExportRouteImport } from './routes/holding.$id.export'
 import { Route as HoldingIdEvidenceRouteImport } from './routes/holding.$id.evidence'
 import { Route as DossiersIdTrackerRouteImport } from './routes/dossiers.$id.tracker'
 import { Route as DossiersIdRequestLetterRouteImport } from './routes/dossiers.$id.request-letter'
@@ -169,6 +170,11 @@ const HoldingIdRequestRoute = HoldingIdRequestRouteImport.update({
   path: '/request',
   getParentRoute: () => HoldingIdRoute,
 } as any)
+const HoldingIdExportRoute = HoldingIdExportRouteImport.update({
+  id: '/export',
+  path: '/export',
+  getParentRoute: () => HoldingIdRoute,
+} as any)
 const HoldingIdEvidenceRoute = HoldingIdEvidenceRouteImport.update({
   id: '/evidence',
   path: '/evidence',
@@ -248,6 +254,7 @@ export interface FileRoutesByFullPath {
   '/dossiers/$id/request-letter': typeof DossiersIdRequestLetterRoute
   '/dossiers/$id/tracker': typeof DossiersIdTrackerRoute
   '/holding/$id/evidence': typeof HoldingIdEvidenceRoute
+  '/holding/$id/export': typeof HoldingIdExportRoute
   '/holding/$id/request': typeof HoldingIdRequestRoute
   '/holding/$id/tracker': typeof HoldingIdTrackerRoute
 }
@@ -284,6 +291,7 @@ export interface FileRoutesByTo {
   '/dossiers/$id/request-letter': typeof DossiersIdRequestLetterRoute
   '/dossiers/$id/tracker': typeof DossiersIdTrackerRoute
   '/holding/$id/evidence': typeof HoldingIdEvidenceRoute
+  '/holding/$id/export': typeof HoldingIdExportRoute
   '/holding/$id/request': typeof HoldingIdRequestRoute
   '/holding/$id/tracker': typeof HoldingIdTrackerRoute
 }
@@ -321,6 +329,7 @@ export interface FileRoutesById {
   '/dossiers/$id/request-letter': typeof DossiersIdRequestLetterRoute
   '/dossiers/$id/tracker': typeof DossiersIdTrackerRoute
   '/holding/$id/evidence': typeof HoldingIdEvidenceRoute
+  '/holding/$id/export': typeof HoldingIdExportRoute
   '/holding/$id/request': typeof HoldingIdRequestRoute
   '/holding/$id/tracker': typeof HoldingIdTrackerRoute
 }
@@ -359,6 +368,7 @@ export interface FileRouteTypes {
     | '/dossiers/$id/request-letter'
     | '/dossiers/$id/tracker'
     | '/holding/$id/evidence'
+    | '/holding/$id/export'
     | '/holding/$id/request'
     | '/holding/$id/tracker'
   fileRoutesByTo: FileRoutesByTo
@@ -395,6 +405,7 @@ export interface FileRouteTypes {
     | '/dossiers/$id/request-letter'
     | '/dossiers/$id/tracker'
     | '/holding/$id/evidence'
+    | '/holding/$id/export'
     | '/holding/$id/request'
     | '/holding/$id/tracker'
   id:
@@ -431,6 +442,7 @@ export interface FileRouteTypes {
     | '/dossiers/$id/request-letter'
     | '/dossiers/$id/tracker'
     | '/holding/$id/evidence'
+    | '/holding/$id/export'
     | '/holding/$id/request'
     | '/holding/$id/tracker'
   fileRoutesById: FileRoutesById
@@ -633,6 +645,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof HoldingIdRequestRouteImport
       parentRoute: typeof HoldingIdRoute
     }
+    '/holding/$id/export': {
+      id: '/holding/$id/export'
+      path: '/export'
+      fullPath: '/holding/$id/export'
+      preLoaderRoute: typeof HoldingIdExportRouteImport
+      parentRoute: typeof HoldingIdRoute
+    }
     '/holding/$id/evidence': {
       id: '/holding/$id/evidence'
       path: '/evidence'
@@ -766,12 +785,14 @@ const DossiersRouteWithChildren = DossiersRoute._addFileChildren(
 
 interface HoldingIdRouteChildren {
   HoldingIdEvidenceRoute: typeof HoldingIdEvidenceRoute
+  HoldingIdExportRoute: typeof HoldingIdExportRoute
   HoldingIdRequestRoute: typeof HoldingIdRequestRoute
   HoldingIdTrackerRoute: typeof HoldingIdTrackerRoute
 }
 
 const HoldingIdRouteChildren: HoldingIdRouteChildren = {
   HoldingIdEvidenceRoute: HoldingIdEvidenceRoute,
+  HoldingIdExportRoute: HoldingIdExportRoute,
   HoldingIdRequestRoute: HoldingIdRequestRoute,
   HoldingIdTrackerRoute: HoldingIdTrackerRoute,
 }
