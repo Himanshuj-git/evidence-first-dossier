@@ -20,7 +20,9 @@ export const LETTER_TEMPLATES: LetterTemplate[] = [
     subject: (d) => `QSBS documentation request — ${d.inputs.issuer_name}`,
     body: (d) => `${greet(d)}
 
-I am compiling documentation related to Section 1202 ("QSBS") for shares I acquired on ${d.inputs.acquisition_date || "[date]"}. I am not asking for a tax opinion, only for factual confirmation that may be needed by my tax professional.
+I am compiling documentation related to Section 1202 for shares I acquired on ${d.inputs.acquisition_date || "[date]"}.
+
+I am not asking the company to provide personal tax advice. I am requesting factual records for review by my tax advisor.
 
 Could you confirm or share documentation regarding the following at the time of my issuance:
 1. The corporation's status as a domestic U.S. C corporation.
