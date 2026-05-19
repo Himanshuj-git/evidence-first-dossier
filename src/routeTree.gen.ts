@@ -32,6 +32,7 @@ import { Route as CompanyDashboardRouteImport } from './routes/company.dashboard
 import { Route as CheckoutSuccessRouteImport } from './routes/checkout.success'
 import { Route as CheckoutCancelRouteImport } from './routes/checkout.cancel'
 import { Route as AdminEventsRouteImport } from './routes/admin.events'
+import { Route as HoldingIdTrackerRouteImport } from './routes/holding.$id.tracker'
 import { Route as HoldingIdRequestRouteImport } from './routes/holding.$id.request'
 import { Route as HoldingIdEvidenceRouteImport } from './routes/holding.$id.evidence'
 import { Route as DossiersIdTrackerRouteImport } from './routes/dossiers.$id.tracker'
@@ -158,6 +159,11 @@ const AdminEventsRoute = AdminEventsRouteImport.update({
   path: '/admin/events',
   getParentRoute: () => rootRouteImport,
 } as any)
+const HoldingIdTrackerRoute = HoldingIdTrackerRouteImport.update({
+  id: '/tracker',
+  path: '/tracker',
+  getParentRoute: () => HoldingIdRoute,
+} as any)
 const HoldingIdRequestRoute = HoldingIdRequestRouteImport.update({
   id: '/request',
   path: '/request',
@@ -243,6 +249,7 @@ export interface FileRoutesByFullPath {
   '/dossiers/$id/tracker': typeof DossiersIdTrackerRoute
   '/holding/$id/evidence': typeof HoldingIdEvidenceRoute
   '/holding/$id/request': typeof HoldingIdRequestRoute
+  '/holding/$id/tracker': typeof HoldingIdTrackerRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -278,6 +285,7 @@ export interface FileRoutesByTo {
   '/dossiers/$id/tracker': typeof DossiersIdTrackerRoute
   '/holding/$id/evidence': typeof HoldingIdEvidenceRoute
   '/holding/$id/request': typeof HoldingIdRequestRoute
+  '/holding/$id/tracker': typeof HoldingIdTrackerRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -314,6 +322,7 @@ export interface FileRoutesById {
   '/dossiers/$id/tracker': typeof DossiersIdTrackerRoute
   '/holding/$id/evidence': typeof HoldingIdEvidenceRoute
   '/holding/$id/request': typeof HoldingIdRequestRoute
+  '/holding/$id/tracker': typeof HoldingIdTrackerRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -351,6 +360,7 @@ export interface FileRouteTypes {
     | '/dossiers/$id/tracker'
     | '/holding/$id/evidence'
     | '/holding/$id/request'
+    | '/holding/$id/tracker'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -386,6 +396,7 @@ export interface FileRouteTypes {
     | '/dossiers/$id/tracker'
     | '/holding/$id/evidence'
     | '/holding/$id/request'
+    | '/holding/$id/tracker'
   id:
     | '__root__'
     | '/'
@@ -421,6 +432,7 @@ export interface FileRouteTypes {
     | '/dossiers/$id/tracker'
     | '/holding/$id/evidence'
     | '/holding/$id/request'
+    | '/holding/$id/tracker'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -607,6 +619,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AdminEventsRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/holding/$id/tracker': {
+      id: '/holding/$id/tracker'
+      path: '/tracker'
+      fullPath: '/holding/$id/tracker'
+      preLoaderRoute: typeof HoldingIdTrackerRouteImport
+      parentRoute: typeof HoldingIdRoute
+    }
     '/holding/$id/request': {
       id: '/holding/$id/request'
       path: '/request'
@@ -748,11 +767,13 @@ const DossiersRouteWithChildren = DossiersRoute._addFileChildren(
 interface HoldingIdRouteChildren {
   HoldingIdEvidenceRoute: typeof HoldingIdEvidenceRoute
   HoldingIdRequestRoute: typeof HoldingIdRequestRoute
+  HoldingIdTrackerRoute: typeof HoldingIdTrackerRoute
 }
 
 const HoldingIdRouteChildren: HoldingIdRouteChildren = {
   HoldingIdEvidenceRoute: HoldingIdEvidenceRoute,
   HoldingIdRequestRoute: HoldingIdRequestRoute,
+  HoldingIdTrackerRoute: HoldingIdTrackerRoute,
 }
 
 const HoldingIdRouteWithChildren = HoldingIdRoute._addFileChildren(
