@@ -9,15 +9,25 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as WhyNotChatgptRouteImport } from './routes/why-not-chatgpt'
+import { Route as TermsRouteImport } from './routes/terms'
 import { Route as StartRouteImport } from './routes/start'
 import { Route as SourcesRouteImport } from './routes/sources'
 import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
 import { Route as SettingsRouteImport } from './routes/settings'
+import { Route as SecurityRouteImport } from './routes/security'
+import { Route as Section1202IssuerEvidenceRouteImport } from './routes/section-1202-issuer-evidence'
+import { Route as Section1202CpaReviewDossierRouteImport } from './routes/section-1202-cpa-review-dossier'
 import { Route as ScanRouteImport } from './routes/scan'
+import { Route as RefundPolicyRouteImport } from './routes/refund-policy'
+import { Route as QsbsTenderOfferChecklistRouteImport } from './routes/qsbs-tender-offer-checklist'
+import { Route as QsbsFormerEmployeeRouteImport } from './routes/qsbs-former-employee'
+import { Route as QsbsDocumentationChecklistRouteImport } from './routes/qsbs-documentation-checklist'
 import { Route as PrivacyRouteImport } from './routes/privacy'
 import { Route as PricingRouteImport } from './routes/pricing'
 import { Route as DossiersRouteImport } from './routes/dossiers'
 import { Route as DemoRouteImport } from './routes/demo'
+import { Route as ContactRouteImport } from './routes/contact'
 import { Route as CompareRouteImport } from './routes/compare'
 import { Route as CompanyRouteImport } from './routes/company'
 import { Route as CheckoutRouteImport } from './routes/checkout'
@@ -45,6 +55,16 @@ import { Route as DossiersIdEvidenceRouteImport } from './routes/dossiers.$id.ev
 import { Route as DossiersIdCpaEmailRouteImport } from './routes/dossiers.$id.cpa-email'
 import { Route as DossiersIdCpaRouteImport } from './routes/dossiers.$id.cpa'
 
+const WhyNotChatgptRoute = WhyNotChatgptRouteImport.update({
+  id: '/why-not-chatgpt',
+  path: '/why-not-chatgpt',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const TermsRoute = TermsRouteImport.update({
+  id: '/terms',
+  path: '/terms',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const StartRoute = StartRouteImport.update({
   id: '/start',
   path: '/start',
@@ -65,11 +85,50 @@ const SettingsRoute = SettingsRouteImport.update({
   path: '/settings',
   getParentRoute: () => rootRouteImport,
 } as any)
+const SecurityRoute = SecurityRouteImport.update({
+  id: '/security',
+  path: '/security',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const Section1202IssuerEvidenceRoute =
+  Section1202IssuerEvidenceRouteImport.update({
+    id: '/section-1202-issuer-evidence',
+    path: '/section-1202-issuer-evidence',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const Section1202CpaReviewDossierRoute =
+  Section1202CpaReviewDossierRouteImport.update({
+    id: '/section-1202-cpa-review-dossier',
+    path: '/section-1202-cpa-review-dossier',
+    getParentRoute: () => rootRouteImport,
+  } as any)
 const ScanRoute = ScanRouteImport.update({
   id: '/scan',
   path: '/scan',
   getParentRoute: () => rootRouteImport,
 } as any)
+const RefundPolicyRoute = RefundPolicyRouteImport.update({
+  id: '/refund-policy',
+  path: '/refund-policy',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const QsbsTenderOfferChecklistRoute =
+  QsbsTenderOfferChecklistRouteImport.update({
+    id: '/qsbs-tender-offer-checklist',
+    path: '/qsbs-tender-offer-checklist',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const QsbsFormerEmployeeRoute = QsbsFormerEmployeeRouteImport.update({
+  id: '/qsbs-former-employee',
+  path: '/qsbs-former-employee',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const QsbsDocumentationChecklistRoute =
+  QsbsDocumentationChecklistRouteImport.update({
+    id: '/qsbs-documentation-checklist',
+    path: '/qsbs-documentation-checklist',
+    getParentRoute: () => rootRouteImport,
+  } as any)
 const PrivacyRoute = PrivacyRouteImport.update({
   id: '/privacy',
   path: '/privacy',
@@ -88,6 +147,11 @@ const DossiersRoute = DossiersRouteImport.update({
 const DemoRoute = DemoRouteImport.update({
   id: '/demo',
   path: '/demo',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ContactRoute = ContactRouteImport.update({
+  id: '/contact',
+  path: '/contact',
   getParentRoute: () => rootRouteImport,
 } as any)
 const CompareRoute = CompareRouteImport.update({
@@ -228,15 +292,25 @@ export interface FileRoutesByFullPath {
   '/checkout': typeof CheckoutRouteWithChildren
   '/company': typeof CompanyRouteWithChildren
   '/compare': typeof CompareRoute
+  '/contact': typeof ContactRoute
   '/demo': typeof DemoRoute
   '/dossiers': typeof DossiersRouteWithChildren
   '/pricing': typeof PricingRoute
   '/privacy': typeof PrivacyRoute
+  '/qsbs-documentation-checklist': typeof QsbsDocumentationChecklistRoute
+  '/qsbs-former-employee': typeof QsbsFormerEmployeeRoute
+  '/qsbs-tender-offer-checklist': typeof QsbsTenderOfferChecklistRoute
+  '/refund-policy': typeof RefundPolicyRoute
   '/scan': typeof ScanRoute
+  '/section-1202-cpa-review-dossier': typeof Section1202CpaReviewDossierRoute
+  '/section-1202-issuer-evidence': typeof Section1202IssuerEvidenceRoute
+  '/security': typeof SecurityRoute
   '/settings': typeof SettingsRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/sources': typeof SourcesRoute
   '/start': typeof StartRoute
+  '/terms': typeof TermsRoute
+  '/why-not-chatgpt': typeof WhyNotChatgptRoute
   '/admin/events': typeof AdminEventsRoute
   '/checkout/cancel': typeof CheckoutCancelRoute
   '/checkout/success': typeof CheckoutSuccessRoute
@@ -265,15 +339,25 @@ export interface FileRoutesByTo {
   '/checkout': typeof CheckoutRouteWithChildren
   '/company': typeof CompanyRouteWithChildren
   '/compare': typeof CompareRoute
+  '/contact': typeof ContactRoute
   '/demo': typeof DemoRoute
   '/dossiers': typeof DossiersRouteWithChildren
   '/pricing': typeof PricingRoute
   '/privacy': typeof PrivacyRoute
+  '/qsbs-documentation-checklist': typeof QsbsDocumentationChecklistRoute
+  '/qsbs-former-employee': typeof QsbsFormerEmployeeRoute
+  '/qsbs-tender-offer-checklist': typeof QsbsTenderOfferChecklistRoute
+  '/refund-policy': typeof RefundPolicyRoute
   '/scan': typeof ScanRoute
+  '/section-1202-cpa-review-dossier': typeof Section1202CpaReviewDossierRoute
+  '/section-1202-issuer-evidence': typeof Section1202IssuerEvidenceRoute
+  '/security': typeof SecurityRoute
   '/settings': typeof SettingsRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/sources': typeof SourcesRoute
   '/start': typeof StartRoute
+  '/terms': typeof TermsRoute
+  '/why-not-chatgpt': typeof WhyNotChatgptRoute
   '/admin/events': typeof AdminEventsRoute
   '/checkout/cancel': typeof CheckoutCancelRoute
   '/checkout/success': typeof CheckoutSuccessRoute
@@ -303,15 +387,25 @@ export interface FileRoutesById {
   '/checkout': typeof CheckoutRouteWithChildren
   '/company': typeof CompanyRouteWithChildren
   '/compare': typeof CompareRoute
+  '/contact': typeof ContactRoute
   '/demo': typeof DemoRoute
   '/dossiers': typeof DossiersRouteWithChildren
   '/pricing': typeof PricingRoute
   '/privacy': typeof PrivacyRoute
+  '/qsbs-documentation-checklist': typeof QsbsDocumentationChecklistRoute
+  '/qsbs-former-employee': typeof QsbsFormerEmployeeRoute
+  '/qsbs-tender-offer-checklist': typeof QsbsTenderOfferChecklistRoute
+  '/refund-policy': typeof RefundPolicyRoute
   '/scan': typeof ScanRoute
+  '/section-1202-cpa-review-dossier': typeof Section1202CpaReviewDossierRoute
+  '/section-1202-issuer-evidence': typeof Section1202IssuerEvidenceRoute
+  '/security': typeof SecurityRoute
   '/settings': typeof SettingsRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/sources': typeof SourcesRoute
   '/start': typeof StartRoute
+  '/terms': typeof TermsRoute
+  '/why-not-chatgpt': typeof WhyNotChatgptRoute
   '/admin/events': typeof AdminEventsRoute
   '/checkout/cancel': typeof CheckoutCancelRoute
   '/checkout/success': typeof CheckoutSuccessRoute
@@ -342,15 +436,25 @@ export interface FileRouteTypes {
     | '/checkout'
     | '/company'
     | '/compare'
+    | '/contact'
     | '/demo'
     | '/dossiers'
     | '/pricing'
     | '/privacy'
+    | '/qsbs-documentation-checklist'
+    | '/qsbs-former-employee'
+    | '/qsbs-tender-offer-checklist'
+    | '/refund-policy'
     | '/scan'
+    | '/section-1202-cpa-review-dossier'
+    | '/section-1202-issuer-evidence'
+    | '/security'
     | '/settings'
     | '/sitemap.xml'
     | '/sources'
     | '/start'
+    | '/terms'
+    | '/why-not-chatgpt'
     | '/admin/events'
     | '/checkout/cancel'
     | '/checkout/success'
@@ -379,15 +483,25 @@ export interface FileRouteTypes {
     | '/checkout'
     | '/company'
     | '/compare'
+    | '/contact'
     | '/demo'
     | '/dossiers'
     | '/pricing'
     | '/privacy'
+    | '/qsbs-documentation-checklist'
+    | '/qsbs-former-employee'
+    | '/qsbs-tender-offer-checklist'
+    | '/refund-policy'
     | '/scan'
+    | '/section-1202-cpa-review-dossier'
+    | '/section-1202-issuer-evidence'
+    | '/security'
     | '/settings'
     | '/sitemap.xml'
     | '/sources'
     | '/start'
+    | '/terms'
+    | '/why-not-chatgpt'
     | '/admin/events'
     | '/checkout/cancel'
     | '/checkout/success'
@@ -416,15 +530,25 @@ export interface FileRouteTypes {
     | '/checkout'
     | '/company'
     | '/compare'
+    | '/contact'
     | '/demo'
     | '/dossiers'
     | '/pricing'
     | '/privacy'
+    | '/qsbs-documentation-checklist'
+    | '/qsbs-former-employee'
+    | '/qsbs-tender-offer-checklist'
+    | '/refund-policy'
     | '/scan'
+    | '/section-1202-cpa-review-dossier'
+    | '/section-1202-issuer-evidence'
+    | '/security'
     | '/settings'
     | '/sitemap.xml'
     | '/sources'
     | '/start'
+    | '/terms'
+    | '/why-not-chatgpt'
     | '/admin/events'
     | '/checkout/cancel'
     | '/checkout/success'
@@ -454,15 +578,25 @@ export interface RootRouteChildren {
   CheckoutRoute: typeof CheckoutRouteWithChildren
   CompanyRoute: typeof CompanyRouteWithChildren
   CompareRoute: typeof CompareRoute
+  ContactRoute: typeof ContactRoute
   DemoRoute: typeof DemoRoute
   DossiersRoute: typeof DossiersRouteWithChildren
   PricingRoute: typeof PricingRoute
   PrivacyRoute: typeof PrivacyRoute
+  QsbsDocumentationChecklistRoute: typeof QsbsDocumentationChecklistRoute
+  QsbsFormerEmployeeRoute: typeof QsbsFormerEmployeeRoute
+  QsbsTenderOfferChecklistRoute: typeof QsbsTenderOfferChecklistRoute
+  RefundPolicyRoute: typeof RefundPolicyRoute
   ScanRoute: typeof ScanRoute
+  Section1202CpaReviewDossierRoute: typeof Section1202CpaReviewDossierRoute
+  Section1202IssuerEvidenceRoute: typeof Section1202IssuerEvidenceRoute
+  SecurityRoute: typeof SecurityRoute
   SettingsRoute: typeof SettingsRoute
   SitemapDotxmlRoute: typeof SitemapDotxmlRoute
   SourcesRoute: typeof SourcesRoute
   StartRoute: typeof StartRoute
+  TermsRoute: typeof TermsRoute
+  WhyNotChatgptRoute: typeof WhyNotChatgptRoute
   AdminEventsRoute: typeof AdminEventsRoute
   HoldingIdRoute: typeof HoldingIdRouteWithChildren
   PacketIdRoute: typeof PacketIdRoute
@@ -470,6 +604,20 @@ export interface RootRouteChildren {
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/why-not-chatgpt': {
+      id: '/why-not-chatgpt'
+      path: '/why-not-chatgpt'
+      fullPath: '/why-not-chatgpt'
+      preLoaderRoute: typeof WhyNotChatgptRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/terms': {
+      id: '/terms'
+      path: '/terms'
+      fullPath: '/terms'
+      preLoaderRoute: typeof TermsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/start': {
       id: '/start'
       path: '/start'
@@ -498,11 +646,60 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof SettingsRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/security': {
+      id: '/security'
+      path: '/security'
+      fullPath: '/security'
+      preLoaderRoute: typeof SecurityRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/section-1202-issuer-evidence': {
+      id: '/section-1202-issuer-evidence'
+      path: '/section-1202-issuer-evidence'
+      fullPath: '/section-1202-issuer-evidence'
+      preLoaderRoute: typeof Section1202IssuerEvidenceRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/section-1202-cpa-review-dossier': {
+      id: '/section-1202-cpa-review-dossier'
+      path: '/section-1202-cpa-review-dossier'
+      fullPath: '/section-1202-cpa-review-dossier'
+      preLoaderRoute: typeof Section1202CpaReviewDossierRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/scan': {
       id: '/scan'
       path: '/scan'
       fullPath: '/scan'
       preLoaderRoute: typeof ScanRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/refund-policy': {
+      id: '/refund-policy'
+      path: '/refund-policy'
+      fullPath: '/refund-policy'
+      preLoaderRoute: typeof RefundPolicyRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/qsbs-tender-offer-checklist': {
+      id: '/qsbs-tender-offer-checklist'
+      path: '/qsbs-tender-offer-checklist'
+      fullPath: '/qsbs-tender-offer-checklist'
+      preLoaderRoute: typeof QsbsTenderOfferChecklistRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/qsbs-former-employee': {
+      id: '/qsbs-former-employee'
+      path: '/qsbs-former-employee'
+      fullPath: '/qsbs-former-employee'
+      preLoaderRoute: typeof QsbsFormerEmployeeRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/qsbs-documentation-checklist': {
+      id: '/qsbs-documentation-checklist'
+      path: '/qsbs-documentation-checklist'
+      fullPath: '/qsbs-documentation-checklist'
+      preLoaderRoute: typeof QsbsDocumentationChecklistRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/privacy': {
@@ -531,6 +728,13 @@ declare module '@tanstack/react-router' {
       path: '/demo'
       fullPath: '/demo'
       preLoaderRoute: typeof DemoRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/contact': {
+      id: '/contact'
+      path: '/contact'
+      fullPath: '/contact'
+      preLoaderRoute: typeof ContactRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/compare': {
@@ -808,15 +1012,25 @@ const rootRouteChildren: RootRouteChildren = {
   CheckoutRoute: CheckoutRouteWithChildren,
   CompanyRoute: CompanyRouteWithChildren,
   CompareRoute: CompareRoute,
+  ContactRoute: ContactRoute,
   DemoRoute: DemoRoute,
   DossiersRoute: DossiersRouteWithChildren,
   PricingRoute: PricingRoute,
   PrivacyRoute: PrivacyRoute,
+  QsbsDocumentationChecklistRoute: QsbsDocumentationChecklistRoute,
+  QsbsFormerEmployeeRoute: QsbsFormerEmployeeRoute,
+  QsbsTenderOfferChecklistRoute: QsbsTenderOfferChecklistRoute,
+  RefundPolicyRoute: RefundPolicyRoute,
   ScanRoute: ScanRoute,
+  Section1202CpaReviewDossierRoute: Section1202CpaReviewDossierRoute,
+  Section1202IssuerEvidenceRoute: Section1202IssuerEvidenceRoute,
+  SecurityRoute: SecurityRoute,
   SettingsRoute: SettingsRoute,
   SitemapDotxmlRoute: SitemapDotxmlRoute,
   SourcesRoute: SourcesRoute,
   StartRoute: StartRoute,
+  TermsRoute: TermsRoute,
+  WhyNotChatgptRoute: WhyNotChatgptRoute,
   AdminEventsRoute: AdminEventsRoute,
   HoldingIdRoute: HoldingIdRouteWithChildren,
   PacketIdRoute: PacketIdRoute,

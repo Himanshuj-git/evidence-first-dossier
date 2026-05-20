@@ -12,7 +12,19 @@ export type EventName =
   | "checkout_started"
   | "checkout_success"
   | "checkout_cancelled"
-  | "email_captured";
+  | "email_captured"
+  | "paid_gate_viewed"
+  | "payment_link_clicked"
+  | "lead_captured"
+  | "homepage_viewed"
+  | "demo_viewed"
+  | "checklist_viewed"
+  | "holding_created"
+  | "evidence_generated"
+  | "request_generated"
+  | "request_copied"
+  | "request_marked_sent"
+  | "evidence_status_updated";
 
 export interface ProductEvent {
   id: string;

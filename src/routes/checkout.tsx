@@ -15,9 +15,9 @@ function CheckoutPage() {
   const [email, setEmail] = useState("");
   const [submitted, setSubmitted] = useState(false);
 
-  useEffect(() => { trackEvent("checkout_started", { plan: "single" }); }, []);
+  useEffect(() => { trackEvent("checkout_started", { plan: "single" }); trackEvent("paid_gate_viewed", { plan: "single" }); }, []);
 
-  const stripe = settings.stripe_single;
+  const stripe = settings.stripe_single || import.meta.env.VITE_STRIPE_PACKET_PAYMENT_LINK;
 
   return (
     <PageShell>
@@ -43,7 +43,7 @@ function CheckoutPage() {
 
         {stripe ? (
           <a href={stripe} className="mt-6 qsbs-btn qsbs-btn-primary w-full" target="_blank" rel="noreferrer"
-             onClick={() => trackEvent("checkout_started", { route: "stripe" })}>
+             onClick={() => trackEvent("payment_link_clicked", { route: "stripe" })}>
             Continue to Stripe checkout
           </a>
         ) : (
