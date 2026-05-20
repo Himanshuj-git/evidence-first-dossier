@@ -48,34 +48,42 @@ export function Footer() {
           <div className="font-medium mb-2">Product</div>
           <ul className="space-y-1.5 text-muted-foreground">
             <li><Link to="/start" className="hover:text-foreground">Build a request</Link></li>
-            <li><Link to="/dossiers" className="hover:text-foreground">Holdings</Link></li>
             <li><Link to="/pricing" className="hover:text-foreground">Pricing</Link></li>
             <li><Link to="/demo" className="hover:text-foreground">Sample dossier</Link></li>
             <li><Link to="/checklist" className="hover:text-foreground">Free checklist</Link></li>
+            <li><Link to="/why-not-chatgpt" className="hover:text-foreground">Why not ChatGPT?</Link></li>
           </ul>
         </div>
         <div>
-          <div className="font-medium mb-2">For companies</div>
+          <div className="font-medium mb-2">Guides</div>
           <ul className="space-y-1.5 text-muted-foreground">
-            <li><Link to="/company" className="hover:text-foreground">Company portal</Link></li>
-            <li><Link to="/company/dashboard" className="hover:text-foreground">Request dashboard</Link></li>
-            <li><Link to="/sources" className="hover:text-foreground">Sources & methodology</Link></li>
-            <li><Link to="/privacy" className="hover:text-foreground">Privacy & security</Link></li>
+            <li><Link to="/qsbs-documentation-checklist" className="hover:text-foreground">Documentation checklist</Link></li>
+            <li><Link to="/section-1202-issuer-evidence" className="hover:text-foreground">Issuer evidence</Link></li>
+            <li><Link to="/qsbs-former-employee" className="hover:text-foreground">Former employees</Link></li>
+            <li><Link to="/qsbs-tender-offer-checklist" className="hover:text-foreground">Tender offer checklist</Link></li>
+            <li><Link to="/section-1202-cpa-review-dossier" className="hover:text-foreground">CPA review dossier</Link></li>
           </ul>
         </div>
         <div>
-          <div className="font-medium mb-2">Disclosure</div>
-          <p className="text-muted-foreground text-xs leading-relaxed">
-            1202 Request is an educational document-organization and evidence-request tool. It does not provide tax,
-            legal, accounting, investment, or securities advice. Section 1202 treatment depends on facts and law that
-            should be reviewed by a qualified professional.
-          </p>
+          <div className="font-medium mb-2">Company</div>
+          <ul className="space-y-1.5 text-muted-foreground">
+            <li><Link to="/privacy" className="hover:text-foreground">Privacy</Link></li>
+            <li><Link to="/terms" className="hover:text-foreground">Terms</Link></li>
+            <li><Link to="/refund-policy" className="hover:text-foreground">Refund policy</Link></li>
+            <li><Link to="/security" className="hover:text-foreground">Security</Link></li>
+            <li><Link to="/contact" className="hover:text-foreground">Contact</Link></li>
+          </ul>
         </div>
       </div>
       <div className="border-t border-border">
         <div className="mx-auto max-w-6xl px-5 py-4 text-xs text-muted-foreground flex flex-wrap gap-4 justify-between">
           <span>© {new Date().getFullYear()} 1202 Request — evidence requests, not advice.</span>
           <span>1202Request.com</span>
+        </div>
+        <div className="mx-auto max-w-6xl px-5 pb-5 text-[11px] text-muted-foreground leading-relaxed">
+          1202 Request is an educational document-organization and evidence-request tool. It does not provide tax, legal,
+          accounting, investment, or securities advice. Section 1202 treatment depends on facts and law that should be
+          reviewed by a qualified professional.
         </div>
       </div>
     </footer>
