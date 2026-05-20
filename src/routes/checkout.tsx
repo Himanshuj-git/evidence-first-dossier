@@ -43,7 +43,7 @@ function CheckoutPage() {
 
         {stripe ? (
           <a href={stripe} className="mt-6 qsbs-btn qsbs-btn-primary w-full" target="_blank" rel="noreferrer"
-             onClick={() => trackEvent("checkout_started", { route: "stripe" })}>
+             onClick={() => trackEvent("payment_link_clicked", { route: "stripe" })}>
             Continue to Stripe checkout
           </a>
         ) : (
