@@ -15,14 +15,21 @@ export const Route = createFileRoute("/sitemap.xml")({
       GET: async () => {
         const entries: SitemapEntry[] = [
           { path: "/", changefreq: "weekly", priority: "1.0" },
-          { path: "/scan", changefreq: "monthly", priority: "0.9" },
+          { path: "/start", changefreq: "monthly", priority: "0.9" },
+          { path: "/pricing", changefreq: "monthly", priority: "0.9" },
           { path: "/demo", changefreq: "monthly", priority: "0.8" },
           { path: "/checklist", changefreq: "monthly", priority: "0.8" },
-          { path: "/pricing", changefreq: "monthly", priority: "0.9" },
-          { path: "/company", changefreq: "monthly", priority: "0.6" },
-          { path: "/compare", changefreq: "monthly", priority: "0.4" },
-          { path: "/sources", changefreq: "monthly", priority: "0.5" },
+          { path: "/why-not-chatgpt", changefreq: "monthly", priority: "0.7" },
+          { path: "/qsbs-documentation-checklist", changefreq: "monthly", priority: "0.7" },
+          { path: "/section-1202-issuer-evidence", changefreq: "monthly", priority: "0.7" },
+          { path: "/qsbs-former-employee", changefreq: "monthly", priority: "0.7" },
+          { path: "/qsbs-tender-offer-checklist", changefreq: "monthly", priority: "0.7" },
+          { path: "/section-1202-cpa-review-dossier", changefreq: "monthly", priority: "0.7" },
           { path: "/privacy", changefreq: "yearly", priority: "0.3" },
+          { path: "/terms", changefreq: "yearly", priority: "0.3" },
+          { path: "/refund-policy", changefreq: "yearly", priority: "0.3" },
+          { path: "/security", changefreq: "yearly", priority: "0.3" },
+          { path: "/contact", changefreq: "yearly", priority: "0.3" },
         ];
 
         const urls = entries.map((e) =>
