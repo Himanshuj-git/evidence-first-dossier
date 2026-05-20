@@ -15,9 +15,9 @@ function CheckoutPage() {
   const [email, setEmail] = useState("");
   const [submitted, setSubmitted] = useState(false);
 
-  useEffect(() => { trackEvent("checkout_started", { plan: "single" }); }, []);
+  useEffect(() => { trackEvent("checkout_started", { plan: "single" }); trackEvent("paid_gate_viewed", { plan: "single" }); }, []);
 
-  const stripe = settings.stripe_single;
+  const stripe = settings.stripe_single || import.meta.env.VITE_STRIPE_PACKET_PAYMENT_LINK;
 
   return (
     <PageShell>
