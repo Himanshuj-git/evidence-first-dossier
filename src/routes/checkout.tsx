@@ -1,21 +1,33 @@
-import { createFileRoute, Link, useNavigate } from "@tanstack/react-router";
+import { createFileRoute, Link, useNavigate, useSearch } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
 import { PageShell, Disclaimer } from "@/components/qsbs/Layout";
 import { useQsbs } from "@/lib/qsbs/store";
 import { trackEvent, captureLead } from "@/lib/qsbs/analytics";
 
 export const Route = createFileRoute("/checkout")({
-  head: () => ({ meta: [{ title: "Checkout — 1202 Request" }] }),
+  head: () => ({
+    meta: [
+      { title: "Checkout — 1202 Request" },
+      { name: "robots", content: "noindex" },
+    ],
+  }),
+  validateSearch: (s: Record<string, unknown>) => ({
+    dossier: typeof s.dossier === "string" ? s.dossier : undefined,
+  }),
   component: CheckoutPage,
 });
 
 function CheckoutPage() {
-  const { settings, recordCheckout } = useQsbs();
+  const { dossier } = useSearch({ from: "/checkout" });
+  const { settings, recordCheckout, unlockDossier } = useQsbs();
   const nav = useNavigate();
   const [email, setEmail] = useState("");
   const [submitted, setSubmitted] = useState(false);
 
-  useEffect(() => { trackEvent("checkout_started", { plan: "single" }); trackEvent("paid_gate_viewed", { plan: "single" }); }, []);
+  useEffect(() => {
+    trackEvent("checkout_started", { plan: "single", dossier_id: dossier });
+    trackEvent("paid_gate_viewed", { plan: "single" });
+  }, [dossier]);
 
   const stripe = settings.stripe_single || import.meta.env.VITE_STRIPE_PACKET_PAYMENT_LINK;
 
@@ -42,13 +54,18 @@ function CheckoutPage() {
         </div>
 
         {stripe ? (
-          <a href={stripe} className="mt-6 qsbs-btn qsbs-btn-primary w-full" target="_blank" rel="noreferrer"
-             onClick={() => trackEvent("payment_link_clicked", { route: "stripe" })}>
+          <a
+            href={stripe}
+            className="mt-6 qsbs-btn qsbs-btn-primary w-full"
+            target="_blank"
+            rel="noreferrer"
+            onClick={() => trackEvent("payment_link_clicked", { route: "stripe", dossier_id: dossier })}
+          >
             Continue to Stripe checkout
           </a>
         ) : (
           <div className="mt-6 qsbs-card p-6">
-            <div className="text-sm font-medium">Secure checkout coming soon</div>
+            <div className="text-sm font-medium">Secure checkout is being connected</div>
             <p className="mt-2 text-sm text-muted-foreground leading-relaxed">
               Join the early-access list and we'll email you as soon as live payments open. In the meantime, you can
               simulate a successful checkout to preview the unlocked dossier.
@@ -74,8 +91,9 @@ function CheckoutPage() {
               className="mt-4 qsbs-btn qsbs-btn-ghost w-full"
               onClick={() => {
                 recordCheckout("single");
-                trackEvent("checkout_success", { mode: "simulated" });
-                nav({ to: "/checkout/success" });
+                if (dossier) { try { unlockDossier(dossier); } catch {} }
+                trackEvent("checkout_success", { mode: "simulated", dossier_id: dossier });
+                nav({ to: "/checkout/success", search: { dossier } });
               }}
             >
               Simulate successful checkout
@@ -86,6 +104,10 @@ function CheckoutPage() {
         <div className="mt-4 flex justify-between text-xs">
           <Link to="/pricing" className="qsbs-link">← Back to pricing</Link>
           <Link to="/checkout/cancel" className="qsbs-link" onClick={() => trackEvent("checkout_cancelled")}>Cancel</Link>
+        </div>
+
+        <div className="mt-6 text-xs text-muted-foreground">
+          Questions? <a className="qsbs-link" href="mailto:support@1202request.com">support@1202request.com</a>
         </div>
 
         <div className="mt-8"><Disclaimer /></div>
