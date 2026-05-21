@@ -4,7 +4,7 @@ import { PageShell } from "@/components/qsbs/Layout";
 import { trackEvent } from "@/lib/qsbs/analytics";
 
 export const Route = createFileRoute("/checkout/cancel")({
-  head: () => ({ meta: [{ title: "Checkout cancelled — 1202 Request" }] }),
+  head: () => ({ meta: [{ title: "Checkout cancelled — 1202 Request" }, { name: "robots", content: "noindex" }] }),
   component: CancelPage,
 });
 
