@@ -103,7 +103,7 @@ function ExportPaywall() {
               <div className="shrink-0 flex gap-2">
                 <Link to="/checklist" className="qsbs-btn qsbs-btn-ghost">Free checklist</Link>
                 <button className="qsbs-btn qsbs-btn-primary"
-                  onClick={() => { trackEvent("checkout_started", { dossier_id: id }); nav({ to: "/checkout" }); }}>
+                  onClick={() => { trackEvent("checkout_started", { dossier_id: id }); nav({ to: "/checkout", search: { dossier: id } }); }}>
                   Unlock — $49
                 </button>
               </div>
