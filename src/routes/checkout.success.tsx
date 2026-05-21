@@ -1,15 +1,35 @@
-import { createFileRoute, Link } from "@tanstack/react-router";
+import { createFileRoute, Link, useSearch } from "@tanstack/react-router";
 import { useEffect } from "react";
 import { PageShell, Disclaimer } from "@/components/qsbs/Layout";
 import { trackEvent } from "@/lib/qsbs/analytics";
+import { useQsbs } from "@/lib/qsbs/store";
 
 export const Route = createFileRoute("/checkout/success")({
-  head: () => ({ meta: [{ title: "Purchase complete — 1202 Request" }] }),
+  head: () => ({
+    meta: [
+      { title: "Purchase complete — 1202 Request" },
+      { name: "robots", content: "noindex" },
+    ],
+  }),
+  validateSearch: (s: Record<string, unknown>) => ({
+    dossier: typeof s.dossier === "string" ? s.dossier : undefined,
+  }),
   component: SuccessPage,
 });
 
 function SuccessPage() {
-  useEffect(() => { trackEvent("checkout_success"); }, []);
+  const { dossier } = useSearch({ from: "/checkout/success" });
+  const { recordCheckout, unlockDossier } = useQsbs();
+
+  useEffect(() => {
+    trackEvent("checkout_success", { dossier_id: dossier });
+    // Mark the packet plan as paid so export gates unlock on return from Stripe.
+    try { recordCheckout("single"); } catch {}
+    if (dossier) {
+      try { unlockDossier(dossier); } catch {}
+    }
+  }, [dossier, recordCheckout, unlockDossier]);
+
   return (
     <PageShell>
       <div className="mx-auto max-w-xl px-5 py-24 text-center">
@@ -20,8 +40,12 @@ function SuccessPage() {
           index, risk flags, and audit trail.
         </p>
         <div className="mt-8 flex gap-2 justify-center flex-wrap">
-          <Link to="/dossiers" className="qsbs-btn qsbs-btn-primary">Go to my holdings</Link>
-          <Link to="/start" className="qsbs-btn qsbs-btn-ghost">Start a new request</Link>
+          {dossier ? (
+            <Link to="/dossiers/$id/export" params={{ id: dossier }} className="qsbs-btn qsbs-btn-primary">Open my packet</Link>
+          ) : (
+            <Link to="/dossiers" className="qsbs-btn qsbs-btn-primary">Go to my holdings</Link>
+          )}
+          <a href="mailto:support@1202request.com" className="qsbs-btn qsbs-btn-ghost">Contact support</a>
         </div>
         <div className="mt-10"><Disclaimer /></div>
       </div>
