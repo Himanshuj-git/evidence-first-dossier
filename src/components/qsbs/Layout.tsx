@@ -93,6 +93,7 @@ export function Footer() {
 export function PageShell({ children }: { children: ReactNode }) {
   return (
     <div className="min-h-screen flex flex-col">
+      <PaymentTestModeBanner />
       <Header />
       <main className="flex-1">{children}</main>
       <Footer />
