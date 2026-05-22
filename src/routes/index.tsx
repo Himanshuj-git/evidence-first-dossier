@@ -275,29 +275,23 @@ function Landing() {
             A single missing confirmation can stall a review.
           </h2>
           <p className="mt-3 text-muted-foreground max-w-2xl mx-auto">
-            Pay once for a single holding or annually for ongoing vault access. No per-document fees.
+            Pay once for a single holding, or request the Professional Packet for multi-shareholder workflows.
           </p>
         </div>
-        <div className="mt-10 grid md:grid-cols-3 gap-4">
+        <div className="mt-10 grid md:grid-cols-2 gap-4">
           {[
             {
               name: "One Holding Packet",
               price: "$49",
               per: "one-time",
-              desc: "Single holding, full export, all request letter templates.",
-            },
-            {
-              name: "Multi-Holding Vault",
-              price: "$149",
-              per: "/ year",
-              desc: "Unlimited holdings, reminders, share links, regenerate reports.",
+              desc: "One holding, full export, all request letter templates, tracker, CPA-ready dossier.",
               highlight: true,
             },
             {
-              name: "Founder / Company Portal",
-              price: "$299",
-              per: "/ team / year",
-              desc: "Company-side templates and shareholder request workflows.",
+              name: "Professional / Company Packet",
+              price: "$300",
+              per: "contact for setup",
+              desc: "Multi-shareholder workflows, company-side templates, reusable request library.",
             },
           ].map((p) => (
             <div key={p.name} className={`qsbs-card p-6 ${p.highlight ? "ring-1 ring-foreground" : ""}`}>
