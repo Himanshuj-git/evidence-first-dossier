@@ -1,5 +1,6 @@
 import { Link, useLocation } from "@tanstack/react-router";
 import type { ReactNode } from "react";
+import { PaymentTestModeBanner } from "@/components/qsbs/PaymentTestModeBanner";
 
 const navLinks = [
   { to: "/start", label: "Start" },
