@@ -1,7 +1,6 @@
-import { createFileRoute, Link } from "@tanstack/react-router";
-import { useEffect, useState } from "react";
+import { createFileRoute, Link, useNavigate } from "@tanstack/react-router";
+import { useEffect } from "react";
 import { PageShell, Disclaimer } from "@/components/qsbs/Layout";
-import { PaywallModal } from "@/components/qsbs/PaywallModal";
 import { useQsbs } from "@/lib/qsbs/store";
 import { FAQ, SHARED_FAQ } from "@/components/qsbs/FAQ";
 import { trackEvent } from "@/lib/qsbs/analytics";
@@ -10,9 +9,9 @@ export const Route = createFileRoute("/pricing")({
   head: () => ({
     meta: [
       { title: "Pricing — 1202 Request" },
-      { name: "description", content: "Per-holding or annual plans for shareholder-side Section 1202 evidence requests. One Holding Packet $49, Vault $149/yr, Company Portal $299/yr." },
+      { name: "description", content: "One Holding Packet — $49 one-time. Professional / Company Packet — $300. Shareholder-side Section 1202 evidence requests and CPA-ready dossier." },
       { property: "og:title", content: "Pricing — 1202 Request" },
-      { property: "og:description", content: "One Holding Packet $49, Vault $149/yr, Company Portal $299/yr." },
+      { property: "og:description", content: "One Holding Packet $49 one-time. Professional / Company Packet $300." },
       { property: "og:url", content: "https://1202request.com/pricing" },
     ],
     links: [{ rel: "canonical", href: "https://1202request.com/pricing" }],
@@ -20,80 +19,13 @@ export const Route = createFileRoute("/pricing")({
   component: PricingPage,
 });
 
-type Plan = {
-  key: "single" | "vault" | "portal";
-  name: string;
-  price: string;
-  per: string;
-  features: string[];
-  cta: string;
-  best: string;
-  highlight?: boolean;
-};
-
-const PLANS: Plan[] = [
-  {
-    key: "single",
-    name: "One Holding Packet",
-    price: "$49",
-    per: "one-time",
-    features: [
-      "1 dossier",
-      "Full report export",
-      "All request letter templates",
-      "Unlimited evidence items",
-      "CPA-ready review summary",
-      "Issuer request tracker",
-      "Document index",
-      "Missing evidence checklist",
-    ],
-    cta: "Buy packet",
-    best: "Best for one startup stock holding before a sale, tender offer, acquisition, or CPA review.",
-  },
-  {
-    key: "vault",
-    name: "Multi-Holding Vault",
-    price: "$149",
-    per: "/ year",
-    features: [
-      "Unlimited dossiers",
-      "Evidence reminders",
-      "Share links",
-      "Re-generate reports anytime",
-      "Multi-company evidence vault",
-      "Annual review reminders",
-      "Reusable CPA profile",
-      "Export history",
-    ],
-    cta: "Start vault",
-    best: "Best for founders, angels, and early employees with multiple startup equity positions.",
-    highlight: true,
-  },
-  {
-    key: "portal",
-    name: "Founder / Company Portal",
-    price: "$299",
-    per: "/ team / year",
-    features: [
-      "Company-side document templates",
-      "Shareholder request workflows",
-      "Bulk evidence packets",
-      "Reusable issuer response library",
-      "Shareholder intake queue",
-      "Company evidence checklist",
-      "Team access",
-      "Request status dashboard",
-    ],
-    cta: "Start company portal",
-    best: "Best for startups that want to respond consistently to shareholder Section 1202 documentation requests.",
-  },
-];
-
 function PricingPage() {
-  const { recordCheckout, paidPlans } = useQsbs();
-  const [open, setOpen] = useState<"single" | "vault" | "portal" | null>(null);
+  const { paidPlans } = useQsbs();
+  const nav = useNavigate();
 
   useEffect(() => { trackEvent("pricing_viewed"); }, []);
+
+  const purchased = paidPlans.includes("single");
 
   return (
     <PageShell>
@@ -101,33 +33,77 @@ function PricingPage() {
         <div className="text-center">
           <h1 className="text-4xl md:text-5xl font-medium tracking-tight">Pricing</h1>
           <p className="mt-3 text-muted-foreground max-w-2xl mx-auto">
-            Free to start a request. Pay once for a single holding, annually for ongoing vault access, or by team
-            for the company-side portal.
+            Free to start an evidence request. Pay once for a single holding, or request the Professional Packet for
+            multi-shareholder and company workflows.
           </p>
         </div>
 
-        <div className="mt-12 grid md:grid-cols-3 gap-4">
-          {PLANS.map((p) => (
-            <div key={p.key} className={`qsbs-card p-6 flex flex-col ${p.highlight ? "ring-1 ring-foreground" : ""}`}>
-              <div className="text-sm text-muted-foreground">{p.name}</div>
-              <div className="mt-2 flex items-baseline gap-1">
-                <span className="text-4xl font-medium">{p.price}</span>
-                <span className="text-muted-foreground">{p.per}</span>
-              </div>
-              <p className="mt-3 text-xs text-muted-foreground italic leading-relaxed">{p.best}</p>
-              <ul className="mt-5 space-y-2 text-sm">
-                {p.features.map((f) => (
-                  <li key={f} className="flex gap-2"><span className="text-foreground">•</span>{f}</li>
-                ))}
-              </ul>
-              <button
-                className={`mt-6 qsbs-btn ${p.highlight ? "qsbs-btn-primary" : "qsbs-btn-ghost"}`}
-                onClick={() => { trackEvent("checkout_started", { plan: p.key }); setOpen(p.key); }}
-              >
-                {paidPlans.includes(p.key) ? "Purchased" : p.cta}
-              </button>
+        <div className="mt-12 grid md:grid-cols-2 gap-4">
+          {/* Primary — $49 */}
+          <div className="qsbs-card p-7 flex flex-col ring-1 ring-foreground">
+            <div className="text-sm text-muted-foreground">One Holding Packet</div>
+            <div className="mt-2 flex items-baseline gap-1">
+              <span className="text-5xl font-medium">$49</span>
+              <span className="text-muted-foreground">one-time</span>
             </div>
-          ))}
+            <p className="mt-3 text-xs text-muted-foreground italic leading-relaxed">
+              Best for one startup stock holding before a sale, tender offer, acquisition, or CPA review.
+            </p>
+            <ul className="mt-5 space-y-2 text-sm">
+              {[
+                "1 holding dossier",
+                "Full report export",
+                "All request letter templates",
+                "Unlimited evidence items for that holding",
+                "CPA-ready review summary",
+                "Issuer request tracker",
+                "Document index",
+                "Missing evidence checklist",
+                "Audit trail",
+                "Print / save as PDF",
+              ].map((f) => (
+                <li key={f} className="flex gap-2"><span className="text-foreground">•</span>{f}</li>
+              ))}
+            </ul>
+            <button
+              className="mt-6 qsbs-btn qsbs-btn-primary"
+              onClick={() => { trackEvent("checkout_started", { plan: "single", from: "pricing" }); nav({ to: "/checkout", search: { dossier: undefined } }); }}
+            >
+              {purchased ? "Purchased — open my packet" : "Unlock One Holding Packet — $49"}
+            </button>
+          </div>
+
+          {/* Secondary — $300 Professional */}
+          <div className="qsbs-card p-7 flex flex-col">
+            <div className="text-sm text-muted-foreground">Professional / Company Packet</div>
+            <div className="mt-2 flex items-baseline gap-1">
+              <span className="text-5xl font-medium">$300</span>
+              <span className="text-muted-foreground">contact for setup</span>
+            </div>
+            <p className="mt-3 text-xs text-muted-foreground italic leading-relaxed">
+              Best for founders, CPAs, angels, or companies handling multiple Section 1202 evidence requests.
+            </p>
+            <ul className="mt-5 space-y-2 text-sm">
+              {[
+                "Multiple request workflows",
+                "Company-side templates",
+                "Professional packet formatting",
+                "Bulk shareholder request support",
+                "Reusable request templates",
+                "Shared review links",
+                "Priority setup support",
+              ].map((f) => (
+                <li key={f} className="flex gap-2"><span className="text-foreground">•</span>{f}</li>
+              ))}
+            </ul>
+            <a
+              href="mailto:hello@1202request.com?subject=Professional%20Packet%20request"
+              className="mt-6 qsbs-btn qsbs-btn-ghost"
+              onClick={() => trackEvent("checkout_started", { plan: "professional", from: "pricing" })}
+            >
+              Request Professional Packet
+            </a>
+          </div>
         </div>
 
         <div className="mt-6 text-center text-sm text-muted-foreground">
@@ -145,10 +121,9 @@ function PricingPage() {
               <li>• Basic missing-evidence checklist</li>
               <li>• Limited request preview</li>
               <li>• View sample dossier</li>
-              <li>• Up to 6 evidence items per draft</li>
             </ul>
             <div className="mt-3 text-xs text-muted-foreground">
-              Free dossiers cannot export the full CPA-ready report or generate share links.
+              Free dossiers cannot export the full CPA-ready report.
             </div>
           </div>
           <div className="qsbs-card p-6">
@@ -176,7 +151,6 @@ function PricingPage() {
           </p>
         </div>
 
-        {/* Trust microcopy */}
         <div className="mt-8 qsbs-card p-5 text-xs text-muted-foreground leading-relaxed">
           <strong className="text-foreground">Privacy &amp; security.</strong> Do not upload sensitive documents unless you
           trust the app environment. Private packet data should not be shared through unlisted links unless you
@@ -189,13 +163,6 @@ function PricingPage() {
 
         <div className="mt-8"><Disclaimer /></div>
       </div>
-
-      <PaywallModal
-        open={!!open}
-        plan={open || "single"}
-        onClose={() => setOpen(null)}
-        onConfirm={() => { if (open) { recordCheckout(open); trackEvent("checkout_success", { plan: open, mode: "simulated" }); } setOpen(null); }}
-      />
     </PageShell>
   );
 }
