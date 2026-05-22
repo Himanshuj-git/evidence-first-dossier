@@ -1,8 +1,9 @@
-import { createFileRoute, Link, useNavigate, useSearch } from "@tanstack/react-router";
-import { useEffect, useState } from "react";
+import { createFileRoute, Link, useSearch } from "@tanstack/react-router";
+import { useEffect, useMemo } from "react";
 import { PageShell, Disclaimer } from "@/components/qsbs/Layout";
-import { useQsbs } from "@/lib/qsbs/store";
-import { trackEvent, captureLead } from "@/lib/qsbs/analytics";
+import { StripeEmbeddedCheckout } from "@/components/qsbs/StripeEmbeddedCheckout";
+import { hasPaymentsToken } from "@/lib/stripe";
+import { trackEvent } from "@/lib/qsbs/analytics";
 
 export const Route = createFileRoute("/checkout")({
   head: () => ({
@@ -19,100 +20,65 @@ export const Route = createFileRoute("/checkout")({
 
 function CheckoutPage() {
   const { dossier } = useSearch({ from: "/checkout" });
-  const { settings, recordCheckout, unlockDossier } = useQsbs();
-  const nav = useNavigate();
-  const [email, setEmail] = useState("");
-  const [submitted, setSubmitted] = useState(false);
 
   useEffect(() => {
     trackEvent("checkout_started", { plan: "single", dossier_id: dossier });
     trackEvent("paid_gate_viewed", { plan: "single" });
   }, [dossier]);
 
-  const stripe = settings.stripe_single || import.meta.env.VITE_STRIPE_PACKET_PAYMENT_LINK;
+  const returnUrl = useMemo(() => {
+    if (typeof window === "undefined") return "";
+    const url = new URL("/checkout/success", window.location.origin);
+    if (dossier) url.searchParams.set("dossier", dossier);
+    url.searchParams.set("session_id", "{CHECKOUT_SESSION_ID}");
+    return url.toString();
+  }, [dossier]);
+
+  const canCheckout = hasPaymentsToken();
 
   return (
     <PageShell>
-      <div className="mx-auto max-w-2xl px-5 py-16">
+      <div className="mx-auto max-w-3xl px-5 py-12">
         <div className="text-xs uppercase tracking-wider text-muted-foreground">Secure checkout</div>
         <h1 className="mt-2 text-3xl md:text-4xl font-medium tracking-tight">One Holding Packet — $49</h1>
         <p className="mt-3 text-muted-foreground">One-time purchase. 14-day satisfaction policy. Not tax advice.</p>
 
-        <div className="mt-8 qsbs-card p-6">
-          <div className="text-sm font-medium">What you get</div>
-          <ul className="mt-3 grid sm:grid-cols-2 gap-x-6 gap-y-1.5 text-sm text-muted-foreground">
-            <li>• Professional issuer request letter</li>
-            <li>• Follow-up request template</li>
-            <li>• Evidence checklist</li>
-            <li>• Missing document tracker</li>
-            <li>• CPA-ready review summary</li>
-            <li>• Document index</li>
-            <li>• Risk flags & open questions</li>
-            <li>• Print/export-ready dossier</li>
-            <li>• Audit trail of request steps</li>
-          </ul>
-        </div>
+        <div className="mt-8 grid md:grid-cols-2 gap-6">
+          <div className="qsbs-card p-6">
+            <div className="text-sm font-medium">What you get</div>
+            <ul className="mt-3 space-y-1.5 text-sm text-muted-foreground">
+              <li>• Professional issuer request letter</li>
+              <li>• Follow-up template</li>
+              <li>• Evidence checklist + tracker</li>
+              <li>• CPA-ready review summary</li>
+              <li>• Document index & risk flags</li>
+              <li>• Print/export-ready dossier</li>
+              <li>• Audit trail of request steps</li>
+            </ul>
+            <div className="mt-6 text-xs text-muted-foreground">
+              Questions? <a className="qsbs-link" href="mailto:support@1202request.com">support@1202request.com</a>
+            </div>
+          </div>
 
-        {stripe ? (
-          <a
-            href={stripe}
-            className="mt-6 qsbs-btn qsbs-btn-primary w-full"
-            target="_blank"
-            rel="noreferrer"
-            onClick={() => trackEvent("payment_link_clicked", { route: "stripe", dossier_id: dossier })}
-          >
-            Continue to Stripe checkout
-          </a>
-        ) : (
-          <div className="mt-6 qsbs-card p-6">
-            <div className="text-sm font-medium">Secure checkout is being connected</div>
-            <p className="mt-2 text-sm text-muted-foreground leading-relaxed">
-              Join the early-access list and we'll email you the moment live payments open for the One Holding Packet.
-            </p>
-            {!submitted ? (
-              <form
-                onSubmit={(e) => {
-                  e.preventDefault();
-                  if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) return;
-                  captureLead({ email, role: "Unknown", event_type: "Checkout", holdings_count: "1", source_page: "/checkout" });
-                  setSubmitted(true);
-                }}
-                className="mt-4 flex flex-col sm:flex-row gap-2"
-              >
-                <input type="email" required value={email} onChange={(e) => setEmail(e.target.value)} placeholder="you@company.com"
-                  className="flex-1 rounded-md border border-input bg-background px-3 py-2 text-sm" />
-                <button className="qsbs-btn qsbs-btn-primary">Notify me</button>
-              </form>
+          <div className="qsbs-card p-2 md:p-4 overflow-hidden">
+            {canCheckout && returnUrl ? (
+              <StripeEmbeddedCheckout
+                priceId="one_holding_packet_49"
+                dossierId={dossier}
+                returnUrl={returnUrl}
+              />
             ) : (
-              <div className="mt-4 text-sm text-foreground">Thanks — you're on the list. We'll be in touch shortly.</div>
-            )}
-            <p className="mt-4 text-xs text-muted-foreground">
-              In the meantime, you can keep building your free draft and{" "}
-              <Link to="/demo" className="qsbs-link">preview the sample dossier</Link>.
-            </p>
-            {import.meta.env.DEV && (
-              <button
-                className="mt-4 qsbs-btn qsbs-btn-ghost w-full"
-                onClick={() => {
-                  recordCheckout("single");
-                  if (dossier) { try { unlockDossier(dossier); } catch {} }
-                  trackEvent("checkout_success", { mode: "simulated", dossier_id: dossier });
-                  nav({ to: "/checkout/success", search: { dossier } });
-                }}
-              >
-                Dev only — simulate successful checkout
-              </button>
+              <div className="p-6 text-sm text-muted-foreground">
+                Secure checkout is being connected. Please refresh in a moment, or email
+                <a className="qsbs-link ml-1" href="mailto:support@1202request.com">support@1202request.com</a>.
+              </div>
             )}
           </div>
-        )}
+        </div>
 
         <div className="mt-4 flex justify-between text-xs">
           <Link to="/pricing" className="qsbs-link">← Back to pricing</Link>
           <Link to="/checkout/cancel" className="qsbs-link" onClick={() => trackEvent("checkout_cancelled")}>Cancel</Link>
-        </div>
-
-        <div className="mt-6 text-xs text-muted-foreground">
-          Questions? <a className="qsbs-link" href="mailto:support@1202request.com">support@1202request.com</a>
         </div>
 
         <div className="mt-8"><Disclaimer /></div>
