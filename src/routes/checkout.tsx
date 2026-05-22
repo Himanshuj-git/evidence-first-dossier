@@ -67,8 +67,7 @@ function CheckoutPage() {
           <div className="mt-6 qsbs-card p-6">
             <div className="text-sm font-medium">Secure checkout is being connected</div>
             <p className="mt-2 text-sm text-muted-foreground leading-relaxed">
-              Join the early-access list and we'll email you as soon as live payments open. In the meantime, you can
-              simulate a successful checkout to preview the unlocked dossier.
+              Join the early-access list and we'll email you the moment live payments open for the One Holding Packet.
             </p>
             {!submitted ? (
               <form
@@ -85,19 +84,25 @@ function CheckoutPage() {
                 <button className="qsbs-btn qsbs-btn-primary">Notify me</button>
               </form>
             ) : (
-              <div className="mt-4 text-sm text-foreground">Thanks — you're on the list.</div>
+              <div className="mt-4 text-sm text-foreground">Thanks — you're on the list. We'll be in touch shortly.</div>
             )}
-            <button
-              className="mt-4 qsbs-btn qsbs-btn-ghost w-full"
-              onClick={() => {
-                recordCheckout("single");
-                if (dossier) { try { unlockDossier(dossier); } catch {} }
-                trackEvent("checkout_success", { mode: "simulated", dossier_id: dossier });
-                nav({ to: "/checkout/success", search: { dossier } });
-              }}
-            >
-              Simulate successful checkout
-            </button>
+            <p className="mt-4 text-xs text-muted-foreground">
+              In the meantime, you can keep building your free draft and{" "}
+              <Link to="/demo" className="qsbs-link">preview the sample dossier</Link>.
+            </p>
+            {import.meta.env.DEV && (
+              <button
+                className="mt-4 qsbs-btn qsbs-btn-ghost w-full"
+                onClick={() => {
+                  recordCheckout("single");
+                  if (dossier) { try { unlockDossier(dossier); } catch {} }
+                  trackEvent("checkout_success", { mode: "simulated", dossier_id: dossier });
+                  nav({ to: "/checkout/success", search: { dossier } });
+                }}
+              >
+                Dev only — simulate successful checkout
+              </button>
+            )}
           </div>
         )}
 
