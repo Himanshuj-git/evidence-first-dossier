@@ -33,19 +33,11 @@ export function PaywallModal({
         <h3 className="mt-1 text-xl font-medium">{p.name}</h3>
         <div className="mt-1 text-muted-foreground">{p.price}</div>
         <p className="mt-4 text-sm text-muted-foreground leading-relaxed">
-          {p.href
-            ? "You'll be redirected to a secure Stripe checkout."
-            : "Secure checkout is being connected. Go to the checkout page to join the early-access list — we'll email you when live payments open."}
+          You'll be taken to a secure checkout to unlock your packet.
         </p>
-        {p.href ? (
-          <a className="mt-5 qsbs-btn qsbs-btn-primary w-full" href={p.href} target="_blank" rel="noreferrer" onClick={onConfirm}>
-            Continue to Stripe
-          </a>
-        ) : (
-          <Link to="/checkout" className="mt-5 qsbs-btn qsbs-btn-primary w-full block text-center" onClick={onConfirm}>
-            Go to checkout
-          </Link>
-        )}
+        <Link to="/checkout" className="mt-5 qsbs-btn qsbs-btn-primary w-full block text-center" onClick={onConfirm}>
+          Go to checkout
+        </Link>
         <button className="mt-2 qsbs-btn qsbs-btn-ghost w-full" onClick={onClose}>Cancel</button>
         <div className="mt-4 border-t border-border pt-3 text-[11px] text-muted-foreground leading-relaxed">
           <strong className="text-foreground">Before you unlock.</strong> This dossier is not a legal opinion, tax

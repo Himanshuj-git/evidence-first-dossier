@@ -1,5 +1,6 @@
 import { Link, useLocation } from "@tanstack/react-router";
 import type { ReactNode } from "react";
+import { PaymentTestModeBanner } from "@/components/qsbs/PaymentTestModeBanner";
 
 const navLinks = [
   { to: "/start", label: "Start" },
@@ -93,6 +94,7 @@ export function Footer() {
 export function PageShell({ children }: { children: ReactNode }) {
   return (
     <div className="min-h-screen flex flex-col">
+      <PaymentTestModeBanner />
       <Header />
       <main className="flex-1">{children}</main>
       <Footer />
