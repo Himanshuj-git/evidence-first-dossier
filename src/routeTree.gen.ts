@@ -54,6 +54,7 @@ import { Route as DossiersIdExportRouteImport } from './routes/dossiers.$id.expo
 import { Route as DossiersIdEvidenceRouteImport } from './routes/dossiers.$id.evidence'
 import { Route as DossiersIdCpaEmailRouteImport } from './routes/dossiers.$id.cpa-email'
 import { Route as DossiersIdCpaRouteImport } from './routes/dossiers.$id.cpa'
+import { Route as ApiPublicPaymentsWebhookRouteImport } from './routes/api/public/payments/webhook'
 
 const WhyNotChatgptRoute = WhyNotChatgptRouteImport.update({
   id: '/why-not-chatgpt',
@@ -284,6 +285,12 @@ const DossiersIdCpaRoute = DossiersIdCpaRouteImport.update({
   path: '/cpa',
   getParentRoute: () => DossiersIdRoute,
 } as any)
+const ApiPublicPaymentsWebhookRoute =
+  ApiPublicPaymentsWebhookRouteImport.update({
+    id: '/api/public/payments/webhook',
+    path: '/api/public/payments/webhook',
+    getParentRoute: () => rootRouteImport,
+  } as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -331,6 +338,7 @@ export interface FileRoutesByFullPath {
   '/holding/$id/export': typeof HoldingIdExportRoute
   '/holding/$id/request': typeof HoldingIdRequestRoute
   '/holding/$id/tracker': typeof HoldingIdTrackerRoute
+  '/api/public/payments/webhook': typeof ApiPublicPaymentsWebhookRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -378,6 +386,7 @@ export interface FileRoutesByTo {
   '/holding/$id/export': typeof HoldingIdExportRoute
   '/holding/$id/request': typeof HoldingIdRequestRoute
   '/holding/$id/tracker': typeof HoldingIdTrackerRoute
+  '/api/public/payments/webhook': typeof ApiPublicPaymentsWebhookRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -426,6 +435,7 @@ export interface FileRoutesById {
   '/holding/$id/export': typeof HoldingIdExportRoute
   '/holding/$id/request': typeof HoldingIdRequestRoute
   '/holding/$id/tracker': typeof HoldingIdTrackerRoute
+  '/api/public/payments/webhook': typeof ApiPublicPaymentsWebhookRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -475,6 +485,7 @@ export interface FileRouteTypes {
     | '/holding/$id/export'
     | '/holding/$id/request'
     | '/holding/$id/tracker'
+    | '/api/public/payments/webhook'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -522,6 +533,7 @@ export interface FileRouteTypes {
     | '/holding/$id/export'
     | '/holding/$id/request'
     | '/holding/$id/tracker'
+    | '/api/public/payments/webhook'
   id:
     | '__root__'
     | '/'
@@ -569,6 +581,7 @@ export interface FileRouteTypes {
     | '/holding/$id/export'
     | '/holding/$id/request'
     | '/holding/$id/tracker'
+    | '/api/public/payments/webhook'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -600,6 +613,7 @@ export interface RootRouteChildren {
   AdminEventsRoute: typeof AdminEventsRoute
   HoldingIdRoute: typeof HoldingIdRouteWithChildren
   PacketIdRoute: typeof PacketIdRoute
+  ApiPublicPaymentsWebhookRoute: typeof ApiPublicPaymentsWebhookRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -919,6 +933,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof DossiersIdCpaRouteImport
       parentRoute: typeof DossiersIdRoute
     }
+    '/api/public/payments/webhook': {
+      id: '/api/public/payments/webhook'
+      path: '/api/public/payments/webhook'
+      fullPath: '/api/public/payments/webhook'
+      preLoaderRoute: typeof ApiPublicPaymentsWebhookRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
@@ -1034,6 +1055,7 @@ const rootRouteChildren: RootRouteChildren = {
   AdminEventsRoute: AdminEventsRoute,
   HoldingIdRoute: HoldingIdRouteWithChildren,
   PacketIdRoute: PacketIdRoute,
+  ApiPublicPaymentsWebhookRoute: ApiPublicPaymentsWebhookRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
