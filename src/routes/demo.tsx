@@ -94,6 +94,17 @@ function DemoPage() {
           <span className="qsbs-chip qsbs-chip-muted">Sample for illustration only</span>
         </div>
 
+        <AISummary
+          bullets={[
+            "This is a fictional sample Section 1202 evidence dossier for Northstar Robotics.",
+            "It shows what the paid One Holding Packet looks like for a former employee preparing for a tender offer.",
+            "It includes evidence status, risk flags, CPA and issuer questions, and an audit trail of requests.",
+            "All facts are illustrative and do not reflect a real company or shareholder.",
+            "It is not tax, legal, or accounting advice and does not certify QSBS eligibility.",
+          ]}
+        />
+
+
         <div className="mt-5 flex flex-col md:flex-row md:items-start md:justify-between gap-6">
           <div>
             <h1 className="text-3xl md:text-4xl font-medium tracking-tight">{facts.issuer}</h1>
