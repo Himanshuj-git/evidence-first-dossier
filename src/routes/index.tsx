@@ -2,6 +2,7 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { useEffect } from "react";
 import { PageShell, Disclaimer, ScoreRing, StatusChip } from "@/components/qsbs/Layout";
 import { FAQ, SHARED_FAQ } from "@/components/qsbs/FAQ";
+import { AISummary } from "@/components/qsbs/AeoBlocks";
 import { trackEvent } from "@/lib/qsbs/analytics";
 
 const HOMEPAGE_OG_IMAGE = "https://storage.googleapis.com/gpt-engineer-file-uploads/ire59F4wn0ee7GMDws9rL9LsjxP2/social-images/social-1778649867252-1202_Request_social_preview_showing_a_minimal_CPA-ready_evidence_dossier_for_Section_1202_review..webp";
