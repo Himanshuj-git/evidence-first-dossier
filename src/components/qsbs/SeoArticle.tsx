@@ -1,5 +1,6 @@
 import { Link } from "@tanstack/react-router";
 import { PageShell, Disclaimer } from "@/components/qsbs/Layout";
+import { AISummary, DirectAnswer, FaqBlock, type AeoFaqItem } from "@/components/qsbs/AeoBlocks";
 import type { ReactNode } from "react";
 
 export function SeoArticle({
@@ -8,19 +9,32 @@ export function SeoArticle({
   intro,
   sections,
   primaryCta,
+  shortAnswer,
+  summary,
+  faq,
+  pageUrl,
 }: {
   eyebrow: string;
   title: string;
   intro: ReactNode;
   sections: { h: string; p: ReactNode }[];
   primaryCta: { to: "/start" | "/pricing" | "/demo" | "/checklist"; label: string };
+  shortAnswer?: ReactNode;
+  summary?: string[];
+  faq?: AeoFaqItem[];
+  pageUrl?: string;
 }) {
   return (
     <PageShell>
       <article className="mx-auto max-w-3xl px-5 py-16">
         <div className="text-xs uppercase tracking-wider text-muted-foreground">{eyebrow}</div>
         <h1 className="mt-2 text-3xl md:text-4xl font-medium tracking-tight">{title}</h1>
+
+        {shortAnswer ? <DirectAnswer>{shortAnswer}</DirectAnswer> : null}
+
         <p className="mt-4 text-lg text-muted-foreground leading-relaxed">{intro}</p>
+
+        {summary && summary.length > 0 ? <AISummary bullets={summary} /> : null}
 
         <section className="mt-10 space-y-8">
           {sections.map((s) => (
@@ -30,6 +44,8 @@ export function SeoArticle({
             </div>
           ))}
         </section>
+
+        {faq && faq.length > 0 ? <FaqBlock items={faq} pageUrl={pageUrl} /> : null}
 
         <div className="mt-12 qsbs-card p-6 flex flex-col sm:flex-row gap-3 sm:items-center sm:justify-between">
           <div>
