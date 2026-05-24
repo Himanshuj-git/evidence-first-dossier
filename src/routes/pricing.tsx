@@ -3,6 +3,7 @@ import { useEffect } from "react";
 import { PageShell, Disclaimer } from "@/components/qsbs/Layout";
 import { useQsbs } from "@/lib/qsbs/store";
 import { FAQ, SHARED_FAQ } from "@/components/qsbs/FAQ";
+import { AISummary } from "@/components/qsbs/AeoBlocks";
 import { trackEvent } from "@/lib/qsbs/analytics";
 
 export const Route = createFileRoute("/pricing")({
