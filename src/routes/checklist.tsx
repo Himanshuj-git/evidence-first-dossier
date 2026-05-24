@@ -1,6 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
 import { PageShell, Disclaimer } from "@/components/qsbs/Layout";
+import { AISummary } from "@/components/qsbs/AeoBlocks";
 import { captureLead, trackEvent } from "@/lib/qsbs/analytics";
 
 export const Route = createFileRoute("/checklist")({
