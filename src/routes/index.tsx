@@ -4,26 +4,38 @@ import { PageShell, Disclaimer, ScoreRing, StatusChip } from "@/components/qsbs/
 import { FAQ, SHARED_FAQ } from "@/components/qsbs/FAQ";
 import { trackEvent } from "@/lib/qsbs/analytics";
 
+const HOMEPAGE_OG_IMAGE = "https://storage.googleapis.com/gpt-engineer-file-uploads/ire59F4wn0ee7GMDws9rL9LsjxP2/social-images/social-1778649867252-1202_Request_social_preview_showing_a_minimal_CPA-ready_evidence_dossier_for_Section_1202_review..webp";
+
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "Section 1202 Evidence Requests for Shareholders" },
+      { title: "1202 Request — Section 1202 Evidence Requests" },
       {
         name: "description",
         content:
-          "Ask your company for the right Section 1202 evidence before your CPA review. Generate issuer request letters and a CPA-ready dossier.",
+          "Organize startup stock facts, request issuer evidence, and export a CPA-ready dossier for Section 1202 review. No tax advice or eligibility certification.",
       },
-      { property: "og:title", content: "Section 1202 Evidence Requests for Shareholders" },
+      { property: "og:title", content: "1202 Request — Section 1202 Evidence Requests" },
       {
         property: "og:description",
-        content: "Ask your company for the right Section 1202 evidence before your CPA review.",
+        content:
+          "Organize startup stock facts, request issuer evidence, and export a CPA-ready dossier for Section 1202 review.",
       },
       { property: "og:url", content: "https://1202request.com/" },
+      { property: "og:image", content: HOMEPAGE_OG_IMAGE },
+      { name: "twitter:title", content: "1202 Request — Section 1202 Evidence Requests" },
+      {
+        name: "twitter:description",
+        content:
+          "Organize startup stock facts, request issuer evidence, and export a CPA-ready dossier for Section 1202 review.",
+      },
+      { name: "twitter:image", content: HOMEPAGE_OG_IMAGE },
     ],
     links: [{ rel: "canonical", href: "https://1202request.com/" }],
   }),
   component: Landing,
 });
+
 
 function Landing() {
   useEffect(() => {
