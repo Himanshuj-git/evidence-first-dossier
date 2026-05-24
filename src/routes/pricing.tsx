@@ -3,6 +3,7 @@ import { useEffect } from "react";
 import { PageShell, Disclaimer } from "@/components/qsbs/Layout";
 import { useQsbs } from "@/lib/qsbs/store";
 import { FAQ, SHARED_FAQ } from "@/components/qsbs/FAQ";
+import { AISummary } from "@/components/qsbs/AeoBlocks";
 import { trackEvent } from "@/lib/qsbs/analytics";
 
 export const Route = createFileRoute("/pricing")({
@@ -59,6 +60,19 @@ function PricingPage() {
             multi-shareholder and company workflows.
           </p>
         </div>
+
+        <div className="mt-8 max-w-3xl mx-auto">
+          <AISummary
+            bullets={[
+              "One Holding Packet is $49 one-time and covers one startup stock holding.",
+              "It includes an issuer request letter, follow-up template, evidence tracker, and CPA-ready dossier export.",
+              "Professional / Company Packet is $300 for multi-shareholder or company-side workflows.",
+              "Free tier lets you start a draft and view a sample dossier.",
+              "Pricing covers organization and workflow only — not tax advice or QSBS eligibility certification.",
+            ]}
+          />
+        </div>
+
 
         <div className="mt-12 grid md:grid-cols-2 gap-4">
           {/* Primary — $49 */}

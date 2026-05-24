@@ -40,6 +40,22 @@ function Page() {
     <SeoArticle
       eyebrow="For sellers"
       title="QSBS Tender Offer Checklist for Startup Shareholders"
+      pageUrl="https://1202request.com/qsbs-tender-offer-checklist"
+      shortAnswer="Before a tender offer or secondary window, shareholders should map every tranche they hold, request written C-corp confirmation, stock ledger entries, gross-asset support, active business support, and redemption history from the company, and hand a clean evidence packet to their CPA in time for the election or settlement deadline."
+      summary={[
+        "This page is a Section 1202 evidence checklist for an upcoming tender offer, secondary sale, or acquisition.",
+        "It is for current and former employees, founders, angels, and advisors holding private C-corp stock.",
+        "It explains what to assemble yourself and what to request from the company under deadline pressure.",
+        "Use it to give your CPA a review-ready file before the window closes.",
+        "1202 Request does not determine QSBS eligibility — it organizes the factual record for professional review.",
+      ]}
+      faq={[
+        { q: "What should I prepare before a tender offer?", a: "List every tranche of stock you hold with its acquisition date, method, share count, and cost basis. Pull option grants, exercise notices, 83(b) confirmations, and cap-table snapshots. Then request from the company: C-corp confirmation, stock ledger entry, gross-asset support at and immediately after issuance, active business support, and redemption history." },
+        { q: "How early should I start?", a: "As early as you know a window may open. Issuer-side records often take one to three weeks to assemble, and your CPA needs time to review them before any election or settlement deadline. Starting early is the single biggest predictor of a clean review." },
+        { q: "What if the deadline is in days, not weeks?", a: "Send the request immediately, flag urgency politely, and copy your CPA so they can review evidence as it arrives. The dossier tracks what is missing so you and your advisor can decide how to proceed even if the file is not fully complete." },
+        { q: "Does this guarantee QSBS treatment in the tender?", a: "No. 1202 Request does not determine or certify QSBS eligibility and does not guarantee any tax outcome. It organizes the factual evidence your CPA or tax attorney needs to perform the Section 1202 review." },
+        { q: "Can my CPA use this packet for the tax filing next year?", a: "Yes. The same dossier and audit trail support the tax filing that references the transaction the following year. Keep the source files and request log." },
+      ]}
       intro="When a tender offer, secondary sale, or acquisition window opens, you usually have weeks — not months — to assemble the factual records a CPA or tax attorney needs to review for Section 1202. Use this checklist to get ahead. It is educational only and is not tax, legal, or accounting advice."
       sections={[
         { h: "Who this page is for", p: "Current and former employees, founders, angel investors, advisors, and secondary holders of private C-corp stock who expect a liquidity event and want their factual file in order before the close." },

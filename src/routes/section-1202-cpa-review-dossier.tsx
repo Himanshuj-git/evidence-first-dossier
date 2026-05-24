@@ -40,6 +40,22 @@ function Page() {
     <SeoArticle
       eyebrow="Reference"
       title="CPA-Ready Section 1202 Review Dossier"
+      pageUrl="https://1202request.com/section-1202-cpa-review-dossier"
+      shortAnswer="A CPA-ready Section 1202 dossier contains a cover page and disclaimer, shareholder and company facts, an evidence readiness summary, an evidence matrix, the issuer request log, risk flags and open questions, a document index and audit trail, and the supporting documents themselves — organized for the professional reviewing the file, not the shareholder who built it."
+      summary={[
+        "This page describes the structure of a CPA-ready Section 1202 review dossier.",
+        "It is for shareholders preparing a factual file and for the professionals receiving it.",
+        "It covers cover page, evidence matrix, request log, risk flags, document index, and audit trail.",
+        "Use it as a reference for what to include and how to organize it for fast professional review.",
+        "The dossier is a structured fact pack, not a tax opinion, legal opinion, or QSBS certification.",
+      ]}
+      faq={[
+        { q: "What belongs in a CPA-ready Section 1202 dossier?", a: "A cover page with shareholder and issuer identity, shareholder and company facts, an evidence readiness summary, an evidence matrix by category, the issuer request log, risk flags phrased as open questions, a document index, an audit trail, and the supporting documents themselves." },
+        { q: "Can I send the dossier to my CPA?", a: "Yes. The packet is designed to be exported and handed to a CPA or tax attorney through a secure channel they already use for sensitive files. Confirm receipt and keep the source files and audit trail." },
+        { q: "Does the dossier determine QSBS eligibility?", a: "No. The dossier is a structured summary of user-provided facts and requested issuer evidence assembled to support professional review. It does not certify or determine Section 1202 / QSBS eligibility." },
+        { q: "What if some evidence is still missing when I send it?", a: "Missing items are surfaced in the evidence readiness summary and the matrix, with the request log showing what was asked and when. Your CPA can decide whether to proceed or wait, and what alternative support may be appropriate." },
+        { q: "Is this tax or legal advice?", a: "No. 1202 Request is an educational document-organization tool and does not provide tax, legal, accounting, investment, or securities advice." },
+      ]}
       intro="A useful Section 1202 review packet is organized for the professional who will actually review it — not for the shareholder who built it. This guide describes the structure that tends to work best in practice. It is educational only and is not tax, legal, or accounting advice."
       sections={[
         { h: "Who this page is for", p: "Shareholders preparing a factual file for their CPA or tax attorney, and the professionals receiving those files. The goal is a packet a reviewing professional can absorb quickly and act on, without having to chase down loose attachments and clarifying questions." },

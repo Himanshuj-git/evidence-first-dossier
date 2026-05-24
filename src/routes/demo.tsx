@@ -1,6 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useEffect, useMemo } from "react";
 import { PageShell, Disclaimer, ScoreRing, StatusChip } from "@/components/qsbs/Layout";
+import { AISummary } from "@/components/qsbs/AeoBlocks";
 import { useDossier } from "@/lib/qsbs/store";
 import { buildRules, readinessScore } from "@/lib/qsbs/rules";
 import { trackEvent } from "@/lib/qsbs/analytics";
@@ -92,6 +93,17 @@ function DemoPage() {
           <span className="qsbs-chip qsbs-chip-amber">Fictional demo. Not tax advice.</span>
           <span className="qsbs-chip qsbs-chip-muted">Sample for illustration only</span>
         </div>
+
+        <AISummary
+          bullets={[
+            "This is a fictional sample Section 1202 evidence dossier for Northstar Robotics.",
+            "It shows what the paid One Holding Packet looks like for a former employee preparing for a tender offer.",
+            "It includes evidence status, risk flags, CPA and issuer questions, and an audit trail of requests.",
+            "All facts are illustrative and do not reflect a real company or shareholder.",
+            "It is not tax, legal, or accounting advice and does not certify QSBS eligibility.",
+          ]}
+        />
+
 
         <div className="mt-5 flex flex-col md:flex-row md:items-start md:justify-between gap-6">
           <div>

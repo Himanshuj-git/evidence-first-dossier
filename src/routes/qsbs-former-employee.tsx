@@ -40,6 +40,22 @@ function Page() {
     <SeoArticle
       eyebrow="For former employees"
       title="Section 1202 Evidence Checklist for Former Startup Employees"
+      pageUrl="https://1202request.com/qsbs-former-employee"
+      shortAnswer="A former startup employee preparing for Section 1202 review should pull together every record they kept (option grant, exercise notice, 83(b) confirmation, cap-table snapshots) and request from the company written C-corp confirmation, stock ledger entry, gross-asset support at issuance, active business support, and redemption history. The packet then goes to a CPA or tax attorney for review."
+      summary={[
+        "This page is a Section 1202 evidence checklist for former startup employees.",
+        "It is for anyone who exercised options or held stock at a previous employer and now faces a liquidity event or tax review.",
+        "It explains what to recover yourself and what only the company can confirm.",
+        "Use it to send one clean, professional request to the company instead of several partial ones.",
+        "1202 Request does not determine QSBS eligibility — facts go to a CPA or tax attorney for review.",
+      ]}
+      faq={[
+        { q: "What should former startup employees ask for?", a: "Written C-corp confirmation at and through the holding period, the stock ledger entry for the original issuance, an officer attestation on gross assets at and immediately after issuance, a short active business statement, a list of any redemptions in the applicable lookback windows, and a signed cap-table extract showing the issuance." },
+        { q: "What if I do not have my 83(b) confirmation anymore?", a: "Note it as a gap in your dossier, request any copy the company or stock plan administrator may have on file, and disclose the gap to your CPA. Some shareholders also have a certified mail receipt or an old email confirmation that helps reconstruct the filing." },
+        { q: "Who at the company should I contact?", a: "Typically the CFO, controller, head of finance, or general counsel. If the company has been acquired, the acquirer's finance or legal team is the usual starting point. Stock plan administrators (Carta, Shareworks, Pulley) can often produce historical exports." },
+        { q: "Does 1202 Request determine QSBS eligibility?", a: "No. It organizes the factual evidence so a qualified CPA or tax attorney can perform the Section 1202 review. It does not provide tax, legal, or investment advice." },
+        { q: "How early should I start before a tender offer?", a: "As early as possible. Issuer-side records often take one to three weeks to assemble, and your CPA needs time to review them before any election or settlement deadline." },
+      ]}
       intro="If you exercised options or bought stock at a startup years ago, you probably do not have the issuer-side records a CPA will want to review. The good news: most companies will respond to a clear, factual, non-adversarial request. This guide walks through what to gather yourself and what to ask the company for. It is educational only and is not tax, legal, or accounting advice."
       sections={[
         { h: "Who this page is for", p: "Former engineers, designers, operators, advisors, and executives who hold private C-corp stock from a previous employer and now face a tender offer, secondary sale, acquisition, IPO, or tax filing. It is also useful for CPAs supporting those clients." },

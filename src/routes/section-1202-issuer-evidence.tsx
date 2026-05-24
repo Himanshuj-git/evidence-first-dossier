@@ -40,6 +40,22 @@ function Page() {
     <SeoArticle
       eyebrow="Guide"
       title="Section 1202 Issuer Evidence: What to Request From the Company"
+      pageUrl="https://1202request.com/section-1202-issuer-evidence"
+      shortAnswer="Issuer evidence for Section 1202 review is the factual record only the company can produce: written C-corporation status, original issuance documents, gross-asset support at and immediately after issuance, active business support, redemption history, and a cap-table extract. Shareholders should request these directly, in writing, and route the responses to their CPA or tax attorney."
+      summary={[
+        "This page explains issuer-side evidence shareholders may need for Section 1202 review.",
+        "It is for startup shareholders who do not have direct access to company records.",
+        "Common evidence includes C-corp confirmation, original issuance records, gross asset support, active business support, redemption history, and cap table confirmation.",
+        "Use 1202 Request to generate a professional issuer request letter and CPA-ready dossier.",
+        "This is educational information, not tax or legal advice.",
+      ]}
+      faq={[
+        { q: "What issuer evidence should I request from my company?", a: "Written confirmation of domestic C-corp status at and through the holding period, board consent and stock ledger entry for your issuance, officer attestation that gross assets at and immediately after issuance were below the applicable threshold, a short active business statement, a list of any redemptions in the applicable lookback windows, and any prior counsel memo addressing Section 1202." },
+        { q: "Is my company required to provide these records?", a: "It depends on your stockholder rights, the company's policies, and applicable state law. 1202 Request helps you ask clearly with a professional, factual letter; it does not compel the company to respond. Many companies respond willingly when the request is specific, non-adversarial, and routed to the right contact." },
+        { q: "Who at the company should I send the request to?", a: "Typically the CFO, controller, head of finance, or general counsel. If the company has been acquired, the acquirer's finance or legal team is the usual starting point. For very early-stage companies, the founder or chief of staff often handles these requests." },
+        { q: "Does 1202 Request determine whether I qualify for QSBS?", a: "No. 1202 Request organizes the factual evidence your CPA or tax attorney needs to perform a Section 1202 review. It does not determine or certify eligibility, and it does not provide tax or legal advice." },
+        { q: "What if my company cannot provide the evidence?", a: "Missing items are flagged in the dossier and the audit trail records exactly what was requested and when. Your CPA can then decide what alternative support, if any, may be appropriate." },
+      ]}
       intro="Shareholders cannot certify Section 1202 treatment on their own. The facts that matter — entity status, stock issuance, gross assets at issuance, active business use, redemption history — live on the company side. This guide outlines a structured way to ask for those records before a CPA or tax-attorney review. It is educational only and is not tax, legal, or accounting advice."
       sections={[
         { h: "Who this page is for", p: "Founders, current and former employees, advisors, angel investors, secondary buyers, family-office staff, and the CPAs supporting them. If you hold private C-corp stock and a sale, tender offer, secondary, acquisition, or tax filing is on the horizon, this is the kind of factual record a professional will typically want to review." },

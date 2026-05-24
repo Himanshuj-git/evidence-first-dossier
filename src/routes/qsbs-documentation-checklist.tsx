@@ -40,6 +40,22 @@ function Page() {
     <SeoArticle
       eyebrow="Guide"
       title="QSBS Documentation Checklist for Section 1202 Review"
+      pageUrl="https://1202request.com/qsbs-documentation-checklist"
+      shortAnswer="A QSBS documentation checklist helps startup shareholders organize the issuer records, stock acquisition documents, and open CPA questions that may be relevant to Section 1202 review. The checklist should not say whether the shareholder qualifies. It should identify what evidence is available, what is missing, and what should be reviewed by a qualified tax professional."
+      summary={[
+        "This page is a practical checklist of documentation that may be relevant to Section 1202 / QSBS review.",
+        "It is for startup shareholders and the CPAs who support them, not a tax advice or eligibility tool.",
+        "It covers shareholder facts, issuer records, gross asset support, active business support, and redemption history.",
+        "Use it to identify what you have, what is missing, and what to request from the company.",
+        "1202 Request does not determine QSBS eligibility — always confirm with a qualified tax professional.",
+      ]}
+      faq={[
+        { q: "What documents may be needed for QSBS review?", a: "Typically: shareholder identity and acquisition records, the company's C-corp status confirmation, original stock issuance evidence, gross asset support at and immediately after issuance, active business support during the holding period, redemption history, and a cap-table extract. The exact list depends on the holding and is determined by your CPA or tax attorney." },
+        { q: "Does 1202 Request determine whether I qualify for QSBS?", a: "No. 1202 Request does not determine or certify Section 1202 / QSBS eligibility. It organizes facts and requested issuer evidence so a qualified tax professional can perform the review." },
+        { q: "What if my company cannot provide some of the evidence?", a: "Items the company cannot provide are flagged as missing in your dossier, with a full audit trail of what was requested and when. Your CPA can then decide what alternative support, if any, may be available." },
+        { q: "Can I send the dossier to my CPA?", a: "Yes. The paid packet is designed to be exported and handed to a CPA or tax attorney, with a cover page, factual summary, evidence matrix, missing items, document index, and audit trail." },
+        { q: "Is this tax or legal advice?", a: "No. 1202 Request is an educational document-organization tool. It does not provide tax, legal, accounting, investment, or securities advice." },
+      ]}
       intro="Section 1202 analysis turns on factual records about the issuer and the stock — not on a yes/no answer a shareholder can give themselves. This guide walks through the categories of documentation a CPA or tax attorney may want to review. It is educational only and is not tax, legal, or accounting advice."
       sections={[
         { h: "Who this checklist is for", p: "Founders, early employees, former employees, advisors, angel investors, family-office staff, fund operators, and the CPAs supporting them. If you hold or once held private C-corp stock and a sale, tender offer, secondary, acquisition, IPO, or tax filing is on the horizon, this is the kind of paperwork a professional will typically ask to see before any Section 1202 analysis." },

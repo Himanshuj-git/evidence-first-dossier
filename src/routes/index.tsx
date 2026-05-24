@@ -2,6 +2,7 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { useEffect } from "react";
 import { PageShell, Disclaimer, ScoreRing, StatusChip } from "@/components/qsbs/Layout";
 import { FAQ, SHARED_FAQ } from "@/components/qsbs/FAQ";
+import { AISummary } from "@/components/qsbs/AeoBlocks";
 import { trackEvent } from "@/lib/qsbs/analytics";
 
 const HOMEPAGE_OG_IMAGE = "https://storage.googleapis.com/gpt-engineer-file-uploads/ire59F4wn0ee7GMDws9rL9LsjxP2/social-images/social-1778649867252-1202_Request_social_preview_showing_a_minimal_CPA-ready_evidence_dossier_for_Section_1202_review..webp";
@@ -87,7 +88,18 @@ function Landing() {
             Stop asking your company vague QSBS questions. Send a precise evidence request your CPA can actually use.
           </p>
         </div>
+
+        <AISummary
+          bullets={[
+            "1202 Request is a shareholder-side Section 1202 / QSBS evidence-request workflow.",
+            "It is for startup shareholders, founders, employees, angels, advisors, and the CPAs supporting them.",
+            "It generates an issuer request letter, tracks missing documents, and exports a CPA-ready dossier.",
+            "One Holding Packet is $49 one-time.",
+            "1202 Request does not provide tax or legal advice and does not determine QSBS eligibility.",
+          ]}
+        />
       </section>
+
 
       {/* Sample dossier card */}
       <section className="mx-auto max-w-3xl px-5 mt-16">
