@@ -4,14 +4,17 @@ import { PageShell, Disclaimer } from "@/components/qsbs/Layout";
 export const Route = createFileRoute("/privacy")({
   head: () => ({
     meta: [
-      { title: "Privacy & security — 1202 Request" },
-      { name: "description", content: "How 1202 Request handles your sensitive financial and tax-adjacent information when preparing Section 1202 dossiers." },
-      { property: "og:title", content: "Privacy & security — 1202 Request" },
+      { title: "Privacy & Security — 1202 Request" },
+      { name: "description", content: "How 1202 Request handles your sensitive financial and tax-adjacent information when preparing Section 1202 evidence dossiers." },
+      { property: "og:title", content: "Privacy & Security — 1202 Request" },
       { property: "og:description", content: "How 1202 Request handles your sensitive financial and tax-adjacent information." },
       { property: "og:url", content: "https://1202request.com/privacy" },
+      { name: "twitter:title", content: "Privacy & Security — 1202 Request" },
+      { name: "twitter:description", content: "How 1202 Request handles your sensitive financial and tax-adjacent information." },
     ],
     links: [{ rel: "canonical", href: "https://1202request.com/privacy" }],
   }),
+
   component: PrivacyPage,
 });
 

@@ -1,12 +1,22 @@
 User-agent: *
 Allow: /
+
 Disallow: /admin
+Disallow: /admin/
 Disallow: /admin-demo
 Disallow: /admin/events
 Disallow: /settings
+Disallow: /settings/
 Disallow: /checkout
+Disallow: /checkout/
+Disallow: /access
 Disallow: /dossiers
+Disallow: /dossiers/
 Disallow: /holding
+Disallow: /holding/
 Disallow: /packet
+Disallow: /packet/
+Disallow: /start
+Disallow: /scan
 
 Sitemap: https://1202request.com/sitemap.xml

@@ -5,13 +5,16 @@ export const Route = createFileRoute("/contact")({
   head: () => ({
     meta: [
       { title: "Contact — 1202 Request" },
-      { name: "description", content: "Get in touch with the 1202 Request team about packets, support, privacy, or security." },
+      { name: "description", content: "Get in touch with the 1202 Request team about Section 1202 evidence packets, support, privacy, or security." },
       { property: "og:title", content: "Contact — 1202 Request" },
       { property: "og:description", content: "Reach our team about packets, support, privacy, or security." },
       { property: "og:url", content: "https://1202request.com/contact" },
+      { name: "twitter:title", content: "Contact — 1202 Request" },
+      { name: "twitter:description", content: "Reach our team about packets, support, privacy, or security." },
     ],
     links: [{ rel: "canonical", href: "https://1202request.com/contact" }],
   }),
+
   component: Contact,
 });
 

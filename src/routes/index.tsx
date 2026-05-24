@@ -4,26 +4,38 @@ import { PageShell, Disclaimer, ScoreRing, StatusChip } from "@/components/qsbs/
 import { FAQ, SHARED_FAQ } from "@/components/qsbs/FAQ";
 import { trackEvent } from "@/lib/qsbs/analytics";
 
+const HOMEPAGE_OG_IMAGE = "https://storage.googleapis.com/gpt-engineer-file-uploads/ire59F4wn0ee7GMDws9rL9LsjxP2/social-images/social-1778649867252-1202_Request_social_preview_showing_a_minimal_CPA-ready_evidence_dossier_for_Section_1202_review..webp";
+
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "Section 1202 Evidence Requests for Shareholders" },
+      { title: "1202 Request — Section 1202 Evidence Requests" },
       {
         name: "description",
         content:
-          "Ask your company for the right Section 1202 evidence before your CPA review. Generate issuer request letters and a CPA-ready dossier.",
+          "Organize startup stock facts, request issuer evidence, and export a CPA-ready dossier for Section 1202 review. No tax advice or eligibility certification.",
       },
-      { property: "og:title", content: "Section 1202 Evidence Requests for Shareholders" },
+      { property: "og:title", content: "1202 Request — Section 1202 Evidence Requests" },
       {
         property: "og:description",
-        content: "Ask your company for the right Section 1202 evidence before your CPA review.",
+        content:
+          "Organize startup stock facts, request issuer evidence, and export a CPA-ready dossier for Section 1202 review.",
       },
       { property: "og:url", content: "https://1202request.com/" },
+      { property: "og:image", content: HOMEPAGE_OG_IMAGE },
+      { name: "twitter:title", content: "1202 Request — Section 1202 Evidence Requests" },
+      {
+        name: "twitter:description",
+        content:
+          "Organize startup stock facts, request issuer evidence, and export a CPA-ready dossier for Section 1202 review.",
+      },
+      { name: "twitter:image", content: HOMEPAGE_OG_IMAGE },
     ],
     links: [{ rel: "canonical", href: "https://1202request.com/" }],
   }),
   component: Landing,
 });
+
 
 function Landing() {
   useEffect(() => {
@@ -311,10 +323,37 @@ function Landing() {
         </div>
       </section>
 
+      {/* Popular resources */}
+      <section className="mx-auto max-w-5xl px-5 mt-24">
+        <h2 className="text-3xl md:text-4xl font-medium tracking-tight text-center">
+          Popular Section 1202 resources
+        </h2>
+        <p className="mt-3 text-center text-muted-foreground max-w-2xl mx-auto">
+          Free guides on what issuer evidence shareholders may need before a CPA or tax-attorney review.
+        </p>
+        <div className="mt-10 grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
+          {[
+            { to: "/qsbs-documentation-checklist", t: "QSBS documentation checklist", b: "Stock records, issuer documents, gross asset support, and CPA review questions." },
+            { to: "/section-1202-issuer-evidence", t: "Section 1202 issuer evidence", b: "What only the company can confirm and how to ask for it." },
+            { to: "/qsbs-former-employee", t: "Former employee evidence checklist", b: "Option exercise, 83(b), and cap-table requests years after leaving." },
+            { to: "/qsbs-tender-offer-checklist", t: "Tender offer checklist", b: "Organize issuer evidence before a tender, secondary, or acquisition." },
+            { to: "/section-1202-cpa-review-dossier", t: "CPA-ready review dossier", b: "What a structured Section 1202 review packet should contain." },
+            { to: "/why-not-chatgpt", t: "Why not just use ChatGPT?", b: "Structured workflow vs. a blank chat box for Section 1202 evidence." },
+          ].map((c) => (
+            <Link key={c.to} to={c.to} className="qsbs-card p-5 hover:bg-muted/40 transition-colors">
+              <div className="font-medium">{c.t}</div>
+              <p className="mt-1 text-sm text-muted-foreground leading-relaxed">{c.b}</p>
+              <div className="mt-3 text-xs qsbs-link">Read guide →</div>
+            </Link>
+          ))}
+        </div>
+      </section>
+
       {/* FAQ */}
       <section className="mx-auto max-w-4xl px-5 mt-24">
         <FAQ items={SHARED_FAQ} />
       </section>
+
 
       <section className="mx-auto max-w-3xl px-5 mt-16">
         <Disclaimer />

@@ -4,14 +4,17 @@ import { PageShell, Disclaimer } from "@/components/qsbs/Layout";
 export const Route = createFileRoute("/security")({
   head: () => ({
     meta: [
-      { title: "Security — 1202 Request" },
+      { title: "Security & Sensitive Documents — 1202 Request" },
       { name: "description", content: "How 1202 Request handles sensitive documents and guidance for shareholders preparing Section 1202 evidence." },
-      { property: "og:title", content: "Security — 1202 Request" },
-      { property: "og:description", content: "Sensitive-document guidance and security roadmap." },
+      { property: "og:title", content: "Security & Sensitive Documents — 1202 Request" },
+      { property: "og:description", content: "Sensitive-document guidance and security roadmap for Section 1202 evidence." },
       { property: "og:url", content: "https://1202request.com/security" },
+      { name: "twitter:title", content: "Security & Sensitive Documents — 1202 Request" },
+      { name: "twitter:description", content: "Sensitive-document guidance and security roadmap for Section 1202 evidence." },
     ],
     links: [{ rel: "canonical", href: "https://1202request.com/security" }],
   }),
+
   component: Security,
 });
 
