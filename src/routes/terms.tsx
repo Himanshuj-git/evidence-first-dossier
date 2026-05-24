@@ -5,13 +5,16 @@ export const Route = createFileRoute("/terms")({
   head: () => ({
     meta: [
       { title: "Terms of Use — 1202 Request" },
-      { name: "description", content: "Terms governing use of 1202 Request, an educational document-organization tool. Not tax, legal, accounting, or investment advice." },
+      { name: "description", content: "Terms governing use of 1202 Request, an educational document-organization tool for Section 1202 evidence. Not tax, legal, accounting, or investment advice." },
       { property: "og:title", content: "Terms of Use — 1202 Request" },
-      { property: "og:description", content: "Educational tooling. Not professional advice." },
+      { property: "og:description", content: "Educational document-organization tooling. Not professional advice." },
       { property: "og:url", content: "https://1202request.com/terms" },
+      { name: "twitter:title", content: "Terms of Use — 1202 Request" },
+      { name: "twitter:description", content: "Educational document-organization tooling. Not professional advice." },
     ],
     links: [{ rel: "canonical", href: "https://1202request.com/terms" }],
   }),
+
   component: Terms,
 });
 

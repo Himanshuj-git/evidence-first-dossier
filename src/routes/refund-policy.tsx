@@ -4,14 +4,17 @@ import { PageShell, Disclaimer } from "@/components/qsbs/Layout";
 export const Route = createFileRoute("/refund-policy")({
   head: () => ({
     meta: [
-      { title: "Refund Policy — 1202 Request" },
-      { name: "description", content: "14-day satisfaction policy for the One Holding Packet from 1202 Request." },
-      { property: "og:title", content: "Refund Policy — 1202 Request" },
-      { property: "og:description", content: "14-day satisfaction policy." },
+      { title: "Refund & Satisfaction Policy — 1202 Request" },
+      { name: "description", content: "14-day satisfaction policy for the One Holding Packet from 1202 Request. No tax outcome or Section 1202 eligibility is guaranteed." },
+      { property: "og:title", content: "Refund & Satisfaction Policy — 1202 Request" },
+      { property: "og:description", content: "14-day satisfaction policy for the One Holding Packet." },
       { property: "og:url", content: "https://1202request.com/refund-policy" },
+      { name: "twitter:title", content: "Refund & Satisfaction Policy — 1202 Request" },
+      { name: "twitter:description", content: "14-day satisfaction policy for the One Holding Packet." },
     ],
     links: [{ rel: "canonical", href: "https://1202request.com/refund-policy" }],
   }),
+
   component: Refund,
 });
 
