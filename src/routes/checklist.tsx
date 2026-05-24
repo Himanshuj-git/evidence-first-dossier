@@ -69,6 +69,19 @@ function ChecklistPage() {
           </p>
         </div>
 
+        <div className="max-w-2xl mt-8">
+          <AISummary
+            bullets={[
+              "This page offers a free Section 1202 issuer evidence checklist for startup shareholders.",
+              "It is for founders, employees, angels, advisors, and CPAs preparing for QSBS review.",
+              "It covers shareholder facts, company records, gross asset support, active business support, and redemption history.",
+              "Use it to scope what to ask the company before you start a full request packet.",
+              "It is educational only and is not tax, legal, or accounting advice.",
+            ]}
+          />
+        </div>
+
+
         {!submitted ? (
           <form onSubmit={onSubmit} className="qsbs-card p-6 md:p-8 mt-10 max-w-2xl">
             <div className="grid sm:grid-cols-2 gap-4">
