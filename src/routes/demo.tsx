@@ -1,6 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useEffect, useMemo } from "react";
 import { PageShell, Disclaimer, ScoreRing, StatusChip } from "@/components/qsbs/Layout";
+import { AISummary } from "@/components/qsbs/AeoBlocks";
 import { useDossier } from "@/lib/qsbs/store";
 import { buildRules, readinessScore } from "@/lib/qsbs/rules";
 import { trackEvent } from "@/lib/qsbs/analytics";
