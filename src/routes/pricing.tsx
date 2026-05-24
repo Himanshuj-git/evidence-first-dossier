@@ -9,13 +9,35 @@ export const Route = createFileRoute("/pricing")({
   head: () => ({
     meta: [
       { title: "Pricing — 1202 Request" },
-      { name: "description", content: "One Holding Packet — $49 one-time. Professional / Company Packet — $300. Shareholder-side Section 1202 evidence requests and CPA-ready dossier." },
+      { name: "description", content: "One Holding Packet is $49 one-time. Build an issuer evidence request, tracker, and CPA-ready dossier for Section 1202 review." },
       { property: "og:title", content: "Pricing — 1202 Request" },
-      { property: "og:description", content: "One Holding Packet $49 one-time. Professional / Company Packet $300." },
+      { property: "og:description", content: "One Holding Packet is $49 one-time. Build an issuer evidence request, tracker, and CPA-ready dossier for Section 1202 review." },
       { property: "og:url", content: "https://1202request.com/pricing" },
+      { name: "twitter:title", content: "Pricing — 1202 Request" },
+      { name: "twitter:description", content: "One Holding Packet is $49 one-time. Build an issuer evidence request, tracker, and CPA-ready dossier for Section 1202 review." },
     ],
     links: [{ rel: "canonical", href: "https://1202request.com/pricing" }],
+    scripts: [
+      {
+        type: "application/ld+json",
+        children: JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "Product",
+          name: "One Holding Packet",
+          description: "Section 1202 issuer evidence request, tracker, and CPA-ready dossier for a single startup stock holding.",
+          brand: { "@type": "Brand", name: "1202 Request" },
+          offers: {
+            "@type": "Offer",
+            url: "https://1202request.com/pricing",
+            priceCurrency: "USD",
+            price: "49",
+            availability: "https://schema.org/InStock",
+          },
+        }),
+      },
+    ],
   }),
+
   component: PricingPage,
 });
 
