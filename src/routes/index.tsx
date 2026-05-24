@@ -88,7 +88,18 @@ function Landing() {
             Stop asking your company vague QSBS questions. Send a precise evidence request your CPA can actually use.
           </p>
         </div>
+
+        <AISummary
+          bullets={[
+            "1202 Request is a shareholder-side Section 1202 / QSBS evidence-request workflow.",
+            "It is for startup shareholders, founders, employees, angels, advisors, and the CPAs supporting them.",
+            "It generates an issuer request letter, tracks missing documents, and exports a CPA-ready dossier.",
+            "One Holding Packet is $49 one-time.",
+            "1202 Request does not provide tax or legal advice and does not determine QSBS eligibility.",
+          ]}
+        />
       </section>
+
 
       {/* Sample dossier card */}
       <section className="mx-auto max-w-3xl px-5 mt-16">
