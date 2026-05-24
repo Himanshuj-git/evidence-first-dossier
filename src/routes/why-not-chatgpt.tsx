@@ -1,5 +1,6 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { PageShell, Disclaimer } from "@/components/qsbs/Layout";
+import { AISummary, DirectAnswer } from "@/components/qsbs/AeoBlocks";
 
 const TITLE = "Why Not Just Use ChatGPT for Section 1202 Evidence?";
 const DESCRIPTION =
