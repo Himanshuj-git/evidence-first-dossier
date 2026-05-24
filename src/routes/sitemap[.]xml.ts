@@ -13,15 +13,15 @@ export const Route = createFileRoute("/sitemap.xml")({
   server: {
     handlers: {
       GET: async () => {
+        const lastmod = new Date().toISOString().slice(0, 10);
         const entries: SitemapEntry[] = [
           { path: "/", changefreq: "weekly", priority: "1.0" },
-          { path: "/start", changefreq: "monthly", priority: "0.9" },
           { path: "/pricing", changefreq: "monthly", priority: "0.9" },
           { path: "/demo", changefreq: "monthly", priority: "0.8" },
           { path: "/checklist", changefreq: "monthly", priority: "0.8" },
           { path: "/why-not-chatgpt", changefreq: "monthly", priority: "0.7" },
-          { path: "/qsbs-documentation-checklist", changefreq: "monthly", priority: "0.7" },
-          { path: "/section-1202-issuer-evidence", changefreq: "monthly", priority: "0.7" },
+          { path: "/qsbs-documentation-checklist", changefreq: "monthly", priority: "0.8" },
+          { path: "/section-1202-issuer-evidence", changefreq: "monthly", priority: "0.8" },
           { path: "/qsbs-former-employee", changefreq: "monthly", priority: "0.7" },
           { path: "/qsbs-tender-offer-checklist", changefreq: "monthly", priority: "0.7" },
           { path: "/section-1202-cpa-review-dossier", changefreq: "monthly", priority: "0.7" },
@@ -36,6 +36,7 @@ export const Route = createFileRoute("/sitemap.xml")({
           [
             `  <url>`,
             `    <loc>${BASE_URL}${e.path}</loc>`,
+            `    <lastmod>${lastmod}</lastmod>`,
             e.changefreq ? `    <changefreq>${e.changefreq}</changefreq>` : null,
             e.priority ? `    <priority>${e.priority}</priority>` : null,
             `  </url>`,
