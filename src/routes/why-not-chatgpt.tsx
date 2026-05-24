@@ -43,10 +43,28 @@ function Page() {
       <article className="mx-auto max-w-3xl px-5 py-16">
         <div className="text-xs uppercase tracking-wider text-muted-foreground">Compare</div>
         <h1 className="mt-2 text-3xl md:text-4xl font-medium tracking-tight">Why not just use ChatGPT?</h1>
+
+        <DirectAnswer>
+          ChatGPT can draft text, but 1202 Request provides a structured evidence workflow: issuer request letters,
+          missing evidence checklist, tracker, audit trail, and CPA-ready dossier. The product is designed to organize
+          facts for professional review, not to provide tax advice or determine QSBS eligibility.
+        </DirectAnswer>
+
         <p className="mt-4 text-lg text-muted-foreground">
           ChatGPT can draft text. 1202 Request gives you a structured evidence workflow built around what a CPA or tax
           attorney actually needs to review for Section 1202.
         </p>
+
+        <AISummary
+          bullets={[
+            "This page compares using ChatGPT vs. 1202 Request for Section 1202 evidence work.",
+            "ChatGPT can help draft text but does not track evidence, log requests, or produce a CPA-ready dossier.",
+            "1202 Request adds a stock-fact-aware checklist, issuer request letters, status tracker, audit trail, and dossier export.",
+            "ChatGPT may be enough for a one-off letter; a structured packet is better when a CPA will review the file.",
+            "Neither product provides tax advice or determines QSBS eligibility — that is your CPA or tax attorney.",
+          ]}
+        />
+
 
         <section className="mt-10 grid gap-4">
           {[
