@@ -36,20 +36,24 @@ export function SeoArticle({
             <div className="text-sm font-medium">Ready to organize your evidence?</div>
             <p className="text-sm text-muted-foreground mt-1">Start a free draft. Unlock the full CPA-ready packet for $49.</p>
           </div>
-          <div className="flex gap-2 shrink-0">
+          <div className="flex gap-2 shrink-0 flex-wrap">
             <Link to="/checklist" className="qsbs-btn qsbs-btn-ghost">Free checklist</Link>
+            <Link to="/demo" className="qsbs-btn qsbs-btn-ghost">Sample dossier</Link>
+            <Link to="/pricing" className="qsbs-btn qsbs-btn-ghost">Pricing</Link>
             <Link to={primaryCta.to} className="qsbs-btn qsbs-btn-primary">{primaryCta.label}</Link>
           </div>
         </div>
 
         <div className="mt-8 text-xs text-muted-foreground">
-          See also:{" "}
+          Related guides:{" "}
           <Link to="/qsbs-documentation-checklist" className="qsbs-link">documentation checklist</Link>{" · "}
           <Link to="/section-1202-issuer-evidence" className="qsbs-link">issuer evidence</Link>{" · "}
           <Link to="/qsbs-former-employee" className="qsbs-link">former employees</Link>{" · "}
           <Link to="/qsbs-tender-offer-checklist" className="qsbs-link">tender offer</Link>{" · "}
-          <Link to="/section-1202-cpa-review-dossier" className="qsbs-link">CPA review dossier</Link>
+          <Link to="/section-1202-cpa-review-dossier" className="qsbs-link">CPA review dossier</Link>{" · "}
+          <Link to="/why-not-chatgpt" className="qsbs-link">why not ChatGPT?</Link>
         </div>
+
 
         <div className="mt-10"><Disclaimer /></div>
       </article>
