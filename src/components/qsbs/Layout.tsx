@@ -1,6 +1,7 @@
 import { Link, useLocation } from "@tanstack/react-router";
 import type { ReactNode } from "react";
 import { PaymentTestModeBanner } from "@/components/qsbs/PaymentTestModeBanner";
+import { useAuth } from "@/hooks/use-auth";
 
 const navLinks = [
   { to: "/start", label: "Start" },
@@ -12,6 +13,7 @@ const navLinks = [
 
 export function Header() {
   const loc = useLocation();
+  const { isAuthenticated, user, signOut } = useAuth();
   return (
     <header className="no-print sticky top-0 z-30 backdrop-blur-md bg-background/80 border-b border-border">
       <div className="mx-auto max-w-6xl px-5 h-14 flex items-center justify-between">
@@ -29,7 +31,23 @@ export function Header() {
             );
           })}
         </nav>
-        <Link to="/start" className="qsbs-btn qsbs-btn-primary text-sm py-2 px-4">Build my request</Link>
+        <div className="flex items-center gap-3">
+          {isAuthenticated ? (
+            <>
+              <Link to="/account" className="hidden md:inline text-sm text-muted-foreground hover:text-foreground" title={user?.email ?? undefined}>
+                Account
+              </Link>
+              <button onClick={() => signOut()} className="hidden md:inline text-sm text-muted-foreground hover:text-foreground">
+                Sign out
+              </button>
+            </>
+          ) : (
+            <Link to="/login" className="hidden md:inline text-sm text-muted-foreground hover:text-foreground">
+              Sign in
+            </Link>
+          )}
+          <Link to="/start" className="qsbs-btn qsbs-btn-primary text-sm py-2 px-4">Build my request</Link>
+        </div>
       </div>
     </header>
   );
