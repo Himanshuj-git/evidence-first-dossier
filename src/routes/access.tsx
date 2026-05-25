@@ -31,6 +31,7 @@ function AccessPage() {
     (async () => {
       try {
         const res = (await redeemAccessToken({ data: { token } })) as any;
+        try { await linkPurchasesToCurrentUser(); } catch {}
         try { recordCheckout("single"); } catch {}
         if (res.dossier_id) {
           try { unlockDossier(res.dossier_id); } catch {}
