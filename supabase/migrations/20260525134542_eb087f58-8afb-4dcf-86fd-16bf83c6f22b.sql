@@ -1,0 +1,78 @@
+-- profiles table
+create table public.profiles (
+  id uuid primary key references auth.users(id) on delete cascade,
+  email text,
+  display_name text,
+  created_at timestamptz not null default now(),
+  updated_at timestamptz not null default now()
+);
+
+alter table public.profiles enable row level security;
+
+create policy "Profiles: select own"
+  on public.profiles for select
+  to authenticated
+  using (auth.uid() = id);
+
+create policy "Profiles: update own"
+  on public.profiles for update
+  to authenticated
+  using (auth.uid() = id);
+
+create policy "Profiles: insert own"
+  on public.profiles for insert
+  to authenticated
+  with check (auth.uid() = id);
+
+create or replace function public.handle_new_user()
+returns trigger
+language plpgsql
+security definer
+set search_path = public
+as $$
+begin
+  insert into public.profiles (id, email, display_name)
+  values (
+    new.id,
+    new.email,
+    coalesce(new.raw_user_meta_data->>'full_name', new.raw_user_meta_data->>'name', split_part(new.email, '@', 1))
+  )
+  on conflict (id) do nothing;
+  return new;
+end;
+$$;
+
+create trigger on_auth_user_created
+  after insert on auth.users
+  for each row execute function public.handle_new_user();
+
+-- updated_at trigger function (shared)
+create or replace function public.touch_updated_at()
+returns trigger
+language plpgsql
+as $$
+begin
+  new.updated_at = now();
+  return new;
+end;
+$$;
+
+create trigger profiles_touch_updated_at
+  before update on public.profiles
+  for each row execute function public.touch_updated_at();
+
+-- link purchases to user
+alter table public.purchases
+  add column if not exists user_id uuid references auth.users(id) on delete set null;
+
+create index if not exists idx_purchases_user_id on public.purchases(user_id);
+create index if not exists idx_purchases_email on public.purchases(lower(email));
+
+-- Allow signed-in users to read their own purchases (by user_id or by matching email)
+create policy "Purchases: select own"
+  on public.purchases for select
+  to authenticated
+  using (
+    user_id = auth.uid()
+    or lower(email) = lower(coalesce((auth.jwt() ->> 'email'), ''))
+  );
