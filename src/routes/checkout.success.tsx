@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import { PageShell, Disclaimer } from "@/components/qsbs/Layout";
 import { trackEvent } from "@/lib/qsbs/analytics";
 import { useQsbs } from "@/lib/qsbs/store";
-import { verifyCheckoutSession } from "@/lib/payments.functions";
+import { verifyCheckoutSession, linkPurchasesToCurrentUser } from "@/lib/payments.functions";
 import { getStripeEnvironment } from "@/lib/stripe";
 
 export const Route = createFileRoute("/checkout/success")({
