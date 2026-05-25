@@ -25,6 +25,7 @@ import { Route as QsbsFormerEmployeeRouteImport } from './routes/qsbs-former-emp
 import { Route as QsbsDocumentationChecklistRouteImport } from './routes/qsbs-documentation-checklist'
 import { Route as PrivacyRouteImport } from './routes/privacy'
 import { Route as PricingRouteImport } from './routes/pricing'
+import { Route as LoginRouteImport } from './routes/login'
 import { Route as DossiersRouteImport } from './routes/dossiers'
 import { Route as DemoRouteImport } from './routes/demo'
 import { Route as ContactRouteImport } from './routes/contact'
@@ -139,6 +140,11 @@ const PrivacyRoute = PrivacyRouteImport.update({
 const PricingRoute = PricingRouteImport.update({
   id: '/pricing',
   path: '/pricing',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const LoginRoute = LoginRouteImport.update({
+  id: '/login',
+  path: '/login',
   getParentRoute: () => rootRouteImport,
 } as any)
 const DossiersRoute = DossiersRouteImport.update({
@@ -309,6 +315,7 @@ export interface FileRoutesByFullPath {
   '/contact': typeof ContactRoute
   '/demo': typeof DemoRoute
   '/dossiers': typeof DossiersRouteWithChildren
+  '/login': typeof LoginRoute
   '/pricing': typeof PricingRoute
   '/privacy': typeof PrivacyRoute
   '/qsbs-documentation-checklist': typeof QsbsDocumentationChecklistRoute
@@ -358,6 +365,7 @@ export interface FileRoutesByTo {
   '/contact': typeof ContactRoute
   '/demo': typeof DemoRoute
   '/dossiers': typeof DossiersRouteWithChildren
+  '/login': typeof LoginRoute
   '/pricing': typeof PricingRoute
   '/privacy': typeof PrivacyRoute
   '/qsbs-documentation-checklist': typeof QsbsDocumentationChecklistRoute
@@ -408,6 +416,7 @@ export interface FileRoutesById {
   '/contact': typeof ContactRoute
   '/demo': typeof DemoRoute
   '/dossiers': typeof DossiersRouteWithChildren
+  '/login': typeof LoginRoute
   '/pricing': typeof PricingRoute
   '/privacy': typeof PrivacyRoute
   '/qsbs-documentation-checklist': typeof QsbsDocumentationChecklistRoute
@@ -459,6 +468,7 @@ export interface FileRouteTypes {
     | '/contact'
     | '/demo'
     | '/dossiers'
+    | '/login'
     | '/pricing'
     | '/privacy'
     | '/qsbs-documentation-checklist'
@@ -508,6 +518,7 @@ export interface FileRouteTypes {
     | '/contact'
     | '/demo'
     | '/dossiers'
+    | '/login'
     | '/pricing'
     | '/privacy'
     | '/qsbs-documentation-checklist'
@@ -557,6 +568,7 @@ export interface FileRouteTypes {
     | '/contact'
     | '/demo'
     | '/dossiers'
+    | '/login'
     | '/pricing'
     | '/privacy'
     | '/qsbs-documentation-checklist'
@@ -607,6 +619,7 @@ export interface RootRouteChildren {
   ContactRoute: typeof ContactRoute
   DemoRoute: typeof DemoRoute
   DossiersRoute: typeof DossiersRouteWithChildren
+  LoginRoute: typeof LoginRoute
   PricingRoute: typeof PricingRoute
   PrivacyRoute: typeof PrivacyRoute
   QsbsDocumentationChecklistRoute: typeof QsbsDocumentationChecklistRoute
@@ -741,6 +754,13 @@ declare module '@tanstack/react-router' {
       path: '/pricing'
       fullPath: '/pricing'
       preLoaderRoute: typeof PricingRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/login': {
+      id: '/login'
+      path: '/login'
+      fullPath: '/login'
+      preLoaderRoute: typeof LoginRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/dossiers': {
@@ -1057,6 +1077,7 @@ const rootRouteChildren: RootRouteChildren = {
   ContactRoute: ContactRoute,
   DemoRoute: DemoRoute,
   DossiersRoute: DossiersRouteWithChildren,
+  LoginRoute: LoginRoute,
   PricingRoute: PricingRoute,
   PrivacyRoute: PrivacyRoute,
   QsbsDocumentationChecklistRoute: QsbsDocumentationChecklistRoute,
