@@ -115,11 +115,25 @@ function RootShell({ children }: { children: React.ReactNode }) {
 
 function RootComponent() {
   const { queryClient } = Route.useRouteContext();
+  const router = useRouter();
   return (
     <QueryClientProvider client={queryClient}>
+      <AuthInvalidator router={router} />
       <QsbsProvider>
         <Outlet />
       </QsbsProvider>
     </QueryClientProvider>
   );
+}
+
+function AuthInvalidator({ router }: { router: ReturnType<typeof useRouter> }) {
+  const qc = useQueryClient();
+  useEffect(() => {
+    const { data: { subscription } } = supabase.auth.onAuthStateChange(() => {
+      router.invalidate();
+      qc.invalidateQueries();
+    });
+    return () => subscription.unsubscribe();
+  }, [router, qc]);
+  return null;
 }
