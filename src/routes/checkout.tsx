@@ -4,6 +4,7 @@ import { PageShell, Disclaimer } from "@/components/qsbs/Layout";
 import { StripeEmbeddedCheckout } from "@/components/qsbs/StripeEmbeddedCheckout";
 import { hasPaymentsToken } from "@/lib/stripe";
 import { trackEvent } from "@/lib/qsbs/analytics";
+import { useAuth } from "@/hooks/use-auth";
 
 export const Route = createFileRoute("/checkout")({
   head: () => ({
@@ -20,6 +21,7 @@ export const Route = createFileRoute("/checkout")({
 
 function CheckoutPage() {
   const { dossier } = useSearch({ from: "/checkout" });
+  const { user, isAuthenticated } = useAuth();
   const [showCheckout, setShowCheckout] = useState(false);
   const [returnUrl, setReturnUrl] = useState("");
 
@@ -32,7 +34,6 @@ function CheckoutPage() {
     setReturnUrl(url.toString());
   }, [dossier]);
 
-
   const canCheckout = hasPaymentsToken();
 
   return (
@@ -41,6 +42,13 @@ function CheckoutPage() {
         <div className="text-xs uppercase tracking-wider text-muted-foreground">Secure checkout</div>
         <h1 className="mt-2 text-3xl md:text-4xl font-medium tracking-tight">One Holding Packet — $49</h1>
         <p className="mt-3 text-muted-foreground">One-time purchase. 14-day satisfaction policy. Not tax advice.</p>
+
+        {!isAuthenticated && (
+          <div className="mt-6 rounded-md border border-border bg-muted/30 px-4 py-3 text-sm">
+            <strong className="font-medium">Tip:</strong> <Link to="/login" search={{ redirect: window.location.pathname + window.location.search }} className="qsbs-link">Sign in</Link> first
+            so your packet stays linked to your account and works on any device. You can still buy as a guest — we'll email you a permanent access link.
+          </div>
+        )}
 
         <div className="mt-8 grid md:grid-cols-2 gap-6">
           <div className="qsbs-card p-6">
@@ -69,6 +77,8 @@ function CheckoutPage() {
               <StripeEmbeddedCheckout
                 priceId="one_holding_packet_49"
                 dossierId={dossier}
+                customerEmail={user?.email}
+                userId={user?.id}
                 returnUrl={returnUrl}
               />
             ) : (
@@ -90,7 +100,7 @@ function CheckoutPage() {
                   Proceed to secure checkout — $49
                 </button>
                 <div className="text-[11px] text-muted-foreground text-center">
-                  Payments are processed securely by Stripe.
+                  Payments are processed securely by Stripe. Applicable sales tax/VAT will be added at checkout.
                 </div>
               </div>
             )}

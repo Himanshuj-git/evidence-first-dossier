@@ -25,6 +25,7 @@ import { Route as QsbsFormerEmployeeRouteImport } from './routes/qsbs-former-emp
 import { Route as QsbsDocumentationChecklistRouteImport } from './routes/qsbs-documentation-checklist'
 import { Route as PrivacyRouteImport } from './routes/privacy'
 import { Route as PricingRouteImport } from './routes/pricing'
+import { Route as LoginRouteImport } from './routes/login'
 import { Route as DossiersRouteImport } from './routes/dossiers'
 import { Route as DemoRouteImport } from './routes/demo'
 import { Route as ContactRouteImport } from './routes/contact'
@@ -33,6 +34,7 @@ import { Route as CompanyRouteImport } from './routes/company'
 import { Route as CheckoutRouteImport } from './routes/checkout'
 import { Route as ChecklistRouteImport } from './routes/checklist'
 import { Route as AdminDemoRouteImport } from './routes/admin-demo'
+import { Route as AccountRouteImport } from './routes/account'
 import { Route as AccessRouteImport } from './routes/access'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as PacketIdRouteImport } from './routes/packet.$id'
@@ -141,6 +143,11 @@ const PricingRoute = PricingRouteImport.update({
   path: '/pricing',
   getParentRoute: () => rootRouteImport,
 } as any)
+const LoginRoute = LoginRouteImport.update({
+  id: '/login',
+  path: '/login',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const DossiersRoute = DossiersRouteImport.update({
   id: '/dossiers',
   path: '/dossiers',
@@ -179,6 +186,11 @@ const ChecklistRoute = ChecklistRouteImport.update({
 const AdminDemoRoute = AdminDemoRouteImport.update({
   id: '/admin-demo',
   path: '/admin-demo',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AccountRoute = AccountRouteImport.update({
+  id: '/account',
+  path: '/account',
   getParentRoute: () => rootRouteImport,
 } as any)
 const AccessRoute = AccessRouteImport.update({
@@ -301,6 +313,7 @@ const ApiPublicPaymentsWebhookRoute =
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/access': typeof AccessRoute
+  '/account': typeof AccountRoute
   '/admin-demo': typeof AdminDemoRoute
   '/checklist': typeof ChecklistRoute
   '/checkout': typeof CheckoutRouteWithChildren
@@ -309,6 +322,7 @@ export interface FileRoutesByFullPath {
   '/contact': typeof ContactRoute
   '/demo': typeof DemoRoute
   '/dossiers': typeof DossiersRouteWithChildren
+  '/login': typeof LoginRoute
   '/pricing': typeof PricingRoute
   '/privacy': typeof PrivacyRoute
   '/qsbs-documentation-checklist': typeof QsbsDocumentationChecklistRoute
@@ -350,6 +364,7 @@ export interface FileRoutesByFullPath {
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/access': typeof AccessRoute
+  '/account': typeof AccountRoute
   '/admin-demo': typeof AdminDemoRoute
   '/checklist': typeof ChecklistRoute
   '/checkout': typeof CheckoutRouteWithChildren
@@ -358,6 +373,7 @@ export interface FileRoutesByTo {
   '/contact': typeof ContactRoute
   '/demo': typeof DemoRoute
   '/dossiers': typeof DossiersRouteWithChildren
+  '/login': typeof LoginRoute
   '/pricing': typeof PricingRoute
   '/privacy': typeof PrivacyRoute
   '/qsbs-documentation-checklist': typeof QsbsDocumentationChecklistRoute
@@ -400,6 +416,7 @@ export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/access': typeof AccessRoute
+  '/account': typeof AccountRoute
   '/admin-demo': typeof AdminDemoRoute
   '/checklist': typeof ChecklistRoute
   '/checkout': typeof CheckoutRouteWithChildren
@@ -408,6 +425,7 @@ export interface FileRoutesById {
   '/contact': typeof ContactRoute
   '/demo': typeof DemoRoute
   '/dossiers': typeof DossiersRouteWithChildren
+  '/login': typeof LoginRoute
   '/pricing': typeof PricingRoute
   '/privacy': typeof PrivacyRoute
   '/qsbs-documentation-checklist': typeof QsbsDocumentationChecklistRoute
@@ -451,6 +469,7 @@ export interface FileRouteTypes {
   fullPaths:
     | '/'
     | '/access'
+    | '/account'
     | '/admin-demo'
     | '/checklist'
     | '/checkout'
@@ -459,6 +478,7 @@ export interface FileRouteTypes {
     | '/contact'
     | '/demo'
     | '/dossiers'
+    | '/login'
     | '/pricing'
     | '/privacy'
     | '/qsbs-documentation-checklist'
@@ -500,6 +520,7 @@ export interface FileRouteTypes {
   to:
     | '/'
     | '/access'
+    | '/account'
     | '/admin-demo'
     | '/checklist'
     | '/checkout'
@@ -508,6 +529,7 @@ export interface FileRouteTypes {
     | '/contact'
     | '/demo'
     | '/dossiers'
+    | '/login'
     | '/pricing'
     | '/privacy'
     | '/qsbs-documentation-checklist'
@@ -549,6 +571,7 @@ export interface FileRouteTypes {
     | '__root__'
     | '/'
     | '/access'
+    | '/account'
     | '/admin-demo'
     | '/checklist'
     | '/checkout'
@@ -557,6 +580,7 @@ export interface FileRouteTypes {
     | '/contact'
     | '/demo'
     | '/dossiers'
+    | '/login'
     | '/pricing'
     | '/privacy'
     | '/qsbs-documentation-checklist'
@@ -599,6 +623,7 @@ export interface FileRouteTypes {
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AccessRoute: typeof AccessRoute
+  AccountRoute: typeof AccountRoute
   AdminDemoRoute: typeof AdminDemoRoute
   ChecklistRoute: typeof ChecklistRoute
   CheckoutRoute: typeof CheckoutRouteWithChildren
@@ -607,6 +632,7 @@ export interface RootRouteChildren {
   ContactRoute: typeof ContactRoute
   DemoRoute: typeof DemoRoute
   DossiersRoute: typeof DossiersRouteWithChildren
+  LoginRoute: typeof LoginRoute
   PricingRoute: typeof PricingRoute
   PrivacyRoute: typeof PrivacyRoute
   QsbsDocumentationChecklistRoute: typeof QsbsDocumentationChecklistRoute
@@ -743,6 +769,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof PricingRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/login': {
+      id: '/login'
+      path: '/login'
+      fullPath: '/login'
+      preLoaderRoute: typeof LoginRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/dossiers': {
       id: '/dossiers'
       path: '/dossiers'
@@ -797,6 +830,13 @@ declare module '@tanstack/react-router' {
       path: '/admin-demo'
       fullPath: '/admin-demo'
       preLoaderRoute: typeof AdminDemoRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/account': {
+      id: '/account'
+      path: '/account'
+      fullPath: '/account'
+      preLoaderRoute: typeof AccountRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/access': {
@@ -1049,6 +1089,7 @@ const HoldingIdRouteWithChildren = HoldingIdRoute._addFileChildren(
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AccessRoute: AccessRoute,
+  AccountRoute: AccountRoute,
   AdminDemoRoute: AdminDemoRoute,
   ChecklistRoute: ChecklistRoute,
   CheckoutRoute: CheckoutRouteWithChildren,
@@ -1057,6 +1098,7 @@ const rootRouteChildren: RootRouteChildren = {
   ContactRoute: ContactRoute,
   DemoRoute: DemoRoute,
   DossiersRoute: DossiersRouteWithChildren,
+  LoginRoute: LoginRoute,
   PricingRoute: PricingRoute,
   PrivacyRoute: PrivacyRoute,
   QsbsDocumentationChecklistRoute: QsbsDocumentationChecklistRoute,

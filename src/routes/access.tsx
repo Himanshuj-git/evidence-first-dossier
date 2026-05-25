@@ -1,7 +1,7 @@
 import { createFileRoute, useNavigate, useSearch, Link } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
 import { PageShell } from "@/components/qsbs/Layout";
-import { redeemAccessToken } from "@/lib/payments.functions";
+import { redeemAccessToken, linkPurchasesToCurrentUser } from "@/lib/payments.functions";
 import { useQsbs } from "@/lib/qsbs/store";
 
 export const Route = createFileRoute("/access")({
@@ -31,6 +31,7 @@ function AccessPage() {
     (async () => {
       try {
         const res = (await redeemAccessToken({ data: { token } })) as any;
+        try { await linkPurchasesToCurrentUser(); } catch {}
         try { recordCheckout("single"); } catch {}
         if (res.dossier_id) {
           try { unlockDossier(res.dossier_id); } catch {}

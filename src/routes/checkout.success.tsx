@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import { PageShell, Disclaimer } from "@/components/qsbs/Layout";
 import { trackEvent } from "@/lib/qsbs/analytics";
 import { useQsbs } from "@/lib/qsbs/store";
-import { verifyCheckoutSession } from "@/lib/payments.functions";
+import { verifyCheckoutSession, linkPurchasesToCurrentUser } from "@/lib/payments.functions";
 import { getStripeEnvironment } from "@/lib/stripe";
 
 export const Route = createFileRoute("/checkout/success")({
@@ -40,6 +40,7 @@ function SuccessPage() {
         const res = await verifyCheckoutSession({
           data: { sessionId: session_id, environment: getStripeEnvironment() },
         });
+        try { await linkPurchasesToCurrentUser(); } catch {}
         const dossierId = (res as any).dossier_id ?? dossier ?? null;
         const accessUrl = `${window.location.origin}/access?token=${(res as any).access_token}`;
         try { recordCheckout("single"); } catch {}
