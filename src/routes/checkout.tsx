@@ -1,5 +1,5 @@
 import { createFileRoute, Link, useSearch } from "@tanstack/react-router";
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useState } from "react";
 import { PageShell, Disclaimer } from "@/components/qsbs/Layout";
 import { StripeEmbeddedCheckout } from "@/components/qsbs/StripeEmbeddedCheckout";
 import { hasPaymentsToken } from "@/lib/stripe";
