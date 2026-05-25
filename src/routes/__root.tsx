@@ -1,4 +1,4 @@
-import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { QueryClient, QueryClientProvider, useQueryClient } from "@tanstack/react-query";
 import {
   Outlet,
   createRootRouteWithContext,
@@ -7,10 +7,12 @@ import {
   Scripts,
   Link,
 } from "@tanstack/react-router";
+import { useEffect } from "react";
 
 import appCss from "../styles.css?url";
 import { QsbsProvider } from "@/lib/qsbs/store";
 import { PageShell } from "@/components/qsbs/Layout";
+import { supabase } from "@/integrations/supabase/client";
 
 function NotFoundComponent() {
   return (
