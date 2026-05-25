@@ -60,16 +60,38 @@ function CheckoutPage() {
           </div>
 
           <div className="qsbs-card p-2 md:p-4 overflow-hidden">
-            {canCheckout && returnUrl ? (
+            {!canCheckout ? (
+              <div className="p-6 text-sm text-muted-foreground">
+                Secure checkout is being connected. Please refresh in a moment, or email
+                <a className="qsbs-link ml-1" href="mailto:support@1202request.com">support@1202request.com</a>.
+              </div>
+            ) : showCheckout && returnUrl ? (
               <StripeEmbeddedCheckout
                 priceId="one_holding_packet_49"
                 dossierId={dossier}
                 returnUrl={returnUrl}
               />
             ) : (
-              <div className="p-6 text-sm text-muted-foreground">
-                Secure checkout is being connected. Please refresh in a moment, or email
-                <a className="qsbs-link ml-1" href="mailto:support@1202request.com">support@1202request.com</a>.
+              <div className="p-6 flex flex-col gap-3">
+                <div className="text-sm font-medium">Ready to unlock</div>
+                <p className="text-sm text-muted-foreground">
+                  Click below to load the secure payment form. You'll pay $49 (one-time) and your packet
+                  unlocks the moment payment is confirmed.
+                </p>
+                <button
+                  type="button"
+                  className="qsbs-btn qsbs-btn-primary w-full"
+                  onClick={() => {
+                    trackEvent("checkout_form_opened", { plan: "single" });
+                    setShowCheckout(true);
+                  }}
+                  disabled={!returnUrl}
+                >
+                  Proceed to secure checkout — $49
+                </button>
+                <div className="text-[11px] text-muted-foreground text-center">
+                  Payments are processed securely by Stripe.
+                </div>
               </div>
             )}
           </div>
