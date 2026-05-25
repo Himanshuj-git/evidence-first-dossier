@@ -40,6 +40,7 @@ function SuccessPage() {
         const res = await verifyCheckoutSession({
           data: { sessionId: session_id, environment: getStripeEnvironment() },
         });
+        try { await linkPurchasesToCurrentUser(); } catch {}
         const dossierId = (res as any).dossier_id ?? dossier ?? null;
         const accessUrl = `${window.location.origin}/access?token=${(res as any).access_token}`;
         try { recordCheckout("single"); } catch {}
