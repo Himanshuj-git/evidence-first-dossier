@@ -20,19 +20,18 @@ export const Route = createFileRoute("/checkout")({
 
 function CheckoutPage() {
   const { dossier } = useSearch({ from: "/checkout" });
+  const [showCheckout, setShowCheckout] = useState(false);
+  const [returnUrl, setReturnUrl] = useState("");
 
   useEffect(() => {
     trackEvent("checkout_started", { plan: "single", dossier_id: dossier });
     trackEvent("paid_gate_viewed", { plan: "single" });
-  }, [dossier]);
-
-  const returnUrl = useMemo(() => {
-    if (typeof window === "undefined") return "";
     const url = new URL("/checkout/success", window.location.origin);
     if (dossier) url.searchParams.set("dossier", dossier);
     url.searchParams.set("session_id", "{CHECKOUT_SESSION_ID}");
-    return url.toString();
+    setReturnUrl(url.toString());
   }, [dossier]);
+
 
   const canCheckout = hasPaymentsToken();
 
