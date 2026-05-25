@@ -14,6 +14,30 @@ export type Database = {
   }
   public: {
     Tables: {
+      profiles: {
+        Row: {
+          created_at: string
+          display_name: string | null
+          email: string | null
+          id: string
+          updated_at: string
+        }
+        Insert: {
+          created_at?: string
+          display_name?: string | null
+          email?: string | null
+          id: string
+          updated_at?: string
+        }
+        Update: {
+          created_at?: string
+          display_name?: string | null
+          email?: string | null
+          id?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
       purchases: {
         Row: {
           access_token: string
@@ -28,6 +52,7 @@ export type Database = {
           stripe_payment_intent_id: string | null
           stripe_session_id: string
           updated_at: string
+          user_id: string | null
         }
         Insert: {
           access_token?: string
@@ -42,6 +67,7 @@ export type Database = {
           stripe_payment_intent_id?: string | null
           stripe_session_id: string
           updated_at?: string
+          user_id?: string | null
         }
         Update: {
           access_token?: string
@@ -56,6 +82,7 @@ export type Database = {
           stripe_payment_intent_id?: string | null
           stripe_session_id?: string
           updated_at?: string
+          user_id?: string | null
         }
         Relationships: []
       }
