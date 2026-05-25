@@ -1,7 +1,7 @@
 import { createFileRoute, useNavigate, useSearch, Link } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
 import { PageShell } from "@/components/qsbs/Layout";
-import { redeemAccessToken } from "@/lib/payments.functions";
+import { redeemAccessToken, linkPurchasesToCurrentUser } from "@/lib/payments.functions";
 import { useQsbs } from "@/lib/qsbs/store";
 
 export const Route = createFileRoute("/access")({

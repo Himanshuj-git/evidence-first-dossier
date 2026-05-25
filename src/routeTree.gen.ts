@@ -34,6 +34,7 @@ import { Route as CompanyRouteImport } from './routes/company'
 import { Route as CheckoutRouteImport } from './routes/checkout'
 import { Route as ChecklistRouteImport } from './routes/checklist'
 import { Route as AdminDemoRouteImport } from './routes/admin-demo'
+import { Route as AccountRouteImport } from './routes/account'
 import { Route as AccessRouteImport } from './routes/access'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as PacketIdRouteImport } from './routes/packet.$id'
@@ -187,6 +188,11 @@ const AdminDemoRoute = AdminDemoRouteImport.update({
   path: '/admin-demo',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AccountRoute = AccountRouteImport.update({
+  id: '/account',
+  path: '/account',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const AccessRoute = AccessRouteImport.update({
   id: '/access',
   path: '/access',
@@ -307,6 +313,7 @@ const ApiPublicPaymentsWebhookRoute =
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/access': typeof AccessRoute
+  '/account': typeof AccountRoute
   '/admin-demo': typeof AdminDemoRoute
   '/checklist': typeof ChecklistRoute
   '/checkout': typeof CheckoutRouteWithChildren
@@ -357,6 +364,7 @@ export interface FileRoutesByFullPath {
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/access': typeof AccessRoute
+  '/account': typeof AccountRoute
   '/admin-demo': typeof AdminDemoRoute
   '/checklist': typeof ChecklistRoute
   '/checkout': typeof CheckoutRouteWithChildren
@@ -408,6 +416,7 @@ export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/access': typeof AccessRoute
+  '/account': typeof AccountRoute
   '/admin-demo': typeof AdminDemoRoute
   '/checklist': typeof ChecklistRoute
   '/checkout': typeof CheckoutRouteWithChildren
@@ -460,6 +469,7 @@ export interface FileRouteTypes {
   fullPaths:
     | '/'
     | '/access'
+    | '/account'
     | '/admin-demo'
     | '/checklist'
     | '/checkout'
@@ -510,6 +520,7 @@ export interface FileRouteTypes {
   to:
     | '/'
     | '/access'
+    | '/account'
     | '/admin-demo'
     | '/checklist'
     | '/checkout'
@@ -560,6 +571,7 @@ export interface FileRouteTypes {
     | '__root__'
     | '/'
     | '/access'
+    | '/account'
     | '/admin-demo'
     | '/checklist'
     | '/checkout'
@@ -611,6 +623,7 @@ export interface FileRouteTypes {
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AccessRoute: typeof AccessRoute
+  AccountRoute: typeof AccountRoute
   AdminDemoRoute: typeof AdminDemoRoute
   ChecklistRoute: typeof ChecklistRoute
   CheckoutRoute: typeof CheckoutRouteWithChildren
@@ -817,6 +830,13 @@ declare module '@tanstack/react-router' {
       path: '/admin-demo'
       fullPath: '/admin-demo'
       preLoaderRoute: typeof AdminDemoRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/account': {
+      id: '/account'
+      path: '/account'
+      fullPath: '/account'
+      preLoaderRoute: typeof AccountRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/access': {
@@ -1069,6 +1089,7 @@ const HoldingIdRouteWithChildren = HoldingIdRoute._addFileChildren(
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AccessRoute: AccessRoute,
+  AccountRoute: AccountRoute,
   AdminDemoRoute: AdminDemoRoute,
   ChecklistRoute: ChecklistRoute,
   CheckoutRoute: CheckoutRouteWithChildren,
