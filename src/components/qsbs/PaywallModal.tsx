@@ -1,42 +1,45 @@
 import { useEffect, useState } from "react";
 import { Link } from "@tanstack/react-router";
-import { useQsbs } from "@/lib/qsbs/store";
 
 export function PaywallModal({
   open,
-  plan,
   onClose,
   onConfirm,
+  dossierId,
 }: {
   open: boolean;
-  plan: "single" | "vault" | "portal";
+  /** Kept for backwards-compat with existing callers; only "single" is supported. */
+  plan?: "single";
   onClose: () => void;
-  onConfirm: () => void;
+  onConfirm?: () => void;
+  dossierId?: string;
 }) {
-  const { settings } = useQsbs();
   const [mounted, setMounted] = useState(false);
   useEffect(() => setMounted(open), [open]);
 
   if (!open) return null;
 
-  const labels: Record<string, { name: string; price: string; href?: string }> = {
-    single: { name: "One Holding Packet", price: "$49 one-time", href: settings.stripe_single },
-    vault: { name: "Multi-Holding Vault", price: "$149 / year", href: settings.stripe_vault },
-    portal: { name: "Founder / Company Portal", price: "$299 / team / year", href: settings.stripe_portal },
-  };
-  const p = labels[plan];
+  const checkoutSearch = dossierId ? { dossier: dossierId } : { dossier: undefined };
 
   return (
-    <div className={`fixed inset-0 z-50 flex items-end md:items-center justify-center p-4 bg-foreground/30 transition-opacity ${mounted ? "opacity-100" : "opacity-0"}`} onClick={onClose}>
+    <div
+      className={`fixed inset-0 z-50 flex items-end md:items-center justify-center p-4 bg-foreground/30 transition-opacity ${mounted ? "opacity-100" : "opacity-0"}`}
+      onClick={onClose}
+    >
       <div className="qsbs-card max-w-md w-full p-6 shadow-xl" onClick={(e) => e.stopPropagation()}>
         <div className="text-xs uppercase tracking-wide text-muted-foreground">Secure checkout</div>
-        <h3 className="mt-1 text-xl font-medium">{p.name}</h3>
-        <div className="mt-1 text-muted-foreground">{p.price}</div>
+        <h3 className="mt-1 text-xl font-medium">One Holding Packet</h3>
+        <div className="mt-1 text-muted-foreground">$49 one-time</div>
         <p className="mt-4 text-sm text-muted-foreground leading-relaxed">
-          You'll be taken to a secure checkout to unlock your packet.
+          You'll be taken to secure checkout. Your packet unlocks only after the payment is confirmed.
         </p>
-        <Link to="/checkout" className="mt-5 qsbs-btn qsbs-btn-primary w-full block text-center" onClick={onConfirm}>
-          Go to checkout
+        <Link
+          to="/checkout"
+          search={checkoutSearch}
+          className="mt-5 qsbs-btn qsbs-btn-primary w-full block text-center"
+          onClick={() => onConfirm?.()}
+        >
+          Unlock One Holding Packet — $49
         </Link>
         <button className="mt-2 qsbs-btn qsbs-btn-ghost w-full" onClick={onClose}>Cancel</button>
         <div className="mt-4 border-t border-border pt-3 text-[11px] text-muted-foreground leading-relaxed">

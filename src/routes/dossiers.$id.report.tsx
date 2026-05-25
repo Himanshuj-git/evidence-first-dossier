@@ -4,7 +4,7 @@ import { PageShell, StatusChip, Disclaimer } from "@/components/qsbs/Layout";
 import { useDossier } from "@/lib/qsbs/store";
 import { buildRules, readinessScore, deriveStatus } from "@/lib/qsbs/rules";
 import { PaywallModal } from "@/components/qsbs/PaywallModal";
-import { useQsbs } from "@/lib/qsbs/store";
+
 
 export const Route = createFileRoute("/dossiers/$id/report")({
   head: () => ({ meta: [{ title: "CPA-ready report — 1202 Request" }] }),
@@ -14,7 +14,6 @@ export const Route = createFileRoute("/dossiers/$id/report")({
 function ReportPage() {
   const { id } = Route.useParams();
   const d = useDossier(id);
-  const { unlockDossier, recordCheckout } = useQsbs();
   const [paywall, setPaywall] = useState(false);
 
   if (!d) return <PageShell><div className="px-5 py-12">Not found</div></PageShell>;
@@ -173,9 +172,8 @@ function ReportPage() {
 
       <PaywallModal
         open={paywall}
-        plan="single"
+        dossierId={id}
         onClose={() => setPaywall(false)}
-        onConfirm={() => { recordCheckout("single"); unlockDossier(id); setPaywall(false); }}
       />
     </PageShell>
   );

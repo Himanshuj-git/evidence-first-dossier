@@ -28,7 +28,7 @@ function ExportPaywall() {
     );
   }
 
-  const unlocked = d.paid_unlocked || paidPlans.includes("single") || paidPlans.includes("vault");
+  const unlocked = d.paid_unlocked || paidPlans.includes("single");
   const received = d.evidence.filter((e) => e.status === "received" || e.status === "reviewed").length;
 
   const Locked = ({ label }: { label: string }) => (
