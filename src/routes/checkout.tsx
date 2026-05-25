@@ -82,7 +82,7 @@ function CheckoutPage() {
                   type="button"
                   className="qsbs-btn qsbs-btn-primary w-full"
                   onClick={() => {
-                    trackEvent("checkout_form_opened", { plan: "single" });
+                    trackEvent("payment_link_clicked", { plan: "single" });
                     setShowCheckout(true);
                   }}
                   disabled={!returnUrl}
