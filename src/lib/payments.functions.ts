@@ -41,7 +41,7 @@ export const createCheckoutSession = createServerFn({ method: "POST" })
       ui_mode: "embedded_page",
       return_url: data.returnUrl,
       payment_intent_data: { description: product.name },
-      managed_payments: { enabled: true },
+      automatic_tax: { enabled: true },
       ...(data.customerEmail && { customer_email: data.customerEmail }),
       ...(data.dossierId && { metadata: { dossier_id: data.dossierId } }),
     } as any);
